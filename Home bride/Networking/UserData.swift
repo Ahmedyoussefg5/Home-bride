@@ -1,0 +1,220 @@
+
+import UIKit
+//import SwiftKeychainWrapper
+//import FacebookCore
+//import FacebookLogin
+//import GoogleSignIn
+
+class AuthService {
+    
+    static let instance = AuthService()
+    private init () { }
+    
+    // User Defaults KEYS
+    private lazy var ApiTokenKey = "apiToken"
+    private lazy var LoggedInKey = "loggedIn"
+    private lazy var UserMailKey = "userEmail"
+    private lazy var UserIdKey = "userId"
+    private lazy var UserProfileImage = "userProfileImage"
+    private lazy var UserName = "userName"
+    private lazy var UserCountry = "userCountry"
+    private lazy var UserCountryId = "userCountryId"
+    private lazy var UserProvider = "userProvider"
+    private lazy var LastRequest = "lastRequest"
+    private lazy var ShouldShowNotifications = "ShouldShowNotifications"
+    
+    private let defaults = UserDefaults.standard
+    
+    var isLoggedIn : Bool {
+        get {
+            return defaults.bool(forKey: LoggedInKey)
+        }
+        set {
+            defaults.set(newValue, forKey: LoggedInKey)
+        }
+    }
+    
+    var authToken: String? {
+        get {
+            return defaults.value(forKey: ApiTokenKey) as? String
+        }
+        set {
+            defaults.set(newValue, forKey: ApiTokenKey)
+        }
+    }
+    
+    var userEmail: String? {
+        get {
+            return defaults.value(forKey: UserMailKey) as? String
+        }
+        set {
+            defaults.set(newValue, forKey: UserMailKey)
+        }
+    }
+    
+    var userId: Int? {
+        get {
+            return defaults.value(forKey: UserIdKey) as? Int
+        }
+        set {
+            defaults.set(newValue, forKey: UserIdKey)
+        }
+    }
+    
+    var userName: String? {
+        get {
+            return defaults.value(forKey: UserName) as? String
+        }
+        set {
+            defaults.set(newValue, forKey: UserName)
+        }
+    }
+    
+    var userImage: String? {
+        get {
+            return defaults.value(forKey: UserProfileImage) as? String
+        }
+        set {
+            defaults.set(newValue, forKey: UserProfileImage)
+        }
+    }
+    
+    var userFirstName: String? {
+        get {
+            return defaults.value(forKey: "userFirstName") as? String
+        }
+        set {
+            defaults.set(newValue, forKey: "userFirstName")
+        }
+    }
+    
+    var userLastName: String? {
+        get {
+            return defaults.value(forKey: "userLastName") as? String
+        }
+        set {
+            defaults.set(newValue, forKey: "userLastName")
+        }
+    }
+    
+    var userPhone: String? {
+        get {
+            return defaults.value(forKey: "userPhone") as? String
+        }
+        set {
+            defaults.set(newValue, forKey: "userPhone")
+        }
+    }
+    
+    var userGender: String? {
+        get {
+            return defaults.value(forKey: "userGender") as? String
+        }
+        set {
+            defaults.set(newValue, forKey: "userGender")
+        }
+    }
+    
+    var userMemberShip: String? {
+        get {
+            return defaults.value(forKey: "userMemberShip") as? String
+        }
+        set {
+            defaults.set(newValue, forKey: "userMemberShip")
+        }
+    }
+    
+    // userCountry
+    var userCountryUrl: String? {
+        get {
+            return defaults.value(forKey: UserCountry) as? String
+        }
+        set {
+            defaults.set(newValue, forKey: UserCountry)
+        }
+    }
+    
+    var lastRequest: Int? {
+        get {
+            return defaults.value(forKey: LastRequest) as? Int
+        }
+        set {
+            defaults.set(newValue, forKey: LastRequest)
+        }
+    }
+    
+    var userProvider: String {
+        get {
+            return (defaults.value(forKey: UserProvider) as? String) ?? "Gawla"
+        }
+        set {
+            defaults.set(newValue, forKey: UserProvider)
+        }
+    }
+    
+    var shouldShowNotifications: Bool {
+        get {
+            return defaults.value(forKey: ShouldShowNotifications) as? Bool ?? true
+        }
+        set {
+            defaults.set(newValue, forKey: ShouldShowNotifications)
+        }
+    }
+    
+    func setUserDefaults(user: UserData) {
+        header = ["X-localization" : "ar",
+                      "Authorization" : "bearer \(user.token)"
+        ]
+
+        isLoggedIn = true
+        userId = user.id
+        authToken = user.token
+        userEmail = user.email
+        userImage = user.image.filterAsURL
+        userName = user.firstName
+        userFirstName = user.firstName
+        userLastName = user.lastName
+        userPhone = user.phone
+        userGender = user.gender
+    }
+    
+    private func removeUserDefaults()  {
+        isLoggedIn = false
+        authToken = nil
+        userEmail = nil
+        userId = nil
+        userName = nil
+        userImage = nil
+        userFirstName = nil
+        userLastName = nil
+        userGender = nil
+        userMemberShip = nil
+        shouldShowNotifications = true
+        
+//        GIDSignIn.sharedInstance()?.signOut()
+//        let loginManger = defaults.object(forKey: "loginManger") as? LoginManager
+//        loginManger?.logOut()
+//        userProvider = ""
+    }
+    
+    func restartAppAndRemoveUserDefaults() {
+        removeUserDefaults()
+        DispatchQueue.main.async {
+            guard let window =  UIApplication.shared.keyWindow else { fatalError() }
+            window.rootViewController = LoginViewController()
+            UIView.transition(with: window, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
+        }
+    }
+    
+    private func resetDefaults() {
+        //    print(Array(UserDefaults.standard.dictionaryRepresentation().values))
+        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        print("****************************************************")
+        //    print(Array(UserDefaults.standard.dictionaryRepresentation().values))
+        
+        //        let dictionary = defaults.dictionaryRepresentation()
+        //        dictionary.keys.forEach { key in
+        //            defaults.removeObject(forKey: key)
+        //        }
+    }
+}

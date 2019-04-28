@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        print(AuthService.instance.authToken ?? "")
+
+        if AuthService.instance.authToken == nil {
+            
+        } else {
+            window?.rootViewController = HomeTabBarController()
+            return true
+        }
+
+        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         return true
     }
 
