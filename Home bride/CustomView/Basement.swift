@@ -68,7 +68,7 @@ class BaseUIViewController<T: BaseView>: UIViewController, ButtonActionDelegatio
     }
 }
 
-class BaseCell<U: BaseCodable>: UITableViewCell {
+class BaseCell<U: Codable>: UITableViewCell {
     
 //    var dataSource: U? {
 //        didSet {

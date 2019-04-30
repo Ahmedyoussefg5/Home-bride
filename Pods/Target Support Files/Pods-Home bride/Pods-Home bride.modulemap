@@ -1,0 +1,6 @@
+framework module Pods_Home_bride {
+  umbrella header "Pods-Home bride-umbrella.h"
+
+  export *
+  module * { export * }
+}

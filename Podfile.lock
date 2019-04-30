@@ -1,0 +1,54 @@
+PODS:
+  - Alamofire (4.8.1)
+  - DropDown (2.3.12)
+  - IQKeyboardManagerSwift (6.2.0)
+  - NicooPlayer (1.3.3):
+    - SnapKit
+  - ROThumbnailGenerator (2.1.1)
+  - Sapporo (3.0.0)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+  - SideMenu (5.0.3)
+  - SnapKit (4.2.0)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - DropDown
+  - IQKeyboardManagerSwift
+  - NicooPlayer
+  - ROThumbnailGenerator
+  - Sapporo
+  - SDWebImage
+  - SideMenu
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - DropDown
+    - IQKeyboardManagerSwift
+    - NicooPlayer
+    - ROThumbnailGenerator
+    - Sapporo
+    - SDWebImage
+    - SideMenu
+    - SnapKit
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  NicooPlayer: ca8977c5d5e9cf656982e81775d294d2205b1e78
+  ROThumbnailGenerator: 4e01a887fc8b4e46a7fa6cd7337dd031a46d6a29
+  Sapporo: 96258b80d8a9259f02dbdf2a200f4d9e9bbb3179
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: c31e31542c75f5b432e31e38f0da8a1c6b653d8c
+
+COCOAPODS: 1.5.2

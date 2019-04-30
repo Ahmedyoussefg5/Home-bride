@@ -21,13 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(AuthService.instance.authToken ?? "")
 
         if AuthService.instance.authToken == nil {
-            
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         } else {
             window?.rootViewController = HomeTabBarController()
-            return true
         }
 
-        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         return true
     }
 

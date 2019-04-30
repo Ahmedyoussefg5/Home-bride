@@ -13,13 +13,14 @@ class DatePickerViewController: UIViewController {
     weak var delegate: SendResult?
     var selectedDate = ""
     
-    let pickerView: UIDatePicker = {
+    lazy var pickerView: UIDatePicker = {
         let picker = UIDatePicker()
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.backgroundColor = .clear
         picker.viewBorderWidth = 0.5
         picker.viewBorderColor = .paleGreyTwo
         picker.viewCornerRadius = 8
+        picker.datePickerMode = mode
         return picker
     }()
     lazy var confirmButton: UIButton = {
@@ -29,23 +30,23 @@ class DatePickerViewController: UIViewController {
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.layer.cornerRadius = 15
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.insertSublayer(gradientLayer, at: 0)
-        btn.backgroundColor = .denimBlue
+        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
         btn.addTheTarget(action: {[weak self] in
             self?.pickerViewValue()
+            self?.delegate?.result(name: self?.getDateToStringDate(date: self?.pickerView.date ?? Date()) ?? "")
+            self?.dismissMePlease()
         })
         return btn
     }()
-    lazy var gradientLayer: LinearGradientLayer = {
-        let gradientLayer = LinearGradientLayer(colors: [.indigoBlue, .denimBlue, .cornflowerBlue])
-        gradientLayer.direction = .bottomLeftToTopRight
-        gradientLayer.cornerRadius = 15
-        return gradientLayer
-    }()
-    init() {
+    
+    var mode: UIDatePicker.Mode
+    
+    init(mode: UIDatePicker.Mode = .dateAndTime) {
+        self.mode = mode
         super.init(nibName: nil, bundle: nil)
     }; required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder) }
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,12 +91,7 @@ class DatePickerViewController: UIViewController {
             pickerView.bottomAnchor.constraint(equalTo: confirmButton.topAnchor, constant: -10)
             ])
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.frame = confirmButton.bounds
-    }
-    
+
     private func pickerViewValue() {
         let date = pickerView.date
         let selectedDate = getDateToStringDate(date: date)
@@ -103,10 +99,17 @@ class DatePickerViewController: UIViewController {
         
         print(selectedDate)
         print(getDateToStringTime(date: date))
-        print(date.description)
+//        print(date.description)
     }
     
     func getDateToStringDate(date: Date) -> String {
+        if mode == .time {
+            let formatter = DateFormatter()
+            let time = pickerView.date
+            formatter.dateFormat = "h:m"
+            let myStringafd = formatter.string(from: time)
+            return myStringafd
+        }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let myStringafd = formatter.string(from: date)
@@ -123,6 +126,5 @@ class DatePickerViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print(selectedDate)
-        delegate?.result(name: selectedDate)
     }
 }

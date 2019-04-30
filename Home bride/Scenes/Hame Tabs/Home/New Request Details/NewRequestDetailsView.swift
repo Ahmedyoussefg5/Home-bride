@@ -13,6 +13,54 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "رجوع", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissMePlease))
         setupNavBarApperance(title: "تفاصيل الطلب", addImageTitle: no, showNotifButton: no)
+        getData()
+        
+        mainView.locationButton.addTheTarget {[weak self] in
+            if let long = self?.data?.data.lng, let lat = self?.data?.data.lat {
+                let vc = UserLocationMapViewController(long: long, lat: lat)
+                self?.presentModelyVC(vc: vc)
+            }
+        }
+        
+        mainView.acceptButton.addTheTarget {
+            
+        }
+        
+        mainView.refuseButton.addTheTarget {
+            
+        }
+    }
+    
+    private func accept() {
+        
+    }
+    
+    var data: ReqData? {
+        didSet {
+            if let data = data {
+                mainView.confView(data: data)
+            }
+        }
+    }
+    
+    var id : Int
+    
+    init(id: Int) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func getData() {
+        let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
+        callApi(ReqData.self, url: url, method: .get, parameters: nil) { (data) in
+            if let data = data {
+                self.data = data
+            }
+        }
     }
 }
 
@@ -30,7 +78,7 @@ class NewRequestDetailsView: BaseView {
 
     let phoneNumLable = RequestDetailsGrayLable(title: "رقم الجوال")
     let birthLable = RequestDetailsGrayLable(title: "تاريخ الميلاد")
-    let cityLable = RequestDetailsGrayLable(title: "المدينة")
+//    let cityLable = RequestDetailsGrayLable(title: "الوظيفة")
 
     lazy var faceButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -60,7 +108,6 @@ class NewRequestDetailsView: BaseView {
         return btn
     }()
 
-    
     private lazy var detailsContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -103,16 +150,16 @@ class NewRequestDetailsView: BaseView {
         return btn
     }()
     
-    lazy var phoneButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setBackgroundImage(#imageLiteral(resourceName: "list").withRenderingMode(.alwaysTemplate), for: .normal)
-        return btn
-    }()
-    lazy var messageButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setBackgroundImage(#imageLiteral(resourceName: "list").withRenderingMode(.alwaysTemplate), for: .normal)
-        return btn
-    }()
+//    lazy var phoneButton: UIButton = {
+//        let btn = UIButton(type: .system)
+//        btn.setBackgroundImage(#imageLiteral(resourceName: "list").withRenderingMode(.alwaysTemplate), for: .normal)
+//        return btn
+//    }()
+//    lazy var messageButton: UIButton = {
+//        let btn = UIButton(type: .system)
+//        btn.setBackgroundImage(#imageLiteral(resourceName: "list").withRenderingMode(.alwaysTemplate), for: .normal)
+//        return btn
+//    }()
     
     lazy var acceptButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -156,7 +203,7 @@ class NewRequestDetailsView: BaseView {
         detailsContainerView.topAnchor.constraint(equalTo: headLable.bottomAnchor, constant: 10).isActive = ya
         detailsContainerView.widthAnchorWithMultiplier(multiplier: 0.9)
         detailsContainerView.centerXInSuperview()
-        detailsContainerView.heightAnchorConstant(constant: 220)
+        detailsContainerView.heightAnchorConstant(constant: 200)
         
         //
         let headLablee = RequestDetailsGrayLable(title: "بيانات العميل")
@@ -170,7 +217,7 @@ class NewRequestDetailsView: BaseView {
         agentDetailsContainerView.topAnchor.constraint(equalTo: headLablee.bottomAnchor, constant: 10).isActive = ya
         agentDetailsContainerView.widthAnchorWithMultiplier(multiplier: 0.9)
         agentDetailsContainerView.centerXInSuperview()
-        agentDetailsContainerView.heightAnchorConstant(constant: 400)
+        agentDetailsContainerView.heightAnchorConstant(constant: 300)
 
         setupRequestDetailsView()
         setupAgentDetailsContainerView()
@@ -187,10 +234,6 @@ class NewRequestDetailsView: BaseView {
             stack.topAnchor.constraint(equalTo: agentDetailsContainerView.bottomAnchor, constant: 20)
             ])
     }
-    
-
-    
-    //    var mainDetailsViewHeightAnchor: NSLayoutConstraint?
     
     private func setupRequestDetailsView() {
         let headLable = RequestDetailsRedLable(title: "اسم الطلب")
@@ -225,7 +268,7 @@ class NewRequestDetailsView: BaseView {
         userImage.trailingAnchorAnchorSuperView(constant: -20)
         userImage.widthAnchorConstant(constant: 50)
         userImage.heightAnchorEqualWidthAnchor()
-        userImage.topAnchorSuperView(constant: 10)
+        userImage.topAnchorSuperView(constant: 5)
         userImage.viewCornerRadius = 25
         
         let agentStack =
@@ -244,8 +287,8 @@ class NewRequestDetailsView: BaseView {
         //
         let contactStack =
             UIStackView(arrangedSubviews: [
-                phoneButton,
-                messageButton,
+//                phoneButton,
+//                messageButton,
                 ])
         
         contactStack.axis = h
@@ -275,8 +318,8 @@ class NewRequestDetailsView: BaseView {
                 stackSpliter(),
                 phoneNumLable,
                 birthLable,
-                cityLable,
-                stackSpliter(),
+//                cityLable,
+//                stackSpliter(),
                 stackSpliterGray(),
                 stackSpliter(),
                 totalLable,
@@ -286,12 +329,27 @@ class NewRequestDetailsView: BaseView {
                 ])
 
         baseStack.axis = .vertical
-        baseStack.spacing = 5
+        baseStack.spacing = 2
         agentDetailsContainerView.addSubview(baseStack)
-        baseStack.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = ya
+        baseStack.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 3).isActive = ya
         baseStack.widthAnchorWithMultiplier(multiplier: 0.9)
         baseStack.centerXInSuperview()
-        baseStack.heightAnchorConstant(constant: 300)
+        baseStack.heightAnchorConstant(constant: 220)
+    }
+    
+    func confView(data: ReqData) {
+        adrressLable.text = data.data.subCategory
+        dateLable.text = data.data.date
+        priceLable.text = "\(data.data.total)"
+        phoneNumLable.text = "\(phoneNumLable.text ?? ""): \(data.data.client.phone ?? "")"
+        birthLable.text = "\(birthLable.text ?? ""): \(data.data.client.birthDate ?? "")"
+//        cityLable.text = "\(cityLable.text ?? ""): \(data.data.client.job ?? "")"
+        userImage.load(with: data.data.client.image)
+        agentNameLable.text = data.data.client.name
+        agentJobLable.text = data.data.client.job
+        faceButton.setTitleNormalState(data.data.client.social.facebook)
+        twitterButton.setTitleNormalState(data.data.client.social.twitter)
+        googleButton.setTitleNormalState(data.data.client.social.snapchat)
     }
 }
 
@@ -299,7 +357,7 @@ class RequestDetailsGrayLable: UILabel {
     init(title: String?) {
         super.init(frame: .zero)
         text = title
-        font = UIFont.CairoBold(of: 14)
+        font = UIFont.CairoBold(of: 12)
         textColor = #colorLiteral(red: 0.3513553739, green: 0.3335490525, blue: 0.3331353664, alpha: 1)
         textAlignment = .right
     }
@@ -312,12 +370,87 @@ class RequestDetailsRedLable: UILabel {
     init(title: String?) {
         super.init(frame: .zero)
         text = title
-        font = UIFont.CairoBold(of: 14)
+        font = UIFont.CairoBold(of: 12)
         textColor = #colorLiteral(red: 0.8602862358, green: 0.3605225086, blue: 0.5980046391, alpha: 1)
         textAlignment = .right
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+struct ReqData: BaseCodable {
+    var status: Int
+    var msg: String?
+    let data: Req
+}
+
+struct Req: Codable {
+    let orderID, delivery, status: Int
+    let date: String
+    let lat, lng: Double?
+    let deliveryFees, subCategory, region: String?
+    let services: [Service]
+    let total: Int
+    let client: Client
+    let provider: Provider
+    
+    enum CodingKeys: String, CodingKey {
+        case orderID = "order_id"
+        case delivery, status, date, lat, lng
+        case deliveryFees = "delivery_fees"
+        case subCategory = "sub_category"
+        case region, services, total, client, provider
+    }
+}
+
+struct Client: Codable {
+    let name, phone, job: String?
+    let image: String?
+    let birthDate: String?
+    let social: RevSocial
+    let location: Location?
+    
+    enum CodingKeys: String, CodingKey {
+        case name, phone, job, image
+        case birthDate = "birth_date"
+        case social, location
+    }
+}
+
+struct Location: Codable {
+    let lat, lng: String?
+}
+
+struct RevSocial: Codable {
+    let facebook: String?
+    let instagram, snapchat, twitter: String?
+}
+
+struct Provider: Codable {
+    let name, phone, job: String
+    let image: String
+    let birthDate: JSONNull?
+    let region: String
+    let location: Location
+    let social: Social
+    
+    enum CodingKeys: String, CodingKey {
+        case name, phone, job, image
+        case birthDate = "birth_date"
+        case region, location, social
+    }
+}
+
+struct Service: Codable {
+    let serviceID: Int
+    let name: String
+    let price: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case serviceID = "service_id"
+        case name, price
     }
 }

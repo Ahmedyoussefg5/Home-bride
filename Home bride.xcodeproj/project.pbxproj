@@ -85,6 +85,7 @@
 		E8681BF3226B4A8000E93C31 /* ForgetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF0226B4A4500E93C31 /* ForgetPassword.swift */; };
 		E8681BF6226B4E7400E93C31 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF5226B4E6C00E93C31 /* TabBarController.swift */; };
 		E8681BF9226B4EA900E93C31 /* HomeNewReqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */; };
+		E87FB40F2277708F0075805E /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FB40E2277708F0075805E /* LocationView.swift */; };
 		E8C63DE5226BA63800E460EE /* NewRequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C63DE4226BA63800E460EE /* NewRequestDetailsView.swift */; };
 		E8C711AF2271F0C1008A783B /* GalaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C711AE2271F088008A783B /* GalaryViewController.swift */; };
 		E8C711B2227204F9008A783B /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C711B1227204A4008A783B /* TimeTableViewController.swift */; };
@@ -182,6 +183,7 @@
 		E8681BF1226B4A4500E93C31 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
 		E8681BF5226B4E6C00E93C31 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewReqViewController.swift; sourceTree = "<group>"; };
+		E87FB40E2277708F0075805E /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		E8C63DE4226BA63800E460EE /* NewRequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestDetailsView.swift; sourceTree = "<group>"; };
 		E8C711AE2271F088008A783B /* GalaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaryViewController.swift; sourceTree = "<group>"; };
 		E8C711B1227204A4008A783B /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 			isa = PBXGroup;
 			children = (
 				E8C63DE4226BA63800E460EE /* NewRequestDetailsView.swift */,
+				E87FB40E2277708F0075805E /* LocationView.swift */,
 			);
 			path = "New Request Details";
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				E83B048D226A8AA700674F19 /* NotificationCenter.swift in Sources */,
 				E8DE7D7A226F943A00016D9E /* ArrayDataProvider.swift in Sources */,
 				E86150E922740A55001524F5 /* Reg.swift in Sources */,
+				E87FB40F2277708F0075805E /* LocationView.swift in Sources */,
 				E80871E22275DCAA00FB6BFB /* Video Player.swift in Sources */,
 				E83B04AC226A8B0200674F19 /* LoginView.swift in Sources */,
 				E83B0484226A8AA700674F19 /* extension CALayer.swift in Sources */,
