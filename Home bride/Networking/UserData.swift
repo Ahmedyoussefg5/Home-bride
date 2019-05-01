@@ -260,7 +260,7 @@ class AuthService {
         removeUserDefaults()
         DispatchQueue.main.async {
             guard let window =  UIApplication.shared.keyWindow else { fatalError() }
-            window.rootViewController = LoginViewController()
+            window.rootViewController = WelcomeViewController()
             UIView.transition(with: window, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
         }
     }

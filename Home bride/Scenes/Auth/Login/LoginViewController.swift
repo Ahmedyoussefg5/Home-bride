@@ -48,10 +48,14 @@ class LoginViewController: BaseUIViewController<LoginView> {
             ] as [String : Any]
         
         callApi(RegisterModel.self, url: url, parameters: pars) {[weak self] (data) in
-            if let user = data {
-                guard let userData = user.data else { return }
+            if let userr = data {
+                guard let userData = userr.data else { return }
                 AuthService.instance.setUserDefaults(user: userData)
-                self?.present(HomeTabBarController(), animated: true, completion: nil)
+                if user == u {
+                    self?.present(UserHomeViewController(), animated: true, completion: nil)
+                } else {
+                    self?.present(HomeTabBarController(), animated: true, completion: nil)
+                }
             }
         }
         

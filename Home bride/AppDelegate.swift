@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if AuthService.instance.authToken == nil {
             window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
         } else {
-            window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
-//            window?.rootViewController = HomeTabBarController()
+//            window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+            window?.rootViewController = HomeTabBarController()
         }
 
         return true
