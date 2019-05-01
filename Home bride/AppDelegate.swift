@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,10 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         print(AuthService.instance.authToken ?? "")
 
+        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
+
+        
         if AuthService.instance.authToken == nil {
-            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
         } else {
-            window?.rootViewController = HomeTabBarController()
+            window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+//            window?.rootViewController = HomeTabBarController()
         }
 
         return true

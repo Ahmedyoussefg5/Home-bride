@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class ProfileView: BaseView {
     let scrollView: UIScrollView = {
@@ -36,8 +37,8 @@ class ProfileView: BaseView {
     lazy var gradientLayer = LinearGradientLayer(colors: [mediumPurple, lightPurple])
     lazy var stack = UIStackView(arrangedSubviews: getRatingButtons())
 
-    let nameLable = WhiteLable(text: "Name")
-    private lazy var editProfileButton: UIButton = {
+    let nameLable = WhiteLable(text: AuthService.instance.userFirstName ?? "Name")
+    lazy var editProfileButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("تعديل", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -85,16 +86,41 @@ class ProfileView: BaseView {
     
     var profileStack: UIStackView?
     var qualifStack: UIStackView?
-    let firstNameText = UnderLineTextField(placeH: "الاسم الاول")
-    let familyNameText = UnderLineTextField(placeH: "اسم العائلة")
-    let mailText = UnderLineTextField(placeH: "البريد الالكتروني")
-    let jobText = UnderLineTextField(placeH: "المهنة")
-    let phoneText = UnderLineTextField(placeH: "رقم الجوال")
-    let genderText = UnderLineTextField(placeH: "النوع")
-    let birthText = UnderLineTextField(placeH: "تاريخ الميلاد")
-    let areaText = UnderLineTextField(placeH: "منطقة")
-    let cityText = UnderLineTextField(placeH: "مدينة")
-    let distinctText = UnderLineTextField(placeH: "حي")
+    let firstNameText = UnderLineTextField(placeH: AuthService.instance.userFirstName ?? "الاسم الاول")
+    let familyNameText = UnderLineTextField(placeH: AuthService.instance.userLastName ?? "اسم العائلة")
+    let mailText = UnderLineTextField(placeH: AuthService.instance.userEmail ?? "البريد الالكتروني")
+    let jobText = UnderLineTextField(placeH: AuthService.instance.userJob ?? "المهنة")
+    let phoneText = UnderLineTextField(placeH: AuthService.instance.userPhone ?? "رقم الجوال")
+    let genderText: UnderLineTextField = {
+        if AuthService.instance.userGender != "" {
+            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "النوع")
+            return txt
+        } else {
+            let txt = UnderLineTextField(placeH: "النوع")
+            return txt
+        }
+    }()
+    let birthText: UnderLineTextField = {
+        if AuthService.instance.userGender != "" {
+            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "تاريخ الميلاد")
+            return txt
+        } else {
+            let txt = UnderLineTextField(placeH: "تاريخ الميلاد")
+            return txt
+        }
+    }()
+    lazy var areaText: CreateAccountButton = {
+        let btn = CreateAccountButton(title: "منطقة", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
+        return btn
+    }()
+    lazy var cityText: CreateAccountButton = {
+        let btn = CreateAccountButton(title: "مدينة", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
+        return btn
+    }()
+    lazy var distinctText: CreateAccountButton = {
+        let btn = CreateAccountButton(title: "حي", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
+        return btn
+    }()
 
     override func setupView() {
         super.setupView()
@@ -191,25 +217,56 @@ class ProfileView: BaseView {
         return coll
     }()
     let qualificaionNameText = UnderLineTextField(placeH: "اسم المؤهل")
-    let theQualificaionText = UnderLineTextField(placeH: "المؤهل")
+    let theQualificaionText = UnderLineTextField(placeH: "الدرجة")
     let qualificaionImage = UIButton(type: .system)
 
+    lazy var confirmButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("حفظ", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+        btn.layer.cornerRadius = 15
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
+        btn.addTheTarget(action: {[weak self] in
+//            self?.addimage()
+        })
+        return btn
+    }()
+    lazy var photoButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("صورة المؤهل", for: .normal)
+        btn.contentHorizontalAlignment = .trailing
+        btn.setTitleColor(.gray, for: .normal)
+        btn.addBottomLine()
+        //        btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
+        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        btn.addSubview(view)
+        view.topAnchor.constraint(equalTo: btn.bottomAnchor).isActive = ya
+        view.centerXInSuperview()
+        view.heightAnchorConstant(constant: 1)
+        view.widthAnchorWithMultiplier(multiplier: 1)
+        btn.addTheTarget(action: {[weak self] in
+//            self?.pickUserImage()
+        })
+        return btn
+    }()
     private func qualificaionsViewSetup() {
         
         profileStack?.removeFromSuperview()
         profileStack = nil
         mainCollectionView.removeFromSuperview()
-        
-        qualificaionImage.setTitleNormalState("صورة المؤهل")
-        qualificaionImage.contentHorizontalAlignment = .trailing
-        qualificaionImage.setFont(.CairoSemiBold(of: 14))
-        qualificaionImage.setTitleColorNormalState(.gray)
         scrollView.contentSize.height = 600
 
         qualifStack = UIStackView(arrangedSubviews: [
             qualificaionNameText,
             theQualificaionText,
-            qualificaionImage
+            photoButton,
+            stackSpliter(),
+            confirmButton
             ])
         qualifStack?.axis = v
         qualifStack?.distribution = .fillEqually
@@ -218,7 +275,7 @@ class ProfileView: BaseView {
         qualifStack?.widthAnchorWithMultiplier(multiplier: 0.9)
         qualifStack?.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
         qualifStack?.centerXInSuperview()
-        qualifStack?.heightAnchorConstant(constant: 150)
+        qualifStack?.heightAnchorConstant(constant: 200)
 
     }
     
@@ -235,43 +292,269 @@ class BigImage: UIImageView {
 }
 
 
-class ProfileViewController: BaseUIViewController<ProfileView> {
-    fileprivate var photosDataSource: PhotosDataSource?
-    fileprivate var selectedIndexPath: IndexPath? = nil
+class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SendResult {
+    
+    
+    var rigonId: Int?
+    var  catId: Int?
+    
+    func result(name: String) {
+        sender?.setTitleNormalState(name)
+        if sender == mainView.areaText {
+            var id = 0
+            for area in allArea {
+                if area.name == name {
+                    id = area.id
+                }
+            }
+            getCity(id: id)
+        }
+        
+        if sender == mainView.cityText {
+            var id = 0
+            for city in allCity {
+                if city.name == name {
+                    id = city.id
+                }
+            }
+            getRigon(id: id)
+        }
+        
+        if sender == mainView.distinctText {
+            for rigon in allRigon {
+                if rigon.name == name {
+                    rigonId = rigon.id
+                }
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return scheduleData?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withClass: BaseCollCell.self, for: indexPath)
+        if let data = scheduleData?[indexPath.row] {
+            cell.configure(data)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width * 0.48, height: collectionView.frame.width * 0.4)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getAllArea()
+        getData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddServView))
         
-        photosDataSource = setUpDataSource(collectionView: mainView.mainCollectionView)
-
+        mainView.mainCollectionView.delegate = self
+        mainView.mainCollectionView.dataSource = self
+        mainView.mainCollectionView.register(cellWithClass: BaseCollCell.self)
         setupSideMenu()
-    }
-}
-
-// MARK: - Data Source
-class PhotosDataSource: CollectionArrayDataSource<BaseModel, BaseCollCell> {}
-
-// MARK: - Private Methods
-fileprivate extension ProfileViewController {
-    func setUpDataSource(collectionView: UICollectionView) -> PhotosDataSource? {
-        let viewModels = (0..<32).map {
-            return BaseModel(caption: "Image \($0)", imageName: String($0))
+        
+        mainView.areaText.addTheTarget {[weak self] in
+            let data = self?.allArea.map({
+                $0.name
+            })
+            self?.handleTargets(sender: self?.mainView.areaText, items: data)
         }
         
-        let width = view.screenWidth * 0.28
-        let height = width * 0.8
-
-        let dataSource = PhotosDataSource(collectionView: collectionView, array: viewModels, itemSize: CGSize(width: width, height: height))
-//        dataSource.collectionItemSelectionHandler = { [weak self] indexPath in
-////            guard let self = self else { return }
-////            self.selectedIndexPath = indexPath
-//            print(indexPath.row)
-//        }
-        return dataSource
+        mainView.distinctText.addTheTarget {[weak self] in
+            let data = self?.allRigon.map({
+                $0.name
+            })
+            self?.handleTargets(sender: self?.mainView.distinctText, items: data)
+        }
+        
+        mainView.cityText.addTheTarget {[weak self] in
+            let data = self?.allCity.map({
+                $0.name
+            })
+            self?.handleTargets(sender: self?.mainView.cityText, items: data)
+        }
+        
+        mainView.editProfileButton.addTheTarget {[weak self] in
+            self?.saveDate()
+        }
+        
+        mainView.photoButton.addTheTarget {
+            self.pickUserImage()
+        }
+        
+        mainView.confirmButton.addTheTarget {
+            self.addimage()
+        }
+    }
+    
+    weak var sender: CreateAccountButton?
+    private func handleTargets(sender: CreateAccountButton?, items: [String]?) {
+        self.sender = sender
+        let vc = PickerViewController(itemsToShow: items ?? [""])
+        vc.delegate = self
+        presentModelyVC(vc: vc)
+    }
+    
+    @objc func showAddServView() {
+        presentModelyVC(vc: AddSevrvViewController(vc: self))
+    }
+    
+    var scheduleData: [ScheduleData]? {
+        didSet {
+            mainView.mainCollectionView.reloadData()
+        }
+    }
+    
+    private var allArea = [Area]()
+    private var allCity = [Area]()
+    private var allRigon = [Area]()
+    
+    private func getAllArea() {
+        
+        let url = "http://m4a8el.panorama-q.com/api/locations/areas"
+        
+        callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
+            if let data = data {
+                self?.allArea = data.data
+            }
+        }
+    }
+    
+    private func getCity(id: Int) {
+        
+        let url = "http://m4a8el.panorama-q.com/api/locations/cities/\(id)"
+        
+        callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
+            if let data = data {
+                self?.allCity = data.data
+            }
+        }
+    }
+    
+    private func getRigon(id: Int) {
+        
+        let url = "http://m4a8el.panorama-q.com/api/locations/regions/\(id)"
+        
+        callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
+            if let data = data {
+                self?.allRigon = data.data
+            }
+        }
+    }
+    
+    var currentPage = 1
+    var lastPage = 2
+    var isLoading = true
+    
+    func getData() {
+        let url = "http://m4a8el.panorama-q.com/api/services"
+        callApi(AllServiceData.self, url: url, method: .get, parameters: nil) { (data) in
+            if let data = data {
+                self.scheduleData = data.data?.services.schedules
+                self.lastPage = data.data?.services.paginate.totalPages ?? 1
+                self.currentPage = 1
+                self.isLoading = false
+            }
+        }
+    }
+    
+    private func paginate() {
+        
+        guard !isLoading else { return }
+        guard lastPage > currentPage else { return }
+        isLoading = true
+        
+        let url = "http://m4a8el.panorama-q.com/api/services?page=\(currentPage + 1)"
+        callApi(AllServiceData.self, url: url, method: .get, parameters: nil) { (data) in
+            if let data = data {
+                let app = data.data?.services.schedules ?? []
+                self.scheduleData?.append(contentsOf: app)
+                self.currentPage += 1
+                self.isLoading = false
+                print("self.currentPage \(self.currentPage)")
+            }
+        }
+    }
+    
+    private func saveDate() {
+        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+        var pars = [String:Any]()
+        pars["first_name"] = mainView.firstNameText.text
+        pars["last_name"] = mainView.familyNameText.text
+        pars["email"] = mainView.mailText.text
+        pars["phone"] = mainView.phoneText.text
+        pars["birth_date"] = mainView.birthText.text
+        pars["gender"] = mainView.genderText.text
+        pars["job"] = mainView.jobText.text
+        pars["region_id"] = rigonId
+        
+        callApi(UpdateProfData.self, url: url, parameters: pars) { (data) in
+            if let data = data {
+                guard let userData = data.data else { return }
+                AuthService.instance.setUserDefaults(update: userData)
+                self.showAlert(title: "", message: "تم الحفظ")
+            }
+        }
+    }
+    
+    // add qualf
+    private func addimage() {
+        guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
+        
+        guard let name = mainView.qualificaionNameText.text, name.count > 2 , let degree = mainView.theQualificaionText.text, degree.count > 0 else { return }
+        let url = "http://m4a8el.panorama-q.com/api/qualifications"
+        let pars = [
+            "name": name,
+            "degree": degree
+            ] as [String : Any]
+        let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
+        
+        Network.shared.uploadToServerWith(AllQualifeData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
+            if let err = err {
+                self?.showAlert(title: nil, message: err)
+            } else if let data = data {
+                if data.msg != nil {
+                    self?.showAlert(title: nil, message: data.msg)
+                } else {
+                    self?.showAlert(title: "", message: "تم الحفظ")
+                }
+            }
+        }
+    }
+    
+    var pickerUserImage: UIImage?
+    
+    @objc func pickUserImage(){
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch photoAuthorizationStatus {
+        case .authorized:
+            PhotoServices.shared.getImageFromGalary(on: self) { (image) in
+                self.pickerUserImage = image
+            }
+        case .notDetermined: PHPhotoLibrary.requestAuthorization ({
+            (newStatus) in
+            print("status is \(newStatus)")
+            if newStatus == PHAuthorizationStatus.authorized {
+            }
+        })
+        case .restricted: print("User do not have access to photo album.")
+        case .denied: print("User has denied the permission.")
+        }
     }
 }
+
+
 
 // MARK: - Your Model
 
@@ -287,7 +570,7 @@ struct BaseModel {
 
 // MARK: - Your Cell
 
-class BaseCollCell: UICollectionViewCell, ConfigurableCell {
+class BaseCollCell: UICollectionViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -302,7 +585,6 @@ class BaseCollCell: UICollectionViewCell, ConfigurableCell {
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
         img.image = #imageLiteral(resourceName: "girl")
-        img.viewCornerRadius = 40
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
@@ -311,7 +593,7 @@ class BaseCollCell: UICollectionViewCell, ConfigurableCell {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "12 may"
+//        label.text = "12 may"
         label.backgroundColor = #colorLiteral(red: 0.9132761359, green: 0.3805814981, blue: 0.6425676346, alpha: 1)
         label.font = .CairoRegular(of: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -322,7 +604,7 @@ class BaseCollCell: UICollectionViewCell, ConfigurableCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.textAlignment = .center
-        label.text = "ashdhahannas"
+//        label.text = "ashdhahannas"
         label.font = .CairoRegular(of: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -355,13 +637,11 @@ class BaseCollCell: UICollectionViewCell, ConfigurableCell {
         
     }
 
-    // MARK: - ReusableCell
-    public static var height: CGFloat = 128.0
-
     // MARK: - ConfigurableCell
-    func configure(_ item: BaseModel, at indexPath: IndexPath) {
-        
-        
+    func configure(_ item: ScheduleData) {
+        cellImage.load(with: item.image)
+        titleLable.text = item.name
+        dateLable.text = "\(item.price)"
     }
 }
 
@@ -371,13 +651,140 @@ class BaseCollCell: UICollectionViewCell, ConfigurableCell {
 
 
 
+// AddServiceData
+struct AddServiceData: BaseCodable {
+    var status: Int
+    
+    var msg: String?
+    
+    let data: ServiceDate?
+}
+
+struct ServiceDate: Codable {
+    let id: Int
+    let name, price: String
+    let image: String
+}
+
+// get services
+struct AllServiceData: BaseCodable {
+    var status: Int
+    
+    var msg: String?
+    
+    let data: ServiceData?
+}
+
+struct ServiceData: Codable {
+//    let provider: Provider
+    let services: Services
+}
+
+// add qualf
+struct AllQualifeData: BaseCodable {
+    var status: Int
+    
+    var msg: String?
+    
+    let data: QualifeData
+}
+
+struct QualifeData: Codable {
+    let id: Int
+    let name: String
+    let date: JSONNull?
+    let degree: String
+    let image: String
+}
+
+//struct Provider: Codable {
+//    let name, phone: String
+////    let location: JSONNull?
+//    let info, activityType: String
+//    let image: String
+//    let region, city, area: String
+//    let social: Social
+//
+//    enum CodingKeys: String, CodingKey {
+//        case name, phone, location, info
+//        case activityType = "activity_type"
+//        case image, region, city, area, social
+//    }
+//}
+
+//struct Social: Codable {
+//    let facebookLink, instagramLink, snapchatLink, twitterLink: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case facebookLink = "facebook_link"
+//        case instagramLink = "instagram_link"
+//        case snapchatLink = "snapchat_link"
+//        case twitterLink = "twitter_link"
+//    }
+//}
+
+struct Services: Codable {
+    let schedules: [ScheduleData]
+    let paginate: Paginate
+}
 
 
+struct ScheduleData: Codable {
+    let id: Int
+    let name: String
+    let price: Int
+    let image: String
+}
 
+// update prof
+struct UpdateProfData: BaseCodable {
+    var status: Int
+    
+    var msg: String?
+    
+    let data: UpdateProf?
+}
 
+struct UpdateProf: Codable {
+    let categoryName, info, phone, activityType: String
+    let lastName, subCategoryName, role: String
+//    let location: JSONNull?
+    let gender, firstName, job: String
+    let image: String
+    let deliveryRate: String
+    let isVerified, subCategoryID: Int
+//    let social: Social
+    let id: Int
+    let birthDate, email: String
+    
+    enum CodingKeys: String, CodingKey {
+        case categoryName = "category_name"
+        case info, phone
+        case activityType = "activity_type"
+        case lastName = "last_name"
+        case subCategoryName = "sub_category_name"
+        case role, gender
+        case firstName = "first_name"
+        case job, image
+        case deliveryRate = "delivery_rate"
+        case isVerified = "is_verified"
+        case subCategoryID = "sub_category_id"
+        case id
+        case birthDate = "birth_date"
+        case email
+    }
+}
 
-
-
+//struct Social: Codable {
+//    let twitterLink, instagramLink, facebookLink, snapchatLink: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case twitterLink = "twitter_link"
+//        case instagramLink = "instagram_link"
+//        case facebookLink = "facebook_link"
+//        case snapchatLink = "snapchat_link"
+//    }
+//}
 
 
 
@@ -410,7 +817,7 @@ class BaseCollCell: UICollectionViewCell, ConfigurableCell {
 class UnderLineTextField: UITextField {
     init(placeH: String) {
         super.init(frame: .zero)
-        placeholder = placeH
+        text = placeH
         textColor = lightPurple
         font = .CairoRegular(of: 13)
         textAlignment = .right

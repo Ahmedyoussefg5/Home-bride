@@ -90,7 +90,7 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
                 alert.dismissMePlease()
             }))
             present(alert, animated: true)
-            alert.textFields?.first?.text = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+//            alert.textFields?.first?.text = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         } else {
             pickUserImage()
         }
@@ -102,11 +102,11 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
         
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         
-        let pars = [
-            "type": "image",
-        ]
+//        let pars = [
+//            "type": "image",
+//        ]
         
-        Network.shared.uploadToServerWith(AddImage.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
+        Network.shared.uploadToServerWith(AddImage.self, data: imageData, url: url, method: .post, parameters: nil, progress: nil) {[weak self] (err, data) in
             if let err = err {
                 self?.showAlert(title: nil, message: err)
             } else if let data = data {
@@ -117,7 +117,6 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
                 }
             }
         }
-        
     }
     
     private func addVidio(link: String) {

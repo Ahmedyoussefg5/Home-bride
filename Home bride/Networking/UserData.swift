@@ -115,6 +115,15 @@ class AuthService {
         }
     }
     
+    var userJob: String? {
+        get {
+            return defaults.value(forKey: "userJob") as? String
+        }
+        set {
+            defaults.set(newValue, forKey: "userJob")
+        }
+    }
+    
     var userMemberShip: String? {
         get {
             return defaults.value(forKey: "userMemberShip") as? String
@@ -143,12 +152,48 @@ class AuthService {
         }
     }
     
-    var userProvider: String {
+    var userdate: String? {
         get {
-            return (defaults.value(forKey: UserProvider) as? String) ?? "Gawla"
+            return (defaults.value(forKey: "userdate") as? String)
         }
         set {
-            defaults.set(newValue, forKey: UserProvider)
+            defaults.set(newValue, forKey: "userdate")
+        }
+    }
+    
+    var userArea: String? {
+        get {
+            return (defaults.value(forKey: "userArea") as? String)
+        }
+        set {
+            defaults.set(newValue, forKey: "userArea")
+        }
+    }
+    
+    var userRigon: String? {
+        get {
+            return (defaults.value(forKey: "userRigon") as? String)
+        }
+        set {
+            defaults.set(newValue, forKey: "userRigon")
+        }
+    }
+    
+    var userDist: String? {
+        get {
+            return (defaults.value(forKey: "userDist") as? String)
+        }
+        set {
+            defaults.set(newValue, forKey: "userDist")
+        }
+    }
+    
+    var userRole: String? {
+        get {
+            return (defaults.value(forKey: "userRole") as? String)
+        }
+        set {
+            defaults.set(newValue, forKey: "userRole")
         }
     }
     
@@ -161,11 +206,27 @@ class AuthService {
         }
     }
     
+    func setUserDefaults(update user: UpdateProf) {
+        
+        isLoggedIn = true
+        userId = user.id
+        //        authToken = user.token
+        userEmail = user.email
+        userImage = user.image.filterAsURL
+        userName = user.firstName
+        userFirstName = user.firstName
+        userLastName = user.lastName
+        userPhone = user.phone
+        userGender = user.gender
+        userJob = user.subCategoryName
+        userdate = user.birthDate
+        userRole = user.role
+    }
+    
     func setUserDefaults(user: UserData) {
         header = ["X-localization" : "ar",
-                      "Authorization" : "bearer \(user.token)"
+                  "Authorization" : "bearer \(user.token)"
         ]
-
         isLoggedIn = true
         userId = user.id
         authToken = user.token
@@ -176,6 +237,9 @@ class AuthService {
         userLastName = user.lastName
         userPhone = user.phone
         userGender = user.gender
+        userJob = user.subCategoryName
+        userdate = user.birthDate
+        userRole = user.role
     }
     
     private func removeUserDefaults()  {
@@ -190,11 +254,6 @@ class AuthService {
         userGender = nil
         userMemberShip = nil
         shouldShowNotifications = true
-        
-//        GIDSignIn.sharedInstance()?.signOut()
-//        let loginManger = defaults.object(forKey: "loginManger") as? LoginManager
-//        loginManger?.logOut()
-//        userProvider = ""
     }
     
     func restartAppAndRemoveUserDefaults() {

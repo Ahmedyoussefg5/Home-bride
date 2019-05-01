@@ -85,7 +85,8 @@ class SideMenuTableViewController: UITableViewController {
             dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: toProfileVC, object: nil)
             return
-//            vc = LoginViewController()
+        case 1:
+            navigationController?.pushViewController(NotificationsViewController(), animated: ya)
         case 2:
             dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: toHomeVC, object: nil)
@@ -94,10 +95,10 @@ class SideMenuTableViewController: UITableViewController {
 //            vc = SettingsViewController()
 //        case 2:
 //            vc = WalletViewController()
-//        case 5:
-//            vc = CallUsViewController()
-//        case 6:
-//            vc = QuestionsViewController()
+        case 5:
+            navigationController?.pushViewController(ContactViewController(), animated: ya)
+        case 6:
+            AuthService.instance.restartAppAndRemoveUserDefaults()
         default:
             return
         }

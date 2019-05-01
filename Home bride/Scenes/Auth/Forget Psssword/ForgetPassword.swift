@@ -20,7 +20,7 @@ class ForgetPasswordView: BaseView {
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
-    private lazy var phoneTextView: LoginTextField = {
+    lazy var phoneTextView: LoginTextField = {
         let view = LoginTextField(placeHolder: "".localize)
         view.backgroundColor = darkPurple
         return view

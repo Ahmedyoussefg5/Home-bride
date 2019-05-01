@@ -63,6 +63,9 @@ class Network: NSObject {
         
         upload(multipartFormData: { (mal) in
             mal.append(data.data, withName: data.name, fileName: data.fileName, mimeType: data.mimeType)
+            for (key, val) in parameters ?? [:] {
+                mal.append("\(val)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
         }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: url, method: method, headers: header) { (response) in
             
             switch response {

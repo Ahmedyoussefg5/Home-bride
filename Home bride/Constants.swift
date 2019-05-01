@@ -15,3 +15,13 @@ let BaseURL = URL(string: "http://m4a8el.panorama-q.com/api/auth/")!
 var header = ["X-localization" : "ar",
     "Authorization" : "bearer \(AuthService.instance.authToken ?? "")"
 ]
+
+enum UserType {
+    case user
+    case provider
+}
+
+let p = UserType.provider
+let u = UserType.user
+
+var user = u

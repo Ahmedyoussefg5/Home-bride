@@ -22,6 +22,25 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             }
         }
         
+        mainView.phoneButton.addTheTarget {[weak self] in
+            if let phone = self?.data?.data.client.phone {
+                guard let number = URL(string: "tel://" + phone) else { return }
+                UIApplication.shared.open(number)
+                
+//                UIApplication.shared.open(number, options: [:], completionHandler: nil)
+
+            }
+        }
+
+        
+        mainView.messageButton.addTheTarget {[weak self] in
+            if let id = self?.data?.data.orderID {
+                let vc = UINavigationController(rootViewController: ChatViewController(orderId: id))
+                vc.navbarWithdismiss()
+                self?.presentModelyVC(vc: vc)
+            }
+        }
+        
         mainView.acceptButton.addTheTarget {
             
         }
@@ -150,16 +169,16 @@ class NewRequestDetailsView: BaseView {
         return btn
     }()
     
-//    lazy var phoneButton: UIButton = {
-//        let btn = UIButton(type: .system)
-//        btn.setBackgroundImage(#imageLiteral(resourceName: "list").withRenderingMode(.alwaysTemplate), for: .normal)
-//        return btn
-//    }()
-//    lazy var messageButton: UIButton = {
-//        let btn = UIButton(type: .system)
-//        btn.setBackgroundImage(#imageLiteral(resourceName: "list").withRenderingMode(.alwaysTemplate), for: .normal)
-//        return btn
-//    }()
+    lazy var phoneButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setBackgroundImage(#imageLiteral(resourceName: "speech-bubble (1)").withRenderingMode(.alwaysTemplate), for: .normal)
+        return btn
+    }()
+    lazy var messageButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setBackgroundImage(#imageLiteral(resourceName: "chat").withRenderingMode(.alwaysTemplate), for: .normal)
+        return btn
+    }()
     
     lazy var acceptButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -287,8 +306,8 @@ class NewRequestDetailsView: BaseView {
         //
         let contactStack =
             UIStackView(arrangedSubviews: [
-//                phoneButton,
-//                messageButton,
+                phoneButton,
+                messageButton,
                 ])
         
         contactStack.axis = h

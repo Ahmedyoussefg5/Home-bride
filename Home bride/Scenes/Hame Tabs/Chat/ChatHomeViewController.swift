@@ -62,9 +62,9 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = UINavigationController(rootViewController: ChatViewController())
-        vc.navbarWithdismiss()
-        presentModelyVC(vc: vc)
+//        let vc = UINavigationController(rootViewController: ChatViewController())
+//        vc.navbarWithdismiss()
+//        presentModelyVC(vc: vc)
     }
 }
 

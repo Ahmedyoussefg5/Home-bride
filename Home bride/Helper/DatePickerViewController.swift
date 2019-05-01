@@ -25,7 +25,7 @@ class DatePickerViewController: UIViewController {
     }()
     lazy var confirmButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("reservation confirmation", for: .normal)
+        btn.setTitle("تاكيد", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.layer.cornerRadius = 15

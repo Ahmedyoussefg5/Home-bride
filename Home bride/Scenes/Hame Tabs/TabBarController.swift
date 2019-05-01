@@ -17,7 +17,7 @@ class HomeTabBarController: UITabBarController {
         let timeTableViewController = UINavigationController(rootViewController: TimeTableViewController())
         let homeViewController = UINavigationController(rootViewController: HomeNewReqViewController())
         let galaryViewController = UINavigationController(rootViewController: GalaryViewController())
-        let notificationsViewController = UINavigationController(rootViewController: NotificationsViewController())
+//        let notificationsViewController = UINavigationController(rootViewController: NotificationsViewController())
         let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         let chatHomeViewController = UINavigationController(rootViewController: ChatHomeViewController())
         
@@ -25,11 +25,11 @@ class HomeTabBarController: UITabBarController {
         galaryViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "grid-1"), selectedImage: #imageLiteral(resourceName: "grid-1"))
         profileViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
         chatHomeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
-        notificationsViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
+//        notificationsViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
 
         //tabBarController?.selectedViewController = homeViewController
         
-        let tabBarList = [chatHomeViewController, timeTableViewController, homeViewController, galaryViewController, notificationsViewController, profileViewController]
+        let tabBarList = [profileViewController, homeViewController, galaryViewController, timeTableViewController, chatHomeViewController]
         viewControllers = tabBarList
         
 //        selectedViewController = tabBarList[2]
@@ -39,11 +39,11 @@ class HomeTabBarController: UITabBarController {
     }
 
     @objc func handleTabBarToProfileVC () {
-        selectedViewController = viewControllers?[4]
+        selectedViewController = viewControllers?[0]
     }
     
     @objc func handleTabBarHomeVC () {
-        selectedViewController = viewControllers?[2]
+        selectedViewController = viewControllers?[1]
     }
 }
 

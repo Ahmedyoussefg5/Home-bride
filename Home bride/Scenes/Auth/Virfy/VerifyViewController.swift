@@ -19,6 +19,29 @@ class VerifyViewController: BaseUIViewController<VerifyView> {
         trasperantNavBar()
     }
     
-
+    func sendNumber() {
+        
+        guard let pass = mainView.passText.text, !pass.isEmpty, pass == mainView.passConfirmText.text, pass.count > 5 else {
+            showAlert(title: "خطأ", message: "تأكد من كلمة المرور, اكثر من ٥ حروف")
+            return
+        }
+        guard let code = mainView.phoneTextView.text, !pass.isEmpty, pass.count > 1 else {
+//            showAlert(title: "خطأ", message: "تأكد من كلمة المرور, اكثر من ٥ حروف")
+            return
+        }
+        
+        guard let num = mainView.phoneTextView.text else { return }
+        let pars = [
+            "phone": num,
+            "reset_code": code,
+            "password": pass,
+            "password_confirmation": pass
+        ]
+        callApi(ForgetData.self, url: "http://m4a8el.panorama-q.com/api/auth/reset", parameters: pars) {[weak self] (data) in
+            if data != nil {
+                self?.showAlert(title: nil, message: "قم بتسجيل الدخول بحسابك")
+            }
+        }
+    }
 
 }

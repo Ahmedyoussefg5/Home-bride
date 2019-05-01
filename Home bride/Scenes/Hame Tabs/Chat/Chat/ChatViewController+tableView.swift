@@ -10,12 +10,14 @@ import UIKit
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return messages?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardsBagTableCell", for: indexPath) as! ChatCell
-//        cell.configCell(message: mess)
+        if let message = messages?[indexPath.row] {
+            cell.configCell(message: message)
+        }
         return cell
     }
 
@@ -23,22 +25,22 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let lable = UILabel()
-        lable.text = "Chat Room Is Closed".localize
-        lable.font = .CairoSemiBold(of: 14)
-        lable.textAlignment = .center
-        return lable
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-
-        if !mainView.chatTxt.isEnabled {
-            return 100
-        }
-        if messages.count > 0 {
-            return 0
-        }
-        return 0
-    }
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let lable = UILabel()
+//        lable.text = "Chat Room Is Closed".localize
+//        lable.font = .CairoSemiBold(of: 14)
+//        lable.textAlignment = .center
+//        return lable
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//
+////        if !mainView.chatTxt.isEnabled {
+////            return 100
+////        }
+////        if messages?.count ?? 0 > 0 {
+////            return 0
+////        }
+//        return 0
+//    }
 }

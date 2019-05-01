@@ -56,6 +56,8 @@ class ChatView: UIView {
         return view
     }()
     
+    private var heightConstraint: NSLayoutConstraint!
+    
     private func setupView() {
         addSubview(mainTableView)
         
@@ -64,8 +66,11 @@ class ChatView: UIView {
             chatControllersView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
             chatControllersView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
             chatControllersView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
-            chatControllersView.heightAnchorConstant(constant: 50)
+//            chatControllersView.heightAnchorConstant(constant: 50)
             ])
+        heightConstraint = chatControllersView.heightAnchorConstant(constant: 50)
+        heightConstraint.isActive = ya
+        
         chatControllersView.addSubview(chatTxt)
         chatControllersView.addSubview(sendButton)
 
@@ -87,6 +92,22 @@ class ChatView: UIView {
             mainTableView.bottomAnchor.constraint(equalTo: chatControllersView.topAnchor, constant: -1),
             mainTableView.widthAnchor.constraint(equalTo: widthAnchor)
             ])
+    }
+    
+    //MARK: - TextField Delegate Methods
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5) {
+//            self.heightConstraint.constant = 308
+            self.layoutIfNeeded()
+        }
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.5) {
+//            self.heightConstraint.constant = 50
+            self.layoutIfNeeded()
+        }
     }
 }
 
@@ -112,7 +133,7 @@ class ChatCell: UITableViewCell {
     }()
     let chatContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cornflowerBlueTwo
+        view.backgroundColor = mediumPurple
         view.layer.cornerRadius = 8
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -174,19 +195,10 @@ class ChatCell: UITableViewCell {
             ])
     }
     
-    func configCell(message: BaseModel) {
-//        nameLable.text = message.userName
-//        chatContentLable.text = message.message
-//        dateLable.text = message.date
-        //        if let id = AuthService.instance.userId, let senderId = message.userId, id == senderId {
-        //            chatContainerView.backgroundColor = .cornflowerBlueTwo
-        //            triangleView.backgroundColor = .cornflowerBlueTwo
-        //            chatContentLable.textColor = .white
-        //        } else {
-        //            chatContainerView.backgroundColor = .paleGrey
-        //            triangleView.backgroundColor = .paleGrey
-        //            chatContentLable.textColor = .hex("DE000000")
-        //        }
+    func configCell(message: Message) {
+        nameLable.text = message.userFrom
+        chatContentLable.text = message.message
+        dateLable.text = message.createdAt
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -203,19 +215,19 @@ class TriangleView : UIView {
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         context.beginPath()
-        if AppMainLang.isRTLLanguage() {
+        if !AppMainLang.isRTLLanguage() {
             context.move(to: CGPoint(x: (rect.minX), y: rect.minY))
             context.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
             context.addLine(to: CGPoint(x: (rect.minX), y: rect.maxY))
             context.closePath()
-            context.setFillColor(UIColor.cornflowerBlueTwo.cgColor)
+            context.setFillColor(mediumPurple.cgColor)
             context.fillPath()
         } else {
             context.move(to: CGPoint(x: (rect.minX), y: rect.midY))
             context.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
             context.addLine(to: CGPoint(x: (rect.maxX), y: rect.maxY))
             context.closePath()
-            context.setFillColor(UIColor.cornflowerBlueTwo.cgColor)
+            context.setFillColor(mediumPurple.cgColor)
             context.fillPath()
         }
     }
