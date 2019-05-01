@@ -108,7 +108,7 @@ class UserHomeView: BaseView {
         view3.viewBorderWidth = 2
         view3.viewBorderColor = .white
         view3.viewCornerRadius = 5
-        button3.addSubview(button3)
+        view3.addSubview(button3)
         button2.fillSuperview(padding: UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0))
         
         let view4 = UIView()
