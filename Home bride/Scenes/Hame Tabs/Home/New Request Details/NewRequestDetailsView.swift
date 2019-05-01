@@ -41,17 +41,39 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             }
         }
         
-        mainView.acceptButton.addTheTarget {
-            
+        mainView.acceptButton.addTheTarget {[weak self] in
+            self?.accept()
         }
         
-        mainView.refuseButton.addTheTarget {
-            
+        mainView.refuseButton.addTheTarget {[weak self] in
+            self?.refuse()
         }
     }
     
     private func accept() {
-        
+        let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
+        let pars = [
+            "status": "accept",
+            "_method": "PUT"
+        ]
+        callApi(ReqData.self, url: url, method: .get, parameters: pars) { (data) in
+            if data != nil {
+                self.showAlert(title: "", message: "تم قبول الطلب")
+            }
+        }
+    }
+    
+    private func refuse() {
+        let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
+        let pars = [
+            "status": "cancel",
+            "_method": "PUT"
+        ]
+        callApi(ReqData.self, url: url, method: .get, parameters: pars) { (data) in
+            if data != nil {
+                self.showAlert(title: "", message: "تم رفض الطلب")
+            }
+        }
     }
     
     var data: ReqData? {

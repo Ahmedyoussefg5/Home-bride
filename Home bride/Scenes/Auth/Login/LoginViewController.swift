@@ -14,6 +14,10 @@ class LoginViewController: BaseUIViewController<LoginView> {
         super.viewDidLoad()
         trasperantNavBar()
         mainView.signUpButton.addTheTarget(action: {[weak self] in
+            if user == u {
+                self?.navigationController?.pushViewController(UserRegisterViewController(catId: 1, rigonId: 1), animated: true)
+                return
+            }
             self?.navigationController?.pushViewController(RegisterViewController(), animated: true)
         })
         mainView.loginButton.addTheTarget(action: {[weak self] in

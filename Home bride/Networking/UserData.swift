@@ -188,9 +188,9 @@ class AuthService {
         }
     }
     
-    var userRole: String? {
+    var userRole: String {
         get {
-            return (defaults.value(forKey: "userRole") as? String)
+            return (defaults.value(forKey: "userRole") as? String) ?? "client"
         }
         set {
             defaults.set(newValue, forKey: "userRole")

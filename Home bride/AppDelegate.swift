@@ -24,7 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
 //        IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
-
+        
+        if AuthService.instance.userRole == "client" {
+            user = u
+        } else {
+            user = p
+        }
         
         if AuthService.instance.authToken == nil {
             window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())

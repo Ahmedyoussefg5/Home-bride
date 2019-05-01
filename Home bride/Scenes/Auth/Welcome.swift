@@ -100,7 +100,7 @@ class WelcomeViewController: BaseUIViewController<WelcomeView> {
         })
         mainView.clientButton.addTheTarget(action: {[weak self] in
             user = u
-//            self?.login()
+            self?.navigationController?.pushViewController(LoginViewController(), animated: true)
         })
 //
 //        mainView.forgetButton.addTheTarget(action: {[weak self] in

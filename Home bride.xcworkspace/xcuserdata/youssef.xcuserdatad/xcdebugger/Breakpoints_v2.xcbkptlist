@@ -26,7 +26,7 @@
                   moduleName = "Home bride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Data/IOS%20Projects/Home%20bride/Home%20bride/Helper/PhotosManger.swift"
-                  timestampString = "578392362.478789"
+                  timestampString = "578395104.000965"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -41,7 +41,7 @@
                   moduleName = "Home bride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Data/IOS%20Projects/Home%20bride/Home%20bride/Helper/PhotosManger.swift"
-                  timestampString = "578392362.483508"
+                  timestampString = "578395104.007091"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
@@ -49,6 +49,54 @@
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home bride/Scenes/Auth/InfoRegister/User Register/UserRegisterViewController.swift"
+            timestampString = "578395102.748095"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "reg()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
+            timestampString = "578397345.036948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "accept()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
+            timestampString = "578397346.357198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "refuse()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

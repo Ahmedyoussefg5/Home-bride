@@ -40,8 +40,8 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             return
         }
         
-        let url = "http://m4a8el.panorama-q.com/api/auth/register/provider"
-        let pars = ["first_name": fName,
+        var url = "http://m4a8el.panorama-q.com/api/auth/register/provider"
+        var pars = ["first_name": fName,
                     "last_name": sName,
                     "email": mail,
                     "phone": phone,
@@ -51,6 +51,18 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
                     "fcm_token_ios": "asassaassasasasasasa"
             ] as [String : Any]
         
+        if user == u {
+            url = "http://m4a8el.panorama-q.com/api/auth/register/client"
+            pars.removeAll()
+            pars = ["first_name": fName,
+                    "last_name": sName,
+                    "email": mail,
+                    "phone": phone,
+                    "password": pass,
+                    "fcm_token_ios": "asassaassasasasasasa"
+            ]
+        }
+        
         callApi(RegisterModel.self, url: url, parameters: pars) {[weak self] (data) in
             if let user = data {
                 guard let userData = user.data else { return }
@@ -58,7 +70,6 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
                 self?.present(HomeTabBarController(), animated: true, completion: nil)
             }
         }
-
     }
     
     init(catId: Int, rigonId: Int) {
