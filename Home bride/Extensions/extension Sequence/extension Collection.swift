@@ -31,14 +31,13 @@ public extension Collection {
     /// Safe protects the array from out of bounds by use of optional.
     ///
     ///        let arr = [1, 2, 3, 4, 5]
-    ///        arr[safe: 1] -> 2
-    ///        arr[safe: 10] -> nil
+    ///        arr[o: 1] -> 2
+    ///        arr[o: 10] -> nil
     ///
     /// - Parameter index: index of element to access element.
-    public subscript(safe index: Index) -> Element? {
+    public subscript(o index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
-    
 }
 
 // MARK: - Methods (Int)
@@ -184,3 +183,11 @@ public extension Collection where Element: FloatingPoint {
     }
     
 }
+
+//extension Collection {
+//
+//    /// Returns the element at the specified index if it is within bounds, otherwise nil.
+//    subscript (safe index: Index) -> Element? {
+//        return indices.contains(index) ? self[index] : nil
+//    }
+//}

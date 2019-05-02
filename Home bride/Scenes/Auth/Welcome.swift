@@ -28,7 +28,7 @@ class WelcomeView: BaseView {
         lable.textColor = .white
         lable.font = UIFont.CairoSemiBold(of: 13)
         btn.backgroundColor = .clear
-        btn.setImage(#imageLiteral(resourceName: "owner").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "-e-owner (1)").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return btn
     }()
@@ -43,7 +43,7 @@ class WelcomeView: BaseView {
         lable.textColor = .white
         lable.font = UIFont.CairoSemiBold(of: 13)
         btn.backgroundColor = .clear
-        btn.setImage(#imageLiteral(resourceName: "whiteOwner").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "-e-owner (1) copy").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return btn
     }()

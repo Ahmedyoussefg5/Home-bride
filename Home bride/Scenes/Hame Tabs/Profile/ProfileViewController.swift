@@ -49,29 +49,29 @@ class ProfileView: BaseView {
     }()
     
     private var buttons = [UIButton]()
-    let images = [#imageLiteral(resourceName: "(1)"), #imageLiteral(resourceName: "couple-users-silhouette"), #imageLiteral(resourceName: "alarm-clock")]
-    let imagesGray = [#imageLiteral(resourceName: "user"), #imageLiteral(resourceName: "ball-of-wool"), #imageLiteral(resourceName: "twitter (1)")]
+    let images = [#imageLiteral(resourceName: "app (2)"), #imageLiteral(resourceName: "male-university-graduate-silhouette-with-the-cap (3)"), #imageLiteral(resourceName: "user (3)")]
+    let imagesGray = [#imageLiteral(resourceName: "app (6)"), #imageLiteral(resourceName: "male-university-graduate-silhouette-with-the-cap (9)"), #imageLiteral(resourceName: "user (7)")]
     private func getRatingButtons() -> [UIButton] {
         for index in images.indices {
             let btn = UIButton(type: .system)
             btn.tag = index
-            btn.backgroundColor = .red
-            btn.setBackgroundImage(imagesGray[index].withRenderingMode(.alwaysOriginal), for: .normal)
+            btn.backgroundColor = .white
+            btn.setImage(imagesGray[index].withRenderingMode(.alwaysOriginal), for: .normal)
             btn.addTheTarget(action: {[weak self] in
                 self?.handleRating(btn)
             })
             btn.applySketchShadow()
             buttons.append(btn)
         }
-        buttons.last?.setBackgroundImage(images.last, for: .normal)
+        buttons.last?.setImage(images.last!.withRenderingMode(.alwaysOriginal), for: .normal)
         return buttons
     }
     
     private func handleRating(_ sender: UIButton) {
         buttons.forEach { (btn) in
-            btn.setBackgroundImage(imagesGray[btn.tag], for: .normal)
+            btn.setImage(imagesGray[btn.tag], for: .normal)
         }
-        sender.setBackgroundImage(images[sender.tag].withRenderingMode(.alwaysOriginal), for: .normal)
+        sender.setImage(images[sender.tag].withRenderingMode(.alwaysOriginal), for: .normal)
         
         if sender.tag == 0 { // services
             setupProfileView()
@@ -239,7 +239,7 @@ class ProfileView: BaseView {
         btn.contentHorizontalAlignment = .trailing
         btn.setTitleColor(.gray, for: .normal)
         btn.addBottomLine()
-        //        btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
+        //btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.translatesAutoresizingMaskIntoConstraints = false
         let view = UIView()
@@ -734,6 +734,7 @@ struct ScheduleData: Codable {
     let name: String
     let price: Int
     let image: String
+//    var isSelected: Bool = false
 }
 
 // update prof
@@ -749,7 +750,7 @@ struct UpdateProf: Codable {
     let categoryName, info, phone, activityType: String
     let lastName, subCategoryName, role: String
 //    let location: JSONNull?
-    let gender, firstName, job: String
+    let gender, firstName, job: String?
     let image: String
     let deliveryRate: String
     let isVerified, subCategoryID: Int

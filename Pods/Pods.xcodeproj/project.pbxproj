@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -402,9 +402,9 @@
 		229BCAC59A1B7601A4B7D34991035EF2 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Sapporo/Sources/Common/Utilities.swift; sourceTree = "<group>"; };
 		27C4B1C51A39AD3C5D61ADFAEA64858E /* NicooPlayer_fullscreen.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NicooPlayer_fullscreen.png; path = NicooPlayer/Assets/NicooPlayer_fullscreen.png; sourceTree = "<group>"; };
 		281EABD7672CF33D93C40BB5F6A98352 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		29C5ED07F6067583C120DD30BF7A587F /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IQKeyboardManagerSwift.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29C5ED07F6067583C120DD30BF7A587F /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4BF35530CFD2B60EF2667575F813D4 /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SideMenu.modulemap; sourceTree = "<group>"; };
-		2B22226CFFBB12D549DD588969B0EF51 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B22226CFFBB12D549DD588969B0EF51 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B27A7482A3228F3F1BA8D62EE110500 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+WebCache.m"; path = "SDWebImage/UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		2BA708DD263E4E89ACD88EEB6E98F830 /* BumpType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BumpType.swift; path = Sapporo/Sources/Bump/BumpType.swift; sourceTree = "<group>"; };
 		2C0EA998331D8056BE550F7E960487C0 /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 		3A9C344493C833B29E7EBD9C2AB19B61 /* SDWebImageGIFCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageGIFCoder.m; path = SDWebImage/SDWebImageGIFCoder.m; sourceTree = "<group>"; };
 		3ABD05D96CC4EF6CC385736EC76BAE58 /* backward@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "backward@2x.png"; path = "NicooPlayer/Assets/backward@2x.png"; sourceTree = "<group>"; };
 		3B9ECAA36FDF8E81C72F8C5F7DA43DC5 /* NicooPlayer_slider@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NicooPlayer_slider@2x.png"; path = "NicooPlayer/Assets/NicooPlayer_slider@2x.png"; sourceTree = "<group>"; };
-		3C89D82B7A022F22789DB60A5C8A6A65 /* NicooPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NicooPlayer.framework; path = NicooPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C89D82B7A022F22789DB60A5C8A6A65 /* NicooPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NicooPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E187D4CE53F2437F67CBA736D14D472 /* SDWebImageCodersManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCodersManager.m; path = SDWebImage/SDWebImageCodersManager.m; sourceTree = "<group>"; };
 		3E4EB6FE0284E0DF7D6319808E211A1D /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
 		3F97DEA68F1FEE3B340A876C734F7FB1 /* back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "back@2x.png"; path = "NicooPlayer/Assets/back@2x.png"; sourceTree = "<group>"; };
@@ -455,7 +455,7 @@
 		52A68F783E7A4E0389EF93356426DA1E /* player_close@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "player_close@2x.png"; path = "NicooPlayer/Assets/player_close@2x.png"; sourceTree = "<group>"; };
 		53F6EAD45EF18D2ABA8469FDB2514763 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		562D3DECB848D683C87287E6C19C53D5 /* ArrayExt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ArrayExt.swift; path = Sapporo/Extension/ArrayExt.swift; sourceTree = "<group>"; };
-		57D0A005BFA7FB908359F4253AC66156 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57D0A005BFA7FB908359F4253AC66156 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DF5EA51C606BDCEAAA6AE2AEDD2471 /* player_close@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "player_close@3x.png"; path = "NicooPlayer/Assets/player_close@3x.png"; sourceTree = "<group>"; };
 		57E9EB1BB76CE2A5A1E2A6760BF1F27E /* replay@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "replay@3x.png"; path = "NicooPlayer/Assets/replay@3x.png"; sourceTree = "<group>"; };
 		58A1B28F9B7A50528A8A0FFC79A5C784 /* Pods-Home bride-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Home bride-resources.sh"; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 		6727FF0F8AC8C322B8F4E7BD1BB7F778 /* Sapporo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Sapporo.modulemap; sourceTree = "<group>"; };
 		6758F49C06C185E518184FBE2ADD5762 /* NicooPlayer_slider.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NicooPlayer_slider.png; path = NicooPlayer/Assets/NicooPlayer_slider.png; sourceTree = "<group>"; };
 		6776E70BA107A2852FF6535DC2B6B7CB /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
-		678C61C1C4B2042A8691CAAFF60A11F7 /* ROThumbnailGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ROThumbnailGenerator.framework; path = ROThumbnailGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		678C61C1C4B2042A8691CAAFF60A11F7 /* ROThumbnailGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ROThumbnailGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		679762BA481972FE99D84E544179BA42 /* IQKeyboardManagerSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IQKeyboardManagerSwift-dummy.m"; sourceTree = "<group>"; };
 		68685F1E3D06106D9241F736D4C9618E /* share@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "share@2x.png"; path = "NicooPlayer/Assets/share@2x.png"; sourceTree = "<group>"; };
 		6A313E9923A2554002288B2A780D391C /* pause@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "pause@3x.png"; path = "NicooPlayer/Assets/pause@3x.png"; sourceTree = "<group>"; };
@@ -494,7 +494,7 @@
 		783102E1184FB40E3D7CF66B8B3610ED /* IQPreviousNextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQPreviousNextView.swift; path = IQKeyboardManagerSwift/IQToolbar/IQPreviousNextView.swift; sourceTree = "<group>"; };
 		786EC52B62DA54BA34632ED95746A066 /* share@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "share@3x.png"; path = "NicooPlayer/Assets/share@3x.png"; sourceTree = "<group>"; };
 		78A5E51A9E4F1DA5B7477C6F0A37E702 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7923DF831EAA7C38260BCEB75386C96B /* Sapporo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Sapporo.framework; path = Sapporo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7923DF831EAA7C38260BCEB75386C96B /* Sapporo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sapporo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A17CC84E6344199E2B9F3D123940597 /* SDWebImageFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageFrame.h; path = SDWebImage/SDWebImageFrame.h; sourceTree = "<group>"; };
 		7A56451839A9FE27F5EE5845331B6965 /* Sapporo+DelegateFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Sapporo+DelegateFlowLayout.swift"; path = "Sapporo/Sources/Core/Sapporo+DelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		7BAF3ABF496AA00D90F3B1536A5E4770 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
@@ -520,7 +520,7 @@
 		8CFA044CA91023E1E0B54B132D79D80F /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		8EE78F26683C2781738DBAF8FDBC3A79 /* IQTitleBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQTitleBarButtonItem.swift; path = IQKeyboardManagerSwift/IQToolbar/IQTitleBarButtonItem.swift; sourceTree = "<group>"; };
 		9118FB65FDF8906F80CCCE5E33C0999A /* lockscreen@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "lockscreen@3x.png"; path = "NicooPlayer/Assets/lockscreen@3x.png"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95B258D61F1EB8343EF0C0182692A42F /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		9689AEF7ACCE8FA4503F539A0CD3E622 /* UISideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UISideMenuNavigationController.swift; path = Pod/Classes/UISideMenuNavigationController.swift; sourceTree = "<group>"; };
 		983DF13820AEBA5267C70D97B7898F5B /* SDWebImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-prefix.pch"; sourceTree = "<group>"; };
@@ -561,7 +561,7 @@
 		B2E080B6024590BED5CDED5B5F891DE8 /* back@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "back@3x.png"; path = "NicooPlayer/Assets/back@3x.png"; sourceTree = "<group>"; };
 		B3E5FE6EC0C402B6F30E20273C1BBD59 /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
 		B42B652DBEAA696138DBE999A1862702 /* UIView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCache.h"; path = "SDWebImage/UIView+WebCache.h"; sourceTree = "<group>"; };
-		B4D78EFB55092DE9414DEA69AF865456 /* NicooPlayer.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NicooPlayer.bundle; path = "NicooPlayer-NicooPlayer.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D78EFB55092DE9414DEA69AF865456 /* NicooPlayer.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NicooPlayer.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F92D788488C9FA51B78DAE30F985EE /* SALayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SALayout.swift; path = Sapporo/Sources/Layout/SALayout.swift; sourceTree = "<group>"; };
 		B541FCA6203A7DE0D2D08A42A3946B23 /* IQKeyboardManagerConstantsInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManagerConstantsInternal.swift; path = IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstantsInternal.swift; sourceTree = "<group>"; };
 		B55DE91B280F54FB1CA49B687F49F2A6 /* Sapporo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Sapporo-dummy.m"; sourceTree = "<group>"; };
@@ -579,7 +579,7 @@
 		C29D7252CAF01CCB97B37650841BF961 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		C3A5449086D7EF6ADF9BA5D4C3E8D24C /* SideMenuManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuManager.swift; path = Pod/Classes/SideMenuManager.swift; sourceTree = "<group>"; };
 		C3D9AC1780890CB2BE0D87FAAAE0ECFF /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
-		C3EF85C6DE7C7EA5697B3195769EF3CD /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3EF85C6DE7C7EA5697B3195769EF3CD /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C195BE7CBEB7D5D1331DCFE9643EFE /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		C616824CC7F81A4DCF5F304D06728C3D /* NicooPlayer_slider@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NicooPlayer_slider@3x.png"; path = "NicooPlayer/Assets/NicooPlayer_slider@3x.png"; sourceTree = "<group>"; };
 		C62CEDF25A08547081936D52ECFE1F0D /* ResourceBundle-NicooPlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NicooPlayer-Info.plist"; sourceTree = "<group>"; };
@@ -617,7 +617,7 @@
 		E088C81E345601DF95170FEA07BBC975 /* sliderflash@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "sliderflash@3x.png"; path = "NicooPlayer/Assets/sliderflash@3x.png"; sourceTree = "<group>"; };
 		E0D336E8FD0F3588F434527E2C1915B5 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
 		E100E8D44F83A4EA1A28B400509ABFE0 /* NicooVideoRequestTask.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NicooVideoRequestTask.swift; path = NicooPlayer/Classes/NicooVideoRequestTask.swift; sourceTree = "<group>"; };
-		E39642159BEEAE000EBF13146CE48E25 /* Pods_Home_bride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Home_bride.framework; path = "Pods-Home bride.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E39642159BEEAE000EBF13146CE48E25 /* Pods_Home_bride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_bride.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4040BE9495CCE4662204A8BA2426DB7 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
 		E40567B9ECE5392890AC0B33C92E4E92 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		E43AD76890BEB786FA6A6B00C344B97D /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
@@ -635,9 +635,9 @@
 		F08262B41A3CED8D0CF41854940A3E36 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		F14D134095B471428978C147FDFCB37C /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
 		F21B53DA4CC2F3D8738C6D5E6D07D33D /* SAFlowLayoutSupplementaryView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SAFlowLayoutSupplementaryView.swift; path = Sapporo/Sources/SupplementaryView/SAFlowLayoutSupplementaryView.swift; sourceTree = "<group>"; };
-		F2B889A8EE83CA8B48927B882785AB06 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B889A8EE83CA8B48927B882785AB06 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CC9509780321A48B656489219CEE4B /* SDImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = SDWebImage/SDImageCache.m; sourceTree = "<group>"; };
-		F300FAC335FD2DFBD942FEEB8FAF0DE6 /* SideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SideMenu.framework; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F300FAC335FD2DFBD942FEEB8FAF0DE6 /* SideMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36AF86719C313A1F91E679D203DB60E /* UIImage+GIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+GIF.m"; path = "SDWebImage/UIImage+GIF.m"; sourceTree = "<group>"; };
 		F49AA9F5968BF8261B18A0779859F564 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		F4F1F10C06F03BFE0155B78B47C08473 /* ROThumbnailGenerator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ROThumbnailGenerator-dummy.m"; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 		F6DB08126F9DAAD1B19DA2BFCB990F30 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		F75F2716EEF0D71A3FC0A299DF1C335D /* NSImage+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSImage+WebCache.m"; path = "SDWebImage/NSImage+WebCache.m"; sourceTree = "<group>"; };
 		F77D09BA4E43B4E1EA69BC9F3D7A8F29 /* ROThumbnailGenerator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ROThumbnailGenerator.xcconfig; sourceTree = "<group>"; };
-		F8E209EDD57EB1C205E95E42EC8BF357 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown.framework; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E209EDD57EB1C205E95E42EC8BF357 /* DropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADF4021BCAC7E6B6BA571151923BF42 /* SDWebImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-umbrella.h"; sourceTree = "<group>"; };
 		FC6A431BFA0B3E882FE9555F07E9D0C3 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
 		FCDB11BD3A7A6AA20216EC82C9E8CB7C /* SapporoDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SapporoDelegate.swift; path = Sapporo/Sources/Core/SapporoDelegate.swift; sourceTree = "<group>"; };
@@ -792,7 +792,6 @@
 				305840E6FEB29E2CEF6CAD62C80D5083 /* Validation.swift */,
 				2B1C342E8C436BE5D89792B08B10CBA3 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -802,7 +801,6 @@
 				9330141CAE2DA873D1A5569A7A439C2C /* Core */,
 				CEFD1926D6E6623BA25F457BAA11153A /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -832,7 +830,6 @@
 				E49CD6395CD089DF978CEEC0A7C94761 /* VideoThumbnailGenerator.swift */,
 				686986A8080BAF5A8A6595AE89D284E3 /* Support Files */,
 			);
-			name = ROThumbnailGenerator;
 			path = ROThumbnailGenerator;
 			sourceTree = "<group>";
 		};
@@ -903,7 +900,6 @@
 				EA877B253E12822BEBFCD8058EE4F3FD /* Resources */,
 				E524251265705A59D3CE99AF46986B80 /* Support Files */,
 			);
-			name = DropDown;
 			path = DropDown;
 			sourceTree = "<group>";
 		};
@@ -916,7 +912,6 @@
 				CE5108D31F5A9DEC0B1FCAF53CADDD93 /* UITableViewVibrantCell.swift */,
 				2987E62347FA4AAF492339455684E29B /* Support Files */,
 			);
-			name = SideMenu;
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
@@ -964,7 +959,6 @@
 				53F98E32F5D59516ACB5FD7B0B8BE894 /* Resources */,
 				D3D627762693CCDB661A85A1F68FEED6 /* Support Files */,
 			);
-			name = IQKeyboardManagerSwift;
 			path = IQKeyboardManagerSwift;
 			sourceTree = "<group>";
 		};
@@ -1005,7 +999,6 @@
 				495B9DA38CA1B20F1133E96FDD25420D /* SwiftyJSON.swift */,
 				41CCA1BB4C61B0E5F34229B55656071C /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -1073,7 +1066,6 @@
 				B569278E3079EBD7DBBA2B7D3627C1B7 /* UILayoutSupport+Extensions.swift */,
 				771F8D2485234B6A71F03FAB7AE1AB3F /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1165,7 +1157,6 @@
 				229BCAC59A1B7601A4B7D34991035EF2 /* Utilities.swift */,
 				57D8098145DA6DDBA048DE5E16727512 /* Support Files */,
 			);
-			name = Sapporo;
 			path = Sapporo;
 			sourceTree = "<group>";
 		};
@@ -1184,7 +1175,6 @@
 				FE3B0E95202FEDDBF8E26CC20CC179D6 /* Resources */,
 				20263184CDDD223A677503F24B18E250 /* Support Files */,
 			);
-			name = NicooPlayer;
 			path = NicooPlayer;
 			sourceTree = "<group>";
 		};
@@ -1679,7 +1669,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2155,6 +2145,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -2176,11 +2167,7 @@
 				INFOPLIST_FILE = "Target Support Files/SnapKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
 				PRODUCT_MODULE_NAME = SnapKit;
 				PRODUCT_NAME = SnapKit;
@@ -2213,11 +2200,7 @@
 				INFOPLIST_FILE = "Target Support Files/DropDown/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
 				PRODUCT_MODULE_NAME = DropDown;
 				PRODUCT_NAME = DropDown;
@@ -2250,11 +2233,7 @@
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
@@ -2287,11 +2266,7 @@
 				INFOPLIST_FILE = "Target Support Files/ROThumbnailGenerator/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ROThumbnailGenerator/ROThumbnailGenerator.modulemap";
 				PRODUCT_MODULE_NAME = ROThumbnailGenerator;
 				PRODUCT_NAME = ROThumbnailGenerator;
@@ -2324,11 +2299,7 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				PRODUCT_MODULE_NAME = SwiftyJSON;
 				PRODUCT_NAME = SwiftyJSON;
@@ -2360,11 +2331,7 @@
 				INFOPLIST_FILE = "Target Support Files/IQKeyboardManagerSwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift.modulemap";
 				PRODUCT_MODULE_NAME = IQKeyboardManagerSwift;
 				PRODUCT_NAME = IQKeyboardManagerSwift;
@@ -2397,11 +2364,7 @@
 				INFOPLIST_FILE = "Target Support Files/SideMenu/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SideMenu/SideMenu.modulemap";
 				PRODUCT_MODULE_NAME = SideMenu;
 				PRODUCT_NAME = SideMenu;
@@ -2435,11 +2398,7 @@
 				INFOPLIST_FILE = "Target Support Files/SideMenu/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SideMenu/SideMenu.modulemap";
 				PRODUCT_MODULE_NAME = SideMenu;
 				PRODUCT_NAME = SideMenu;
@@ -2471,11 +2430,7 @@
 				INFOPLIST_FILE = "Target Support Files/SnapKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
 				PRODUCT_MODULE_NAME = SnapKit;
 				PRODUCT_NAME = SnapKit;
@@ -2570,11 +2525,7 @@
 				INFOPLIST_FILE = "Target Support Files/Sapporo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Sapporo/Sapporo.modulemap";
 				PRODUCT_MODULE_NAME = Sapporo;
 				PRODUCT_NAME = Sapporo;
@@ -2607,11 +2558,7 @@
 				INFOPLIST_FILE = "Target Support Files/DropDown/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
 				PRODUCT_MODULE_NAME = DropDown;
 				PRODUCT_NAME = DropDown;
@@ -2644,11 +2591,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Home bride/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Home bride/Pods-Home bride.modulemap";
 				OTHER_LDFLAGS = "";
@@ -2683,11 +2626,7 @@
 				INFOPLIST_FILE = "Target Support Files/NicooPlayer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/NicooPlayer/NicooPlayer.modulemap";
 				PRODUCT_MODULE_NAME = NicooPlayer;
 				PRODUCT_NAME = NicooPlayer;
@@ -2719,11 +2658,7 @@
 				INFOPLIST_FILE = "Target Support Files/IQKeyboardManagerSwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift.modulemap";
 				PRODUCT_MODULE_NAME = IQKeyboardManagerSwift;
 				PRODUCT_NAME = IQKeyboardManagerSwift;
@@ -2756,11 +2691,7 @@
 				INFOPLIST_FILE = "Target Support Files/Sapporo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Sapporo/Sapporo.modulemap";
 				PRODUCT_MODULE_NAME = Sapporo;
 				PRODUCT_NAME = Sapporo;
@@ -2792,11 +2723,7 @@
 				INFOPLIST_FILE = "Target Support Files/NicooPlayer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/NicooPlayer/NicooPlayer.modulemap";
 				PRODUCT_MODULE_NAME = NicooPlayer;
 				PRODUCT_NAME = NicooPlayer;
@@ -2845,11 +2772,7 @@
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
@@ -2881,11 +2804,7 @@
 				INFOPLIST_FILE = "Target Support Files/ROThumbnailGenerator/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ROThumbnailGenerator/ROThumbnailGenerator.modulemap";
 				PRODUCT_MODULE_NAME = ROThumbnailGenerator;
 				PRODUCT_NAME = ROThumbnailGenerator;
@@ -2934,11 +2853,7 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-Home bride/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Home bride/Pods-Home bride.modulemap";
 				OTHER_LDFLAGS = "";
@@ -2973,11 +2888,7 @@
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
 				PRODUCT_MODULE_NAME = SDWebImage;
 				PRODUCT_NAME = SDWebImage;
@@ -3008,11 +2919,7 @@
 				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
 				PRODUCT_MODULE_NAME = SDWebImage;
 				PRODUCT_NAME = SDWebImage;
@@ -3044,11 +2951,7 @@
 				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				PRODUCT_MODULE_NAME = SwiftyJSON;
 				PRODUCT_NAME = SwiftyJSON;

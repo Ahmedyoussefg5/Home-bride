@@ -88,7 +88,7 @@ class ChatView: UIView {
             ])
         ActivateConstraint([
             mainTableView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            mainTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            mainTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
             mainTableView.bottomAnchor.constraint(equalTo: chatControllersView.topAnchor, constant: -1),
             mainTableView.widthAnchor.constraint(equalTo: widthAnchor)
             ])

@@ -13,11 +13,11 @@ class ChatHomeView: BaseView {
     lazy var mainTableView: UITableView = {
         let tableV = UITableView()
         tableV.isTransperant()
-//        tableV.backgroundColor = .clear
-//        tableV.isOpaque = false
-//        tableV.backgroundView = nil
-//        tableV.tableFooterView = UIView()
-//        tableV.separatorColor = mediumPurple
+        //        tableV.backgroundColor = .clear
+        //        tableV.isOpaque = false
+        //        tableV.backgroundView = nil
+        //        tableV.tableFooterView = UIView()
+        //        tableV.separatorColor = mediumPurple
         tableV.translatesAutoresizingMaskIntoConstraints = false
         tableV.register(ChatHomeTableCell.self, forCellReuseIdentifier: "ChatHomeTableCell")
         return tableV
@@ -46,7 +46,7 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatHomeTableCell", for: indexPath) as! ChatHomeTableCell
         return cell
@@ -62,9 +62,9 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let vc = UINavigationController(rootViewController: ChatViewController())
-//        vc.navbarWithdismiss()
-//        presentModelyVC(vc: vc)
+        //        let vc = UINavigationController(rootViewController: ChatViewController())
+        //        vc.navbarWithdismiss()
+        //        presentModelyVC(vc: vc)
     }
 }
 
@@ -130,7 +130,7 @@ class ChatHomeTableCell: UITableViewCell {
         userNameLable.topAnchorToView(anchor: userImage.topAnchor)
         userNameLable.trailingAnchorToView(anchor: userImage.leadingAnchor, constant: -5)
         userNameLable.leadingAnchorSuperView(constant: 10)
-
+        
         contentView.addSubview(messageLable)
         messageLable.bottomAnchorToView(anchor: userImage.bottomAnchor)
         messageLable.trailingAnchorToView(anchor: userImage.leadingAnchor, constant: -5)

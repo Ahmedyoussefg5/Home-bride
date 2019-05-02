@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if user == p {
                 window?.rootViewController = HomeTabBarController()
             } else {
-                window?.rootViewController = UserHomeViewController()
+                window?.rootViewController = UINavigationController(rootViewController: UserHomeViewController())
+
             }
         }
 

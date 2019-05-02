@@ -53,14 +53,19 @@ class BaseView: UIView {
 class BaseUIViewController<T: BaseView>: UIViewController, ButtonActionDelegation {
     func clicked(with: BaseButtons) {
     }
-    
+    let activ = UIActivityIndicatorView(style: .whiteLarge)
+
     var mainView = T()
     override func loadView() {
         view = mainView
+        mainView.addSubview(activ)
+        activ.fillSuperviewSafeArea()
+
         mainView.click = self
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        activ.color = mediumPurple
 
 //        var updatedFrame = (navigationController?.navigationBar.bounds)!
 //        updatedFrame.size.height += 20

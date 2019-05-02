@@ -73,17 +73,36 @@ extension UIImageView {
 
 extension UIImageView {
     func load(with url: String?) {
-        guard let urlString = url else { return }
+        guard let urlString = url?.filterAsURL else { return }
         guard let url = URL(string: urlString) else { return }
+        sd_showActivityIndicatorView()
         sd_setIndicatorStyle(.gray)
-        let placeHolder = #imageLiteral(resourceName: "placeHolder")
+        let placeHolder = #imageLiteral(resourceName: "girl")
+        image = placeHolder
         let options: SDWebImageOptions = .continueInBackground
-        sd_setImage(with: url, placeholderImage: placeHolder, options: options, progress: nil) {[weak self] (image, error, cache, url) in
-            if let err = error {
+        sd_setImage(with: url, placeholderImage: placeHolder, options: options, progress: nil) {[weak self] (image, error, _, _) in
+            if error != nil {
                 self?.image = placeHolder
                     return
             }
             self?.image = image
+        }
+    }
+}
+
+extension UIButton {
+    func load(with url: String?) {
+        guard let urlString = url?.filterAsURL else { return }
+        guard let url = URL(string: urlString) else { return }
+        sd_showActivityIndicatorView()
+        sd_setIndicatorStyle(.gray)
+        let placeHolder = #imageLiteral(resourceName: "girl")
+        setImage(placeHolder.withRenderingMode(.alwaysOriginal), for: .normal)
+        sd_setImage(with: url, for: .normal) {[weak self] (image, err, _, _) in
+            self?.setImage(placeHolder.withRenderingMode(.alwaysOriginal), for: .normal)
+            if image != nil {
+                self?.setImage(image!.withRenderingMode(.alwaysOriginal), for: .normal)
+            }
         }
     }
 }

@@ -17,21 +17,22 @@ class HomeTabBarController: UITabBarController {
         let timeTableViewController = UINavigationController(rootViewController: TimeTableViewController())
         let homeViewController = UINavigationController(rootViewController: HomeNewReqViewController())
         let galaryViewController = UINavigationController(rootViewController: GalaryViewController())
-//        let notificationsViewController = UINavigationController(rootViewController: NotificationsViewController())
         let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         let chatHomeViewController = UINavigationController(rootViewController: ChatHomeViewController())
         
-        homeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "grid-1"), selectedImage: #imageLiteral(resourceName: "grid-1"))
-        galaryViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "grid-1"), selectedImage: #imageLiteral(resourceName: "grid-1"))
-        profileViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
-        chatHomeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
-//        notificationsViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile-1"), selectedImage: #imageLiteral(resourceName: "profile-1"))
-
+        homeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "format-list-bulleted (1)4"), selectedImage: #imageLiteral(resourceName: "format-list-bulleted (1)4"))
+        galaryViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "Forma 1 copy 25 (2)"), selectedImage: #imageLiteral(resourceName: "Forma 1 copy 25 (2)"))
+        profileViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile (1)9"), selectedImage: #imageLiteral(resourceName: "profile (1)9"))
+        chatHomeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "message-text-outline (3)"), selectedImage: #imageLiteral(resourceName: "message-text-outline (3)"))
+        timeTableViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "alarm-clock (5)"), selectedImage: #imageLiteral(resourceName: "alarm-clock (5)"))
+        
         //tabBarController?.selectedViewController = homeViewController
         
         let tabBarList = [profileViewController, homeViewController, galaryViewController, timeTableViewController, chatHomeViewController]
         viewControllers = tabBarList
         
+        tabBar.tintColor = mediumPurple
+
 //        selectedViewController = tabBarList[2]
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarToProfileVC), name: toProfileVC, object: nil)

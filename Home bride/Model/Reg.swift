@@ -27,7 +27,7 @@ struct UserData: Codable {
     let image: String
     let social: Social
     let birthDate, gender, job: String
-    let location: JSONNull?
+    let location: Locationn?
     let deliveryRate: String?
     let subCategoryID: Int?
     let categoryName, subCategoryName: String?
@@ -56,7 +56,9 @@ struct UserData: Codable {
         case activityType = "activity_type"
     }
 }
-
+struct Locationn: Codable {
+    let lat, lng: String?
+}
 struct Social: Codable {
     let facebookLink, instagramLink, snapchatLink, twitterLink: String?
     

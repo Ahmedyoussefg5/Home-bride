@@ -56,7 +56,7 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             "status": "accept",
             "_method": "PUT"
         ]
-        callApi(ReqData.self, url: url, method: .get, parameters: pars) { (data) in
+        callApi(ReqData.self, url: url, method: .post, parameters: pars) { (data) in
             if data != nil {
                 self.showAlert(title: "", message: "تم قبول الطلب")
             }
@@ -69,7 +69,7 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             "status": "cancel",
             "_method": "PUT"
         ]
-        callApi(ReqData.self, url: url, method: .get, parameters: pars) { (data) in
+        callApi(ReqData.self, url: url, method: .post, parameters: pars) { (data) in
             if data != nil {
                 self.showAlert(title: "", message: "تم رفض الطلب")
             }
@@ -436,14 +436,14 @@ struct Req: Codable {
     let services: [Service]
     let total: Int
     let client: Client
-    let provider: Provider
+//    let provider: Provider
     
     enum CodingKeys: String, CodingKey {
         case orderID = "order_id"
         case delivery, status, date, lat, lng
         case deliveryFees = "delivery_fees"
         case subCategory = "sub_category"
-        case region, services, total, client, provider
+        case region, services, total, client//, provider
     }
 }
 
@@ -471,9 +471,9 @@ struct RevSocial: Codable {
 }
 
 struct Provider: Codable {
-    let name, phone, job: String
+    let name, phone, job: String?
     let image: String
-    let birthDate: JSONNull?
+    let birthDate: String?
     let region: String
     let location: Location
     let social: Social

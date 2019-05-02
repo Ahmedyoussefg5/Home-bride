@@ -52,7 +52,7 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return SideMenuTableHeader(userName: "name", UserImage: "image")
+        return SideMenuTableHeader(userName: AuthService.instance.userName ?? "", UserImage: AuthService.instance.userImage ?? "")
     }
     lazy var switchView: UISwitch = {
         let switchV = UISwitch()

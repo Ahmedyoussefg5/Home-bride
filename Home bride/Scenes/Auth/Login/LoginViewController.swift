@@ -51,8 +51,8 @@ class LoginViewController: BaseUIViewController<LoginView> {
             if let userr = data {
                 guard let userData = userr.data else { return }
                 AuthService.instance.setUserDefaults(user: userData)
-                if user == u {
-                    self?.present(UserHomeViewController(), animated: true, completion: nil)
+                if userr.data?.role == "client" {
+                    self?.present(UINavigationController(rootViewController: UserHomeViewController()), animated: true, completion: nil)
                 } else {
                     self?.present(HomeTabBarController(), animated: true, completion: nil)
                 }
