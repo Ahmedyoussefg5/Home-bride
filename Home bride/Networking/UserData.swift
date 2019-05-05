@@ -267,9 +267,11 @@ class AuthService {
     
     func transiteWithViewController(_ vc: UIViewController) {
         DispatchQueue.main.async {
-            guard let window =  UIApplication.shared.keyWindow else { fatalError() }
-            window.rootViewController = UINavigationController(rootViewController: vc)
-            UIView.transition(with: window, duration: 1.0, options: .transitionCurlUp, animations: nil, completion: nil)
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                guard let window =  UIApplication.shared.keyWindow else { fatalError() }
+                window.rootViewController = UINavigationController(rootViewController: vc)
+                UIView.transition(with: window, duration: 1.0, options: .transitionCurlUp, animations: nil, completion: nil)
+            })
         }
     }
     

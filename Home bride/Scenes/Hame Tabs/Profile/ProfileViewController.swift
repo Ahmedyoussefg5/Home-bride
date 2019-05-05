@@ -183,8 +183,6 @@ class ProfileView: BaseView {
             cityText,
             distinctText,
             stackSpliter(),
-            stackSpliter(),
-            stackSpliter(),
             confirmSaveButton
             ])
         profileStack?.axis = v

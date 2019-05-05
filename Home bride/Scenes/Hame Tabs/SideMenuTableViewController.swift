@@ -56,14 +56,16 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return SideMenuTableHeader(userName: AuthService.instance.userName ?? "", UserImage: AuthService.instance.userImage ?? "")
+        return SideMenuTableHeader(userName: AuthService.instance.userName ?? "", userImage: AuthService.instance.userImage ?? "")
     }
     lazy var switchView: UISwitch = {
         let switchV = UISwitch()
         switchV.onTintColor = #colorLiteral(red: 0.9209317565, green: 0.3846375644, blue: 0.6422777772, alpha: 1)
         switchV.translatesAutoresizingMaskIntoConstraints = false
+        switchV.isOn = ya
         return switchV
     }()
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! UITableViewVibrantCell
         cell.backgroundColor = .clear
@@ -85,16 +87,13 @@ class SideMenuTableViewController: UITableViewController {
                 switchView.centerYInSuperview()
             }
         }
-
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        DispatchQueue.main.async {
-            self.dismiss(animated: true, completion: nil)
-        }
+//        DispatchQueue.main.async {
+//        }
         if user == p {
             switch indexPath.row {
             case 0:
@@ -103,17 +102,17 @@ class SideMenuTableViewController: UITableViewController {
             case 1:
                 navigationController?.pushViewController(NotificationsViewController(), animated: ya)
             case 2:
-                
                 NotificationCenter.default.post(name: toHomeVC, object: nil)
                 return
-                //        case 4:
-                //            vc = SettingsViewController()
-                //        case 2:
-            //            vc = WalletViewController()
+            case 3:
+                navigationController?.pushViewController(TermsViewController(), animated: ya)
+            case 4:
+                navigationController?.pushViewController(TermsViewControllerr(), animated: ya)
             case 5:
                 navigationController?.pushViewController(ContactViewController(), animated: ya)
             case 6:
                 AuthService.instance.restartAppAndRemoveUserDefaults()
+                dismiss(animated: true, completion: nil)
             default:
                 return
             }
@@ -138,6 +137,7 @@ class SideMenuTableViewController: UITableViewController {
             case 7:
                 navigationController?.pushViewController(ContactViewController(), animated: ya)
             case 8:
+                dismiss(animated: true, completion: nil)
                 AuthService.instance.restartAppAndRemoveUserDefaults()
             default:
                 return
@@ -152,7 +152,7 @@ class SideMenuTableHeader: UIView {
         let img = UIImageView()
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
-        img.image = #imageLiteral(resourceName: "facebook")
+//        img.image = #imageLiteral(resourceName: "facebook")
         img.viewCornerRadius = 30
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
@@ -183,10 +183,11 @@ class SideMenuTableHeader: UIView {
     }()
     lazy var gradientLayer = LinearGradientLayer(colors: [mediumPurple, lightPurple])
 
-    init(userName: String, UserImage: String) {
+    init(userName: String, userImage: String) {
         super.init(frame: .zero)
         setupView()
         self.userName.text = userName
+        self.userImage.load(with: userImage)
     }; required init?(coder aDecoder: NSCoder) {
         fatalError()
     }

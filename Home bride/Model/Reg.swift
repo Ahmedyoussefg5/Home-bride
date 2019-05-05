@@ -7,11 +7,6 @@
 //
 
 import Foundation
-// To parse the JSON, add this file to your project and do:
-//
-//   let allSalonsData = try? newJSONDecoder().decode(AllSalonsData.self, from: jsonData)
-
-import Foundation
 
 struct RegisterModel: BaseCodable {
     var status: Int

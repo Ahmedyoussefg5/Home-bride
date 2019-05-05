@@ -13,6 +13,8 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "تواصل معنا"
+        
         view.backgroundColor = .white
         
         view.addSubview(messageTextView)
