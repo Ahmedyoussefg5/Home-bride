@@ -19,8 +19,6 @@ class Network: NSObject {
     
     func getData<T: BaseCodable>(_ decoder: T.Type, url: String, parameters: [String:Any]?, method: HTTPMethod = .post, complation: ((_ error: String?, _ data: T?) -> Void)? = nil) {
         
-        
-        
         Alamofire.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: header)
             .responseJSON {
                 (response) in
@@ -99,15 +97,6 @@ class Network: NSObject {
             case .failure(let error):
                 completion?(error.localizedDescription, nil)
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
         }
         
     }

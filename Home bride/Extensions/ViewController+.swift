@@ -121,9 +121,9 @@ extension UIViewController {
         //menuRightNavigationController.delegate = self as? UINavigationControllerDelegate
         SideMenuManager.default.menuRightNavigationController = menuRightNavigationController
         //  SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.view)
+//        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.view)
         //  SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+//        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
         // (Optional) Prevent status bar area from turning black when menu appears:
         SideMenuManager.default.menuFadeStatusBar = false
         SideMenuManager.default.menuDismissOnPush = true

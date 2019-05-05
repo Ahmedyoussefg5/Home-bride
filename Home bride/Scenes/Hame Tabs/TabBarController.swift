@@ -14,6 +14,10 @@ class HomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
+        setupSideMenu()
+        
         let timeTableViewController = UINavigationController(rootViewController: TimeTableViewController())
         let homeViewController = UINavigationController(rootViewController: HomeNewReqViewController())
         let galaryViewController = UINavigationController(rootViewController: GalaryViewController())

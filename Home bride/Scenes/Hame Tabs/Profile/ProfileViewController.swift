@@ -45,6 +45,9 @@ class ProfileView: BaseView {
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.titleLabel?.underline()
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTheTarget(action: {[weak self] in
+            self?.confirmSaveButton.isHidden.toggle()
+        })
         return btn
     }()
     
@@ -91,24 +94,24 @@ class ProfileView: BaseView {
     let mailText = UnderLineTextField(placeH: AuthService.instance.userEmail ?? "البريد الالكتروني")
     let jobText = UnderLineTextField(placeH: AuthService.instance.userJob ?? "المهنة")
     let phoneText = UnderLineTextField(placeH: AuthService.instance.userPhone ?? "رقم الجوال")
-    let genderText: UnderLineTextField = {
-        if AuthService.instance.userGender != "" {
-            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "النوع")
-            return txt
-        } else {
-            let txt = UnderLineTextField(placeH: "النوع")
-            return txt
-        }
-    }()
-    let birthText: UnderLineTextField = {
-        if AuthService.instance.userGender != "" {
-            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "تاريخ الميلاد")
-            return txt
-        } else {
-            let txt = UnderLineTextField(placeH: "تاريخ الميلاد")
-            return txt
-        }
-    }()
+//    let genderText: UnderLineTextField = {
+//        if AuthService.instance.userGender != "" {
+//            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "النوع")
+//            return txt
+//        } else {
+//            let txt = UnderLineTextField(placeH: "النوع")
+//            return txt
+//        }
+//    }()
+//    let birthText: UnderLineTextField = {
+//        if AuthService.instance.userGender != "" {
+//            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "تاريخ الميلاد")
+//            return txt
+//        } else {
+//            let txt = UnderLineTextField(placeH: "تاريخ الميلاد")
+//            return txt
+//        }
+//    }()
     lazy var areaText: CreateAccountButton = {
         let btn = CreateAccountButton(title: "منطقة", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
         return btn
@@ -176,11 +179,13 @@ class ProfileView: BaseView {
             mailText,
             jobText,
             phoneText,
-            genderText,
-            birthText,
             areaText,
             cityText,
-            distinctText
+            distinctText,
+            stackSpliter(),
+            stackSpliter(),
+            stackSpliter(),
+            confirmSaveButton
             ])
         profileStack?.axis = v
         profileStack?.distribution = .fillEqually
@@ -189,8 +194,22 @@ class ProfileView: BaseView {
         profileStack?.widthAnchorWithMultiplier(multiplier: 0.9)
         profileStack?.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
         profileStack?.centerXInSuperview()
-        profileStack?.heightAnchorConstant(constant: 550)
+        profileStack?.heightAnchorConstant(constant: 470)
     }
+    
+    lazy var confirmSaveButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("حفظ", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+        btn.layer.cornerRadius = 15
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
+        btn.isHidden = ya
+        btn.addTheTarget(action: {[weak self] in
+        })
+        return btn
+    }()
     
     private func setupCollextionView() {
         qualifStack?.removeFromSuperview()
@@ -384,7 +403,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
             self?.handleTargets(sender: self?.mainView.cityText, items: data)
         }
         
-        mainView.editProfileButton.addTheTarget {[weak self] in
+        mainView.confirmSaveButton.addTheTarget {[weak self] in
             self?.saveDate()
         }
         
@@ -493,10 +512,12 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         pars["last_name"] = mainView.familyNameText.text
         pars["email"] = mainView.mailText.text
         pars["phone"] = mainView.phoneText.text
-        pars["birth_date"] = mainView.birthText.text
-        pars["gender"] = mainView.genderText.text
+//        pars["birth_date"] = mainView.birthText.text
+//        pars["gender"] = mainView.genderText.text
         pars["job"] = mainView.jobText.text
-        pars["region_id"] = rigonId
+        if let rigonId = rigonId {
+            pars["region_id"] = rigonId
+        }
         
         callApi(UpdateProfData.self, url: url, parameters: pars) { (data) in
             if let data = data {
@@ -740,23 +761,23 @@ struct ScheduleData: Codable {
 // update prof
 struct UpdateProfData: BaseCodable {
     var status: Int
-    
     var msg: String?
-    
     let data: UpdateProf?
 }
 
 struct UpdateProf: Codable {
-    let categoryName, info, phone, activityType: String
-    let lastName, subCategoryName, role: String
+    let phone: String
+    let activityType: String?
+    let lastName, role: String
+    let subCategoryName, categoryName, info: String?
 //    let location: JSONNull?
     let gender, firstName, job: String?
-    let image: String
-    let deliveryRate: String
-    let isVerified, subCategoryID: Int
+    let image: String?
+    let deliveryRate: String?
+    let isVerified, subCategoryID: Int?
 //    let social: Social
     let id: Int
-    let birthDate, email: String
+    let birthDate, email: String?
     
     enum CodingKeys: String, CodingKey {
         case categoryName = "category_name"

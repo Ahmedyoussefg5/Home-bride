@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DropDown
+//import DropDown
 
 class RegisterView: BaseView {
 //    private lazy var backgroundImage: UIImageView = {

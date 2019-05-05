@@ -75,8 +75,8 @@ extension UIImageView {
     func load(with url: String?) {
         guard let urlString = url?.filterAsURL else { return }
         guard let url = URL(string: urlString) else { return }
-        sd_showActivityIndicatorView()
-        sd_setIndicatorStyle(.gray)
+//        SDWebImageActivityIndicator.gray
+//        sd_setIndicatorStyle(.gray)/
         let placeHolder = #imageLiteral(resourceName: "girl")
         image = placeHolder
         let options: SDWebImageOptions = .continueInBackground
@@ -94,8 +94,8 @@ extension UIButton {
     func load(with url: String?) {
         guard let urlString = url?.filterAsURL else { return }
         guard let url = URL(string: urlString) else { return }
-        sd_showActivityIndicatorView()
-        sd_setIndicatorStyle(.gray)
+//        sd_showActivityIndicatorView()
+//        sd_setIndicatorStyle(.gray)
         let placeHolder = #imageLiteral(resourceName: "girl")
         setImage(placeHolder.withRenderingMode(.alwaysOriginal), for: .normal)
         sd_setImage(with: url, for: .normal) {[weak self] (image, err, _, _) in

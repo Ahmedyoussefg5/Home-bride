@@ -47,7 +47,7 @@ class WelcomeView: BaseView {
         btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return btn
     }()
-
+    
     lazy var gradientLayer = LinearGradientLayer(colors: [mediumPurple, lightPurple])
     
     override func setupView() {
@@ -96,18 +96,11 @@ class WelcomeViewController: BaseUIViewController<WelcomeView> {
         trasperantNavBar()
         mainView.provButton.addTheTarget(action: {[weak self] in
             user = p
-            self?.navigationController?.pushViewController(LoginViewController(), animated: true)
+            self?.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
         })
         mainView.clientButton.addTheTarget(action: {[weak self] in
             user = u
-            self?.navigationController?.pushViewController(LoginViewController(), animated: true)
+            self?.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
         })
-//
-//        mainView.forgetButton.addTheTarget(action: {[weak self] in
-//            self?.navigationController?.pushViewController(ForgetPasswordController(), animated: true)
-//        })
-        
     }
-    
-    
 }

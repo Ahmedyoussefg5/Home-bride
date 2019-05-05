@@ -212,7 +212,7 @@ class AuthService {
         userId = user.id
         //        authToken = user.token
         userEmail = user.email
-        userImage = user.image.filterAsURL
+        userImage = user.image?.filterAsURL
         userName = user.firstName
         userFirstName = user.firstName
         userLastName = user.lastName
@@ -262,6 +262,14 @@ class AuthService {
             guard let window =  UIApplication.shared.keyWindow else { fatalError() }
             window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
             UIView.transition(with: window, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
+        }
+    }
+    
+    func transiteWithViewController(_ vc: UIViewController) {
+        DispatchQueue.main.async {
+            guard let window =  UIApplication.shared.keyWindow else { fatalError() }
+            window.rootViewController = UINavigationController(rootViewController: vc)
+            UIView.transition(with: window, duration: 1.0, options: .transitionCurlUp, animations: nil, completion: nil)
         }
     }
     

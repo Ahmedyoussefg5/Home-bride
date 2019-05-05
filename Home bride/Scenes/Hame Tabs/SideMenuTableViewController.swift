@@ -27,7 +27,11 @@ class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         tableConfiger()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        tableViewItems = ["الملف الشخصي", "الاشعارات", "سجل الطلبات", "الشروط والاحكام", "عن التطبيق", "تواصل معنا", "تسجيل خروج"]
+        if user == p {
+            tableViewItems = ["الملف الشخصي", "الاشعارات", "سجل الطلبات", "الشروط والاحكام", "عن التطبيق", "تواصل معنا", "تسجيل خروج"]
+        } else {
+            tableViewItems = ["الرئيسية", "الملف الشخصي", "الاشعارات", "سجل الطلبات", "الاعدادات", "الشروط والاحكام", "عن التطبيق", "تواصل معنا", "تسجيل خروج"]
+        }
         tableView.reloadData()
     }
     
@@ -68,42 +72,78 @@ class SideMenuTableViewController: UITableViewController {
         cell.textLabel?.font = .CairoSemiBold(of: 14)
         cell.textLabel?.textAlignment = .right
         
-        if indexPath.row == 1 {
-            cell.contentView.addSubview(switchView)
-            switchView.leadingAnchorSuperView(constant: 5)
-            switchView.centerYInSuperview()
+        if user == p {
+            if indexPath.row == 1 {
+                cell.contentView.addSubview(switchView)
+                switchView.leadingAnchorSuperView(constant: 5)
+                switchView.centerYInSuperview()
+            }
+        } else {
+            if indexPath.row == 2 {
+                cell.contentView.addSubview(switchView)
+                switchView.leadingAnchorSuperView(constant: 5)
+                switchView.centerYInSuperview()
+            }
         }
+
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        var vc = UIViewController()
-        switch indexPath.row {
-        case 0:
-            dismiss(animated: true, completion: nil)
-            NotificationCenter.default.post(name: toProfileVC, object: nil)
-            return
-        case 1:
-            navigationController?.pushViewController(NotificationsViewController(), animated: ya)
-        case 2:
-            dismiss(animated: true, completion: nil)
-            NotificationCenter.default.post(name: toHomeVC, object: nil)
-            return
-//        case 4:
-//            vc = SettingsViewController()
-//        case 2:
-//            vc = WalletViewController()
-        case 5:
-            navigationController?.pushViewController(ContactViewController(), animated: ya)
-        case 6:
-            AuthService.instance.restartAppAndRemoveUserDefaults()
-        default:
-            return
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
         }
-//        vc.setupNavBarApperance(title: tableViewItems[indexPath.row], addImageTitle: no, showNotifButton: no)
-//        navigationController?.pushViewController(vc, animated: true)
+        if user == p {
+            switch indexPath.row {
+            case 0:
+                NotificationCenter.default.post(name: toProfileVC, object: nil)
+                return
+            case 1:
+                navigationController?.pushViewController(NotificationsViewController(), animated: ya)
+            case 2:
+                
+                NotificationCenter.default.post(name: toHomeVC, object: nil)
+                return
+                //        case 4:
+                //            vc = SettingsViewController()
+                //        case 2:
+            //            vc = WalletViewController()
+            case 5:
+                navigationController?.pushViewController(ContactViewController(), animated: ya)
+            case 6:
+                AuthService.instance.restartAppAndRemoveUserDefaults()
+            default:
+                return
+            }
+        } else {
+            switch indexPath.row {
+            case 0:
+                NotificationCenter.default.post(name: toHomeVC, object: nil)
+                return
+            case 1:
+                navigationController?.pushViewController(UserProfileViewController(), animated: ya)
+            case 2:
+                navigationController?.pushViewController(NotificationsViewController(), animated: ya)
+                return
+                //        case 4:
+            //            vc = SettingsViewController()
+            case 3:
+                navigationController?.pushViewController(HomeNewReqViewController(), animated: ya)
+            case 5:
+                navigationController?.pushViewController(TermsViewController(), animated: ya)
+            case 6:
+                navigationController?.pushViewController(TermsViewControllerr(), animated: ya)
+            case 7:
+                navigationController?.pushViewController(ContactViewController(), animated: ya)
+            case 8:
+                AuthService.instance.restartAppAndRemoveUserDefaults()
+            default:
+                return
+            }
+        }
+
     }
 }
 

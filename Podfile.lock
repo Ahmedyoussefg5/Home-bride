@@ -1,54 +1,42 @@
 PODS:
-  - Alamofire (4.8.1)
-  - DropDown (2.3.12)
-  - IQKeyboardManagerSwift (6.2.0)
-  - NicooPlayer (1.3.3):
-    - SnapKit
-  - ROThumbnailGenerator (2.1.1)
-  - Sapporo (3.0.0)
-  - SDWebImage (4.4.3):
-    - SDWebImage/Core (= 4.4.3)
-  - SDWebImage/Core (4.4.3)
+  - Alamofire (4.8.2)
+  - IQKeyboardManagerSwift (6.3.0)
+  - SDWebImage (5.0.2):
+    - SDWebImage/Core (= 5.0.2)
+  - SDWebImage/Core (5.0.2)
   - SideMenu (5.0.3)
-  - SnapKit (4.2.0)
-  - SwiftyJSON (4.2.0)
+  - SideMenuController (0.2.4)
+  - SpinWheelControl (0.2.0)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
-  - DropDown
   - IQKeyboardManagerSwift
-  - NicooPlayer
-  - ROThumbnailGenerator
-  - Sapporo
   - SDWebImage
   - SideMenu
+  - SideMenuController
+  - SpinWheelControl
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - DropDown
     - IQKeyboardManagerSwift
-    - NicooPlayer
-    - ROThumbnailGenerator
-    - Sapporo
     - SDWebImage
     - SideMenu
-    - SnapKit
+    - SideMenuController
+    - SpinWheelControl
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
-  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
-  NicooPlayer: ca8977c5d5e9cf656982e81775d294d2205b1e78
-  ROThumbnailGenerator: 4e01a887fc8b4e46a7fa6cd7337dd031a46d6a29
-  Sapporo: 96258b80d8a9259f02dbdf2a200f4d9e9bbb3179
-  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SideMenuController: b463d2b3aa58e2afe57f57a07938fa9a647894ca
+  SpinWheelControl: f6e828dfe1a53e982cc3e2e1824c668c99286a9b
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: c31e31542c75f5b432e31e38f0da8a1c6b653d8c
+PODFILE CHECKSUM: f654f4742255e132a69c10f1e5d95e9d3d38621c
 
 COCOAPODS: 1.5.2

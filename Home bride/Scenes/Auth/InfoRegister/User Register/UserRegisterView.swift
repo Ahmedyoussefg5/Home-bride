@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DropDown
+//import DropDown
 
 class UserRegisterView: BaseView {
     lazy var gradientLayerr = LinearGradientLayer(colors: [mediumPurple, lightPurple])

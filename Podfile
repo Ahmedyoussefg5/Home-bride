@@ -6,15 +6,18 @@ target 'Home bride' do
   use_frameworks!
 
   # Pods for Home bride
-pod 'Sapporo'
+#pod 'Sapporo'
+#pod 'SwiftyMenu'
+#pod 'DropDown'
+#  pod 'ROThumbnailGenerator'
+
 pod 'SideMenu'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage'
-#pod 'SwiftyMenu'
-pod 'DropDown'
 pod 'Alamofire'
-  pod 'SwiftyJSON'
-  pod 'NicooPlayer'
-  pod 'ROThumbnailGenerator'
+pod 'SwiftyJSON'
+#pod 'NicooPlayer'
+pod 'SpinWheelControl'
+pod 'SideMenuController'
 
 end

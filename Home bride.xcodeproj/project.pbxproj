@@ -14,6 +14,10 @@
 		E80871E22275DCAA00FB6BFB /* Video Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80871E12275DCAA00FB6BFB /* Video Player.swift */; };
 		E812D21D22791E0B00F31C98 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E812D21C22791E0B00F31C98 /* ContactViewController.swift */; };
 		E816C4612273318700EA3C32 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816C4602273318700EA3C32 /* Network.swift */; };
+		E821B636227E0109008AB4B2 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821B635227E00D3008AB4B2 /* UserProfileViewController.swift */; };
+		E821B638227EDA4A008AB4B2 /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821B637227ED9DE008AB4B2 /* UserTabBarController.swift */; };
+		E821B63A227EE01B008AB4B2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821B639227EE01B008AB4B2 /* TermsViewController.swift */; };
+		E821B63E227EE19B008AB4B2 /* TermsViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821B63D227EE19B008AB4B2 /* TermsViewController copy.swift */; };
 		E83B0425226A86A500674F19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B0424226A86A500674F19 /* AppDelegate.swift */; };
 		E83B042C226A86A700674F19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E83B042B226A86A700674F19 /* Assets.xcassets */; };
 		E83B042F226A86A700674F19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E83B042D226A86A700674F19 /* LaunchScreen.storyboard */; };
@@ -127,6 +131,10 @@
 		E80871E12275DCAA00FB6BFB /* Video Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Video Player.swift"; sourceTree = "<group>"; };
 		E812D21C22791E0B00F31C98 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		E816C4602273318700EA3C32 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		E821B635227E00D3008AB4B2 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E821B637227ED9DE008AB4B2 /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
+		E821B639227EE01B008AB4B2 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		E821B63D227EE19B008AB4B2 /* TermsViewController copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TermsViewController copy.swift"; sourceTree = "<group>"; };
 		E83B0421226A86A500674F19 /* Home bride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home bride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83B0424226A86A500674F19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E83B042B226A86A700674F19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -268,6 +276,8 @@
 		E812D21B22791DF200F31C98 /* Contact Message */ = {
 			isa = PBXGroup;
 			children = (
+				E821B639227EE01B008AB4B2 /* TermsViewController.swift */,
+				E821B63D227EE19B008AB4B2 /* TermsViewController copy.swift */,
 				E812D21C22791E0B00F31C98 /* ContactViewController.swift */,
 			);
 			path = "Contact Message";
@@ -280,6 +290,14 @@
 				E86150EA2274AA6E001524F5 /* UserData.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		E821B634227E00B3008AB4B2 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E821B635227E00D3008AB4B2 /* UserProfileViewController.swift */,
+			);
+			path = "User Profile";
 			sourceTree = "<group>";
 		};
 		E83B0418226A86A500674F19 = {
@@ -610,6 +628,8 @@
 		E88502AF2279ACEF006EA67B /* User Only */ = {
 			isa = PBXGroup;
 			children = (
+				E821B637227ED9DE008AB4B2 /* UserTabBarController.swift */,
+				E821B634227E00B3008AB4B2 /* User Profile */,
 				E85948A3227AD1C1007A7511 /* Provider Profile */,
 				E88502BD2279E7BC006EA67B /* All Providers */,
 				E88502B82279D9BE006EA67B /* All Cats */,
@@ -756,7 +776,7 @@
 				E83B041D226A86A500674F19 /* Sources */,
 				E83B041E226A86A500674F19 /* Frameworks */,
 				E83B041F226A86A500674F19 /* Resources */,
-				0BF3A839E2039CEBDFA4523C /* [CP] Embed Pods Frameworks */,
+				617B52F5FAD59426A82A4619 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -819,42 +839,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0BF3A839E2039CEBDFA4523C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Home bride/Pods-Home bride-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/NicooPlayer/NicooPlayer.framework",
-				"${BUILT_PRODUCTS_DIR}/ROThumbnailGenerator/ROThumbnailGenerator.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Sapporo/Sapporo.framework",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NicooPlayer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ROThumbnailGenerator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sapporo.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Home bride/Pods-Home bride-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1B5BAB80AD75CB22A131A4CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -871,6 +855,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		617B52F5FAD59426A82A4619 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Home bride/Pods-Home bride-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenuController/SideMenuController.framework",
+				"${BUILT_PRODUCTS_DIR}/SpinWheelControl/SpinWheelControl.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpinWheelControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Home bride/Pods-Home bride-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -894,6 +908,7 @@
 				E80871DA2275BE9E00FB6BFB /* GalaryView.swift in Sources */,
 				E866F2E82272956C0052538D /* Constants.swift in Sources */,
 				E83B04BB226AB86900674F19 /* MapSearchVC.swift in Sources */,
+				E821B63E227EE19B008AB4B2 /* TermsViewController copy.swift in Sources */,
 				E83B0493226A8AAF00674F19 /* extension UIFont.swift in Sources */,
 				E83B048D226A8AA700674F19 /* NotificationCenter.swift in Sources */,
 				E8DE7D7A226F943A00016D9E /* ArrayDataProvider.swift in Sources */,
@@ -924,8 +939,10 @@
 				E83B04A0226A8AE800674F19 /* GradientView.swift in Sources */,
 				E8F3E755226D0FAC000A9D16 /* ProfileViewController.swift in Sources */,
 				E85948B2227B0C96007A7511 /* ProvTimeTableViewController.swift in Sources */,
+				E821B63A227EE01B008AB4B2 /* TermsViewController.swift in Sources */,
 				E83B0490226A8AAF00674F19 /* extension UIAlertController.swift in Sources */,
 				E83B0425226A86A500674F19 /* AppDelegate.swift in Sources */,
+				E821B638227EDA4A008AB4B2 /* UserTabBarController.swift in Sources */,
 				E866F2F222729AEA0052538D /* ChatViewController.swift in Sources */,
 				E866F2F122729AEA0052538D /* ChatView.swift in Sources */,
 				E83B047D226A8A9700674F19 /* Basement.swift in Sources */,
@@ -942,6 +959,7 @@
 				E83B0498226A8AAF00674F19 /* extension UIView.swift in Sources */,
 				E83B0494226A8AAF00674F19 /* extension UIImage.swift in Sources */,
 				E83B04BD226AB86900674F19 /* HomeView.swift in Sources */,
+				E821B636227E0109008AB4B2 /* UserProfileViewController.swift in Sources */,
 				E85948AF227AE6F9007A7511 /* ProvServsViewController.swift in Sources */,
 				E83B049D226A8AE400674F19 /* extension Dictionary.swift in Sources */,
 				E83B0481226A8AA700674F19 /* DecodingJsonFromBundle.swift in Sources */,

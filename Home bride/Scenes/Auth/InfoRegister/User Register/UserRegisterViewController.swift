@@ -63,7 +63,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             ]
         }
         
-        callApi(RegisterModel.self, url: url, parameters: pars) {[weak self] (data) in
+        callApi(RegisterModel.self, url: url, parameters: pars) {[weak self](data) in
             if let userr = data {
                 guard let userData = userr.data else { return }
                 AuthService.instance.setUserDefaults(user: userData)
@@ -93,7 +93,4 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             self?.reg()
         })
     }
-    
-
-
 }

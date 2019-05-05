@@ -53,6 +53,9 @@ class LoginViewController: BaseUIViewController<LoginView> {
                 AuthService.instance.setUserDefaults(user: userData)
                 if userr.data?.role == "client" {
                     self?.present(UINavigationController(rootViewController: UserHomeViewController()), animated: true, completion: nil)
+//                    UIApplication.shared.keyWindow?.rootViewController?.present(UserHomeViewController(), animated: true, completion: nil)
+
+//                    AuthService.instance.transiteWithViewController(UserHomeViewController())
                 } else {
                     self?.present(HomeTabBarController(), animated: true, completion: nil)
                 }

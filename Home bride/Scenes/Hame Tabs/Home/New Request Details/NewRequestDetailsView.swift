@@ -26,12 +26,9 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             if let phone = self?.data?.data.client.phone {
                 guard let number = URL(string: "tel://" + phone) else { return }
                 UIApplication.shared.open(number)
-                
 //                UIApplication.shared.open(number, options: [:], completionHandler: nil)
-
             }
         }
-
         
         mainView.messageButton.addTheTarget {[weak self] in
             if let id = self?.data?.data.orderID {

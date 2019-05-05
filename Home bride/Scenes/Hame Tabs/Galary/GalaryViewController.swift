@@ -31,9 +31,9 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if mainView.selected == 1 {
-            let vc = UINavigationController(rootViewController: VideoPlayer(url: dataSource?.videos.video[indexPath.row].video ?? ""))
-            vc.navbarWithdismiss()
-            presentModelyVC(vc: vc)
+//            let vc = UINavigationController(rootViewController: VideoPlayer(url: dataSource?.videos.video[indexPath.row].video ?? ""))
+//            vc.navbarWithdismiss()
+//            presentModelyVC(vc: vc)
         }
     }
     

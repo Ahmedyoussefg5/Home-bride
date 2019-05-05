@@ -28,6 +28,9 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
     
     var data: AllResvsData? {
         didSet {
+            if data?.data.orders.count == 0 {
+                showAlert(title: "لا يوجد طلبات", message: nil)
+            }
             mainTableView.reloadData()
         }
     }
