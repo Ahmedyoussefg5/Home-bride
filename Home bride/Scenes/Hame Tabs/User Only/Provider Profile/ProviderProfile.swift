@@ -19,28 +19,28 @@ class ProviderProfileView: BaseView {
     }()
     lazy var button1: ButtonWithImageAndLablee = {
         let btn = ButtonWithImageAndLablee(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "video-camera").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "image").withRenderingMode(.alwaysTemplate), for: .normal)
         btn.lable.text = "البوم الشغل"
         btn.tag = 0
         return btn
     }()
     lazy var button2: ButtonWithImageAndLablee = {
         let btn = ButtonWithImageAndLablee(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "video-camera").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "app (2)").withRenderingMode(.alwaysTemplate), for: .normal)
         btn.lable.text = "الخدمات"
         btn.tag = 1
         return btn
     }()
     lazy var button3: ButtonWithImageAndLablee = {
         let btn = ButtonWithImageAndLablee(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "video-camera").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "alarm-clock").withRenderingMode(.alwaysTemplate), for: .normal)
         btn.lable.text = "مواعيد العمل"
         btn.tag = 2
         return btn
     }()
     lazy var button4: ButtonWithImageAndLablee = {
         let btn = ButtonWithImageAndLablee(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "video-camera").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "info").withRenderingMode(.alwaysTemplate), for: .normal)
         btn.lable.text = "صفحتي"
         btn.tag = 3
         return btn
@@ -175,6 +175,7 @@ class ButtonWithImageAndLablee: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(lable)
+        tintColor = lightPurple
         lable.centerXInSuperview()
         lable.topAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = ya
         lable.widthAnchorWithMultiplier(multiplier: 1)

@@ -45,13 +45,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: ya)
-//        if (serv?[indexPath.row]) != nil {
-//        }
-    }
-    
+
     fileprivate var id: Int
     
     var serv: [ScheduleDataViewModel]? {
@@ -91,7 +85,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         getData()
         
         mainView.resButton.addTheTarget {[weak self] in
-            let vc = DatePickerViewController(mode: .date)
+            let vc = DatePickerViewController(mode: .dateAndTime)
             vc.delegate = self
             self?.presentModelyVC(vc: vc)
         }
@@ -126,6 +120,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         callApi(ResResposeData.self, url: url, method: .post, parameters: pars, activityIndicator: act) {[weak self] (data) in
             if data != nil {
                 self?.showAlert(title: "", message: "تم الحجز بنجاح")
+                self?.navigationController?.popToRootViewController(animated: ya)
             }
         }
     }

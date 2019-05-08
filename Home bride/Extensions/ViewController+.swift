@@ -223,7 +223,7 @@ extension UIViewController {
                 } else {
                     comp(nil)
                     if shouldShowAlert {
-                        self?.showAlert(title: "خطأ", messages: nil, message: data.msg, selfDismissing: true)
+                        self?.showAlert(title: "", messages: nil, message: data.msg, selfDismissing: true)
                     }
                     return
                 }

@@ -194,7 +194,7 @@ class UserHomeViewController: BaseUIViewController<UserHomeView>, SpinWheelContr
     func wedgeForSliceAtIndex(index: UInt) -> SpinWheelWedge {
         let wedge = SpinWheelWedge()
         
-        wedge.shape.fillColor = mediumPurple.cgColor
+        wedge.shape.fillColor = lightPurple.cgColor
         wedge.label.text = allCategories[Int(index)].name
         
         return wedge
@@ -203,7 +203,8 @@ class UserHomeViewController: BaseUIViewController<UserHomeView>, SpinWheelContr
     let act = UIActivityIndicatorView(style: .whiteLarge)
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
+        title = "الرئيسية"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         setupSideMenu()
         getAllcategories()
@@ -212,8 +213,8 @@ class UserHomeViewController: BaseUIViewController<UserHomeView>, SpinWheelContr
         act.fillSuperview()
         
         mainView.arrowImage.addTapGestureRecognizer {[weak self] in
-//            self?.navigationController?.pushViewController(SubCatViewController(id: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].id ?? 0), animated: ya)
-            self?.navigationController?.pushViewController(UserTabBarController(id: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].id ?? 0), animated: ya)
+            let vc = SubCatViewController(id: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].id ?? 0, name: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].name ?? "")
+            self?.navigationController?.pushViewController(UserTabBarController(vc: vc), animated: ya)
         }
         
         //
@@ -233,9 +234,14 @@ class UserHomeViewController: BaseUIViewController<UserHomeView>, SpinWheelContr
 //            })
 //        }
         
-        mainView.seeAllButton.addTheTarget {
-            self.navigationController?.pushViewController(AllCatViewController(), animated: ya)
+        mainView.seeAllButton.addTheTarget {[weak self] in
+            self?.navigationController?.pushViewController(UserTabBarController(vc: AllCatViewController()), animated: ya)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "الرئيسية"
     }
     
     //Target was added in viewDidLoad for the valueChanged UIControlEvent

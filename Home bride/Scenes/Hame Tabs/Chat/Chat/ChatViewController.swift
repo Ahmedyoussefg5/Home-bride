@@ -16,16 +16,22 @@ class ChatViewController: UIViewController {
     }
     
     var orderId: Int
-    
-    init(orderId: Int) {
+    var name: String
+
+    init(orderId: Int, name: String) {
         self.orderId = orderId
+        self.name = name
         super.init(nibName: nil, bundle: nil)
     }; required init?(coder aDecoder: NSCoder) {
-        fatalError() }
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getMess()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "رجوع", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissMePlease))
+        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
+        title = name
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
         mainView.chatTxt.delegate = self
@@ -33,7 +39,11 @@ class ChatViewController: UIViewController {
     }
     
     func getMess() {
-
+        callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in
+            if let data = data {
+                self?.messages = data.data?.messages.messages.reversed()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +69,7 @@ class ChatViewController: UIViewController {
             ] as [String : Any]
         callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat", parameters: pars) {[weak self] (data) in
             if let data = data {
-                self?.messages = data.data.messages.messages.reversed()
+                self?.messages = data.data?.messages.messages.reversed()
             }
         }
     }
@@ -77,16 +87,10 @@ extension ChatViewController: UITextFieldDelegate {
     }
 }
 
-// To parse the JSON, add this file to your project and do:
-//
-//   let allSalonsData = try? newJSONDecoder().decode(AllSalonsData.self, from: jsonData)
-
-import Foundation
-
 struct AllMessData: BaseCodable {
     var status: Int
     var msg: String?
-    let data: MessClass
+    let data: MessClass?
 }
 
 struct MessClass: Codable {

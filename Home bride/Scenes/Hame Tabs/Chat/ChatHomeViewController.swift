@@ -45,15 +45,38 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
         setupSideMenu()
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
+        sendMessage()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        sendMessage()
+    }
+    
+    var chat: [Chat]? {
+        didSet {
+            mainView.mainTableView.reloadData()
+        }
+    }
+    
+    @objc private func sendMessage() {
+        callApi(AllChat.self, url: "http://m4a8el.panorama-q.com/api/chat", method: .get, parameters: nil) {[weak self] (data) in
+            if let data = data {
+                self?.chat = data.data?.chats
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatHomeTableCell", for: indexPath) as! ChatHomeTableCell
+        if let data = chat?[indexPath.row] {
+            cell.configure(data)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return chat?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -62,9 +85,17 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //        let vc = UINavigationController(rootViewController: ChatViewController())
-        //        vc.navbarWithdismiss()
-        //        presentModelyVC(vc: vc)
+        if let data = chat?[indexPath.row] {
+            var name = ""
+            if user == p {
+                name = data.clientName ?? ""
+            } else {
+                name = data.providerName ?? ""
+            }
+            let vc = UINavigationController(rootViewController: ChatViewController(orderId: data.orderID ?? 0, name: name))
+//            vc.navbarWithdismiss()
+            present(vc, animated: ya, completion: nil)
+        }
     }
 }
 
@@ -142,8 +173,63 @@ class ChatHomeTableCell: UITableViewCell {
     }
     
     // MARK: - ConfigurableCell
-    func configure(_ item: BaseModel) {
+    func configure(_ item: Chat) {
+        if user == p {
+            userImage.load(with: item.clientImage)
+            userNameLable.text = item.clientName
+            messageLable.text = item.lastMessage?.message
+            dateLable.text = item.lastMessage?.createdAt
+        } else {
+            userImage.load(with: item.providerImage)
+            userNameLable.text = item.providerName
+            messageLable.text = item.lastMessage?.message
+            dateLable.text = item.lastMessage?.createdAt
+        }
         
-        
+    }
+}
+
+struct AllChat: BaseCodable {
+    var status: Int
+    
+    var msg: String?
+    
+    let data: Chats?
+}
+
+struct Chats: Codable {
+    let chats: [Chat]?
+    let paginate: Paginate?
+}
+
+struct Chat: Codable {
+    let status: Int?
+    let providerName: String?
+    let providerID, chatID: Int?
+    let lastMessage: LastMessage?
+    let clientID, orderID: Int?
+    let clientName: String?
+    let clientImage, providerImage: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case status
+        case providerName = "provider_name"
+        case providerID = "provider_id"
+        case chatID = "chat_id"
+        case lastMessage = "last_message"
+        case clientID = "client_id"
+        case orderID = "order_id"
+        case clientName = "client_name"
+        case clientImage = "client_image"
+        case providerImage = "provider_image"
+    }
+}
+
+struct LastMessage: Codable {
+    let message, createdAt: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case message
+        case createdAt = "created_at"
     }
 }

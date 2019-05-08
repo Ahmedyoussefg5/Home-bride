@@ -223,6 +223,23 @@ class AuthService {
         userRole = user.role
     }
     
+    func setUserDefaults(reset user: UserSet) {
+        
+        isLoggedIn = true
+        userId = user.id
+        authToken = user.token
+        userEmail = user.email
+        userImage = user.image?.filterAsURL
+        userName = user.firstName
+        userFirstName = user.firstName
+        userLastName = user.lastName
+        userPhone = user.phone
+        userGender = user.gender
+//        userJob = user.subCategoryName
+        userdate = user.birthDate
+        userRole = user.role ?? "client"
+    }
+    
     func setUserDefaults(user: UserData) {
         header = ["X-localization" : "ar",
                   "Authorization" : "bearer \(user.token)"
@@ -258,11 +275,11 @@ class AuthService {
     
     func restartAppAndRemoveUserDefaults() {
         removeUserDefaults()
-        DispatchQueue.main.async {
-            guard let window =  UIApplication.shared.keyWindow else { fatalError() }
-            window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
-            UIView.transition(with: window, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
-        }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                guard let window =  UIApplication.shared.keyWindow else { fatalError() }
+                window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+                UIView.transition(with: window, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
+            }
     }
     
     func transiteWithViewController(_ vc: UIViewController) {

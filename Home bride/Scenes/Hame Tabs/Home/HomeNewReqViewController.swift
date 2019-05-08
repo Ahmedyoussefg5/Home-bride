@@ -37,18 +37,19 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
         setupSideMenu()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
 
         view.addSubview(mainTableView)
         mainTableView.fillSuperview()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        getData()
     }
     
     
@@ -85,24 +86,19 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
         }
     }
     
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let count = data?.data.orders.count ?? -1
         if indexPath.row == count - 1 {
             paginate()
         }
-        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        UIView.animate(withDuration: 0.4) {
-            cell.transform = CGAffineTransform.identity
-        }
+//        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+//        UIView.animate(withDuration: 0.4) {
+//            cell.transform = CGAffineTransform.identity
+//        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,8 +110,8 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let id = data?.data.orders[indexPath.row].id {
-            let vc = UINavigationController(rootViewController: NewRequestDetailsViewController(id: id))
+        if let dataa = data?.data.orders[indexPath.row] {
+            let vc = UINavigationController(rootViewController: NewRequestDetailsViewController(id: dataa.id, image: dataa.providerImage))
             vc.navbarWithdismiss()
             presentModelyVC(vc: vc)
         }
@@ -136,7 +132,6 @@ class HomeNewReqCell: BaseCell<Order> {
         let img = UIImageView()
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
-//        img.image = #imageLiteral(resourceName: "girl")
         img.viewCornerRadius = 40
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
@@ -145,7 +140,6 @@ class HomeNewReqCell: BaseCell<Order> {
         let label = UILabel()
         label.textColor = .darkGray
         label.textAlignment = .right
-//        label.text = "شسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشس"
         label.font = .CairoBold(of: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -154,7 +148,6 @@ class HomeNewReqCell: BaseCell<Order> {
         let label = UILabel()
         label.textColor = .gray
         label.textAlignment = .right
-//        label.text = "شسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشسشسيشيسيشس"
         label.numberOfLines = 4
         label.font = .CairoRegular(of: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -165,7 +158,6 @@ class HomeNewReqCell: BaseCell<Order> {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-//        label.text = "12 may"
         label.backgroundColor = #colorLiteral(red: 0.9132761359, green: 0.3805814981, blue: 0.6425676346, alpha: 1)
         label.font = .CairoRegular(of: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -204,8 +196,13 @@ class HomeNewReqCell: BaseCell<Order> {
         
     }
     func setupCell(item: Order) {
-        cellImage.load(with: item.clientImage)
-        titleLable.text = item.clientName
+        if user == p {
+            titleLable.text = item.clientName
+            cellImage.load(with: item.clientImage)
+        } else {
+            titleLable.text = item.providerName
+            cellImage.load(with: item.providerImage)
+        }
 //        discLable.text = item.
         dateLable.text = item.date
     }
@@ -215,9 +212,7 @@ class HomeNewReqCell: BaseCell<Order> {
 
 struct AllResvsData: BaseCodable {
     var status: Int
-    
     var msg: String?
-    
     var data: Resrev
 }
 

@@ -10,11 +10,11 @@ import UIKit
 import SideMenu
 
 class UserTabBarController: UITabBarController {
-
-    var id: Int
     
-    init(id: Int) {
-        self.id = id
+    var vc: UIViewController
+    
+    init(vc: UIViewController) {
+        self.vc = vc
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,16 +28,16 @@ class UserTabBarController: UITabBarController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         setupSideMenu()
         
-
+        
         let homeViewController =    HomeNewReqViewController()
-        let subCatViewController =  SubCatViewController(id: id)
-        let profileViewController = ProfileViewController()
+        let subCatViewController =  vc
+        let profileViewController = UserProfileViewController()
         let chatHomeViewController = ChatHomeViewController()
         
-        homeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "format-list-bulleted (1)4"), selectedImage: #imageLiteral(resourceName: "format-list-bulleted (1)4"))
-        subCatViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "couple-users-silhouette"), selectedImage: #imageLiteral(resourceName: "couple-users-silhouette"))
-        profileViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile (1)9"), selectedImage: #imageLiteral(resourceName: "profile (1)9"))
-        chatHomeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "message-text-outline (3)"), selectedImage: #imageLiteral(resourceName: "message-text-outline (3)"))
+        homeViewController.tabBarItem = UITabBarItem(title: "الرئيسية", image: #imageLiteral(resourceName: "format-list-bulleted (1)4"), selectedImage: #imageLiteral(resourceName: "format-list-bulleted (1)4"))
+        subCatViewController.tabBarItem = UITabBarItem(title: "الفئات", image: #imageLiteral(resourceName: "couple-users-silhouette"), selectedImage: #imageLiteral(resourceName: "couple-users-silhouette"))
+        profileViewController.tabBarItem = UITabBarItem(title: "الملف الشخصي", image: #imageLiteral(resourceName: "profile (1)9"), selectedImage: #imageLiteral(resourceName: "profile (1)9"))
+        chatHomeViewController.tabBarItem = UITabBarItem(title: "سجل المحادثات", image: #imageLiteral(resourceName: "message-text-outline (3)"), selectedImage: #imageLiteral(resourceName: "message-text-outline (3)"))
         
         let tabBarList = [chatHomeViewController, subCatViewController, homeViewController, profileViewController]
         viewControllers = tabBarList
@@ -49,7 +49,7 @@ class UserTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarToProfileVC), name: toProfileVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleTabBarHomeVC), name: toHomeVC, object: nil)
     }
-
+    
     @objc func handleTabBarToProfileVC () {
         selectedViewController = viewControllers?[0]
     }

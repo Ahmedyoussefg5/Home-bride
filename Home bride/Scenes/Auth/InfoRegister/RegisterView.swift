@@ -50,10 +50,10 @@ class RegisterView: BaseView {
     }()
     
     lazy var gradientLayer = LinearGradientLayer(colors: [mediumPurple, lightPurple])
-    lazy var locationButton: CreateAccountButton = {
-        let btn = CreateAccountButton(title: "تحديد المكان", image: #imageLiteral(resourceName: "facebook-placeholder-for-locate-places-on-maps").withRenderingMode(.alwaysTemplate))
-        return btn
-    }()
+//    lazy var locationButton: CreateAccountButton = {
+//        let btn = CreateAccountButton(title: "تحديد المكان", image: #imageLiteral(resourceName: "facebook-placeholder-for-locate-places-on-maps").withRenderingMode(.alwaysTemplate))
+//        return btn
+//    }()
     lazy var locationAreaButton: CreateAccountButton = {
         let btn = CreateAccountButton(title: "منطقة", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
         return btn
@@ -119,17 +119,17 @@ class RegisterView: BaseView {
         title.textColor = #colorLiteral(red: 0.3281314075, green: 0.3139006495, blue: 0.3135607243, alpha: 1)
         title.textAlignment = .center
         
-        let titlee = UILabel()
-        titlee.text = "او سجل من خلال حسابات التواصل"
-        titlee.font = .CairoRegular(of: 14)
-        titlee.underline()
-        titlee.textColor = #colorLiteral(red: 0.2459094524, green: 0.3761512339, blue: 0.6553276181, alpha: 1)
-        titlee.textAlignment = .center
+//        let titlee = UILabel()
+//        titlee.text = "او سجل من خلال حسابات التواصل"
+//        titlee.font = .CairoRegular(of: 14)
+//        titlee.underline()
+//        titlee.textColor = #colorLiteral(red: 0.2459094524, green: 0.3761512339, blue: 0.6553276181, alpha: 1)
+//        titlee.textAlignment = .center
         
-        let socialStack = UIStackView(arrangedSubviews: [faceButton, googleButton])
-        socialStack.axis = .horizontal
-        socialStack.distribution = .fillEqually
-        socialStack.spacing = 20
+//        let socialStack = UIStackView(arrangedSubviews: [faceButton, googleButton])
+//        socialStack.axis = .horizontal
+//        socialStack.distribution = .fillEqually
+//        socialStack.spacing = 20
         //
         let locationStack = UIStackView(arrangedSubviews: [
             locationDistinctButton, locationCityButton, locationAreaButton
@@ -141,13 +141,13 @@ class RegisterView: BaseView {
         let stack = UIStackView(arrangedSubviews:
             [title,
              stackSpliter(),
-             locationButton,
+//             locationButton,
              locationStack,
 //             costText,
              mainJobButton,
              secoundryJobButton,
              loginButton,
-             titlee,
+//             titlee,
             ])
         
         stack.axis = v
@@ -157,13 +157,13 @@ class RegisterView: BaseView {
         stack.centerXInSuperview()
         stack.topAnchorSuperView(constant: 10)
         stack.widthAnchorWithMultiplier(multiplier: 0.9)
-        stack.heightAnchorConstant(constant: 380)
+        stack.heightAnchorConstant(constant: 340)
 
-        loginView.addSubview(socialStack)
-        socialStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20).isActive = true
-        socialStack.widthAnchorConstant(constant: 100)
-        socialStack.heightAnchorConstant(constant: 40)
-        socialStack.centerXInSuperview()
+//        loginView.addSubview(socialStack)
+//        socialStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20).isActive = true
+//        socialStack.widthAnchorConstant(constant: 100)
+//        socialStack.heightAnchorConstant(constant: 40)
+//        socialStack.centerXInSuperview()
     }
     
     override func layoutSubviews() {

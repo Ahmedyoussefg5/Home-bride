@@ -20,7 +20,7 @@ class AllCatViewController: BaseUIViewController<AllCatView>, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(SubCatViewController(id: categories[indexPath.row].id), animated: ya)
+        navigationController?.pushViewController(SubCatViewController(id: categories[indexPath.row].id, name: categories[indexPath.row].name), animated: ya)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -8,12 +8,11 @@
 
 import UIKit
 
-class RegisterViewController: BaseUIViewController<RegisterView>, SendResult, SendMapResult {
+class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
     weak var sender: CreateAccountButton?
     
-    
     var rigonId: Int?
-    var  catId: Int?
+    var catId: Int?
 
     func result(name: String) {
         sender?.setTitleNormalState(name)
@@ -66,8 +65,15 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult, Se
     }
     
     func location(name: String) {
-        mainView.locationButton.setTitleNormalState(name)
+//        mainView.locationButton.setTitleNormalState(name)
     }
+    
+//    var pars: [String: Any]
+//    
+//    init(parameters: [String : Any]) {
+//        pars = parameters
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,14 +89,14 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult, Se
         view.addSubview(act)
         act.fillSuperview()
         
-        mainView.locationButton.addTheTarget {[weak self] in
-            self?.sender = self?.mainView.locationButton
-            let map = MapViewController()
-            map.delegate = self
-            let vc = UINavigationController(rootViewController: map)
-            vc.navbarWithdismiss()
-            self?.presentModelyVC(vc: vc)
-        }
+//        mainView.locationButton.addTheTarget {[weak self] in
+//            self?.sender = self?.mainView.locationButton
+//            let map = MapViewController()
+//            map.delegate = self
+//            let vc = UINavigationController(rootViewController: map)
+//            vc.navbarWithdismiss()
+//            self?.presentModelyVC(vc: vc)
+//        }
         
         mainView.locationAreaButton.addTheTarget {[weak self] in
             let data = self?.allArea.map({

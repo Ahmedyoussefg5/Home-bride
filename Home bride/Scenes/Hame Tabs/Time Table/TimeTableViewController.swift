@@ -172,6 +172,12 @@ class TimeTableViewController: BaseUIViewController<TimeTableView>, UITableViewD
         mainView.mainTableView.dataSource = self
         getData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getData()
+    }
+    
     private lazy var addButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("اضافة ميعاد  +", for: .normal)
@@ -337,7 +343,7 @@ class TimeTableTableCell: UITableViewCell {
     // MARK: - ConfigurableCell
     func configure(_ item: Schedule) {
         fromValueLable.text = item.from
-        toValueLable.text = item.from
+        toValueLable.text = item.to
         dayLable.text = item.iosDate
         
     }

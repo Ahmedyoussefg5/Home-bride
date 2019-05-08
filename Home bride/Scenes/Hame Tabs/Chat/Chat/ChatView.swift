@@ -14,13 +14,15 @@ class ChatView: UIView {
         tableV.isTransperant()
         tableV.allowsSelection = false
         tableV.separatorColor = .clear
-        tableV.layer.cornerRadius = 9
+        tableV.backgroundColor = .white
         tableV.register(ChatCell.self, forCellReuseIdentifier: "cardsBagTableCell")
         return tableV
     }()
     lazy var sendButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(#imageLiteral(resourceName: "send-button"), for: .normal)
+        btn.tintColor = lightPurple
+        btn.imageView?.tintColor = lightPurple
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -53,24 +55,32 @@ class ChatView: UIView {
         let view = UIView()
         view.semanticContentAttribute = .forceLeftToRight
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
         return view
     }()
     
     private var heightConstraint: NSLayoutConstraint!
     
     private func setupView() {
+        backgroundColor = .white
+        
         addSubview(mainTableView)
+        ActivateConstraint([
+            mainTableView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            mainTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+            mainTableView.widthAnchor.constraint(equalTo: widthAnchor)
+            ])
         
         addSubview(chatControllersView)
         ActivateConstraint([
-            chatControllersView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
-            chatControllersView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
-            chatControllersView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
-//            chatControllersView.heightAnchorConstant(constant: 50)
+            chatControllersView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            chatControllersView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            chatControllersView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            chatControllersView.heightAnchorConstant(constant: 45)
             ])
-        heightConstraint = chatControllersView.heightAnchorConstant(constant: 50)
-        heightConstraint.isActive = ya
         
+        mainTableView.bottomAnchor.constraint(equalTo: chatControllersView.topAnchor, constant: 0).isActive = ya
+
         chatControllersView.addSubview(chatTxt)
         chatControllersView.addSubview(sendButton)
 
@@ -86,29 +96,24 @@ class ChatView: UIView {
             chatTxt.centerYInSuperview(),
             chatTxt.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor),
             ])
-        ActivateConstraint([
-            mainTableView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            mainTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
-            mainTableView.bottomAnchor.constraint(equalTo: chatControllersView.topAnchor, constant: -1),
-            mainTableView.widthAnchor.constraint(equalTo: widthAnchor)
-            ])
+
     }
     
-    //MARK: - TextField Delegate Methods
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.5) {
-//            self.heightConstraint.constant = 308
-            self.layoutIfNeeded()
-        }
-    }
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.5) {
-//            self.heightConstraint.constant = 50
-            self.layoutIfNeeded()
-        }
-    }
+//    //MARK: - TextField Delegate Methods
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        UIView.animate(withDuration: 0.5) {
+////            self.heightConstraint.constant = 308
+//            self.layoutIfNeeded()
+//        }
+//    }
+//
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        UIView.animate(withDuration: 0.5) {
+////            self.heightConstraint.constant = 50
+//            self.layoutIfNeeded()
+//        }
+//    }
 }
 
 class ChatCell: UITableViewCell {
@@ -124,7 +129,7 @@ class ChatCell: UITableViewCell {
     let dateLable: UILabel = {
         let lbl = UILabel()
         lbl.font = .CairoSemiBold(of: 9)
-        lbl.text = "22-22-2323"
+//        lbl.text = "22-22-2323"
         lbl.textAlignment = .natural
         lbl.textColor = .white
         lbl.numberOfLines = 2

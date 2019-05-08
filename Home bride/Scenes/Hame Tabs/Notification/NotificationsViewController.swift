@@ -48,7 +48,8 @@ class NotificationsViewController: BaseUIViewController<NotificationsView>, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
+        title = "الاشعارات"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         setupSideMenu()
         mainView.mainTableView.delegate = self

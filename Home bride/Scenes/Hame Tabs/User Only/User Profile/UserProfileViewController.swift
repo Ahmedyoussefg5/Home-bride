@@ -25,6 +25,7 @@ class UserProfileView: BaseView {
         img.image = #imageLiteral(resourceName: "girl")
         img.viewCornerRadius = 50
         img.translatesAutoresizingMaskIntoConstraints = false
+        img.load(with: AuthService.instance.userImage)
         return img
     }()
     
@@ -41,6 +42,14 @@ class UserProfileView: BaseView {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTheTarget(action: {[weak self] in
             self?.confirmButton.isHidden.toggle()
+            [
+                self?.firstNameText,
+                self?.familyNameText,
+                self?.mailText,
+                self?.phoneText
+                ].forEach({ (con) in
+                    con?.isEnabled.toggle()
+                })
         })
         return btn
     }()
@@ -65,6 +74,9 @@ class UserProfileView: BaseView {
 
         profileContainerView.addSubview(nameLable)
         nameLable.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 3).isActive = ya
+//        nameLable.widthAnchorWithMultiplier(multiplier: 1)
+//        nameLable.adjustsFontSizeToFitWidth = ya
+//        nameLable.numberOfLines = 0
         nameLable.centerXInSuperview()
         
         profileContainerView.isUserInteractionEnabled = ya
@@ -74,6 +86,14 @@ class UserProfileView: BaseView {
         editProfileButton.topAnchor.constraint(equalTo: nameLable.bottomAnchor, constant: 0).isActive = ya
         confirmButton.isHidden = ya
         setupProfileView()
+        [
+            self.firstNameText,
+            self.familyNameText,
+            self.mailText,
+            self.phoneText
+            ].forEach({ (con) in
+                con.isEnabled.toggle()
+            })
     }
     
     private func setupProfileView() {
@@ -126,15 +146,21 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         
         mainView.userImage.addTapGestureRecognizer {[weak self] in
             self?.pickUserImage()
         }
         
+        title = "الملف الشخصي"
+        
         mainView.confirmButton.addTheTarget {[weak self] in
-            self?.saveDate()
+            if self?.pickerUserImage == nil {
+                self?.saveDate()
+            } else {
+                self?.addimage()
+            }
         }
     }
     
@@ -155,32 +181,35 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
         }
     }
     
-    // add qualf
-//    private func addimage() {
-//        guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
-//
-////        guard let name = mainView.qualificaionNameText.text, name.count > 2 , let degree = mainView.theQualificaionText.text, degree.count > 0 else { return }
-//        let url = "http://m4a8el.panorama-q.com/api/qualifications"
-//        let pars = [
-//            "name": "name",
-//            "degree": degree
-//            ] as [String : Any]
-//        let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
-//
-//        Network.shared.uploadToServerWith(AllQualifeData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
-//            if let err = err {
-//                self?.showAlert(title: nil, message: err)
-//            } else if let data = data {
-//                if data.msg != nil {
-//                    self?.showAlert(title: nil, message: data.msg)
-//                } else {
-//                    self?.showAlert(title: "", message: "تم الحفظ")
-//                }
-//            }
-//        }
-//    }
+    private func addimage() {
+        guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
+        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+
+        let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
+        
+        var pars = [String:Any]()
+        pars["first_name"] = mainView.firstNameText.text
+        pars["last_name"] = mainView.familyNameText.text
+        pars["email"] = mainView.mailText.text
+        pars["phone"] = mainView.phoneText.text
+        
+        Network.shared.uploadToServerWith(UpdateProfData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
+            if let err = err {
+                self?.showAlert(title: nil, message: err)
+            } else if let data = data {
+                guard let userData = data.data else { return }
+                AuthService.instance.setUserDefaults(update: userData)
+                self?.mainView.userImage.load(with: data.data?.image)
+                self?.showAlert(title: "", message: "تم الحفظ")
+            }
+        }
+    }
     
-    var pickerUserImage: UIImage?
+    var pickerUserImage: UIImage? {
+        didSet {
+            mainView.userImage.image = pickerUserImage
+        }
+    }
     
     @objc func pickUserImage(){
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()

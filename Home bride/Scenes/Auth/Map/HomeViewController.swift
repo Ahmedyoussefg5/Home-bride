@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol SendMapResult: NSObjectProtocol {
-    func location(name: String)
+    func location(name: String, lat: String, long: String)
 }
 
 class MapViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -55,13 +55,22 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        if let cor = locationManager.location?.coordinate {
+            searchVC.getAddress(coordinate: cor) {[weak self] (name) in
+                self?.mainView.searchBar.text = name
+            }
+            firstItem = MKMapItem(placemark: MKPlacemark(coordinate: cor))
+        }
+        
+        
         addDoubleTap()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let txt = mainView.searchBar.text {
-            delegate?.location(name: txt)
+            delegate?.location(name: txt, lat: "\(firstItem?.placemark.coordinate.latitude ?? 0)", long: "\(firstItem?.placemark.coordinate.longitude ?? 0)")
         }
     }
     

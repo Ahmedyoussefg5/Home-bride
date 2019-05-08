@@ -37,7 +37,7 @@ class UserLocationMapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupLayout()
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "رجوع", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissMePlease))
         mapView.delegate = self
     }
     

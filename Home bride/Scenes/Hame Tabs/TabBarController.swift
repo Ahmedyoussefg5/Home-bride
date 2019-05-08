@@ -14,7 +14,7 @@ class HomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         setupSideMenu()
         
@@ -24,11 +24,11 @@ class HomeTabBarController: UITabBarController {
         let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         let chatHomeViewController = UINavigationController(rootViewController: ChatHomeViewController())
         
-        homeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "format-list-bulleted (1)4"), selectedImage: #imageLiteral(resourceName: "format-list-bulleted (1)4"))
-        galaryViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "Forma 1 copy 25 (2)"), selectedImage: #imageLiteral(resourceName: "Forma 1 copy 25 (2)"))
-        profileViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "profile (1)9"), selectedImage: #imageLiteral(resourceName: "profile (1)9"))
-        chatHomeViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "message-text-outline (3)"), selectedImage: #imageLiteral(resourceName: "message-text-outline (3)"))
-        timeTableViewController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "alarm-clock (5)"), selectedImage: #imageLiteral(resourceName: "alarm-clock (5)"))
+        homeViewController.tabBarItem = UITabBarItem(title: "الطلبات", image: #imageLiteral(resourceName: "format-list-bulleted (1)4"), selectedImage: #imageLiteral(resourceName: "format-list-bulleted (1)4"))
+        galaryViewController.tabBarItem = UITabBarItem(title: "المعرض", image: #imageLiteral(resourceName: "Forma 1 copy 25 (2)"), selectedImage: #imageLiteral(resourceName: "Forma 1 copy 25 (2)"))
+        profileViewController.tabBarItem = UITabBarItem(title: "الملف الشخصي", image: #imageLiteral(resourceName: "profile (1)9"), selectedImage: #imageLiteral(resourceName: "profile (1)9"))
+        chatHomeViewController.tabBarItem = UITabBarItem(title: "سجل المحادثات", image: #imageLiteral(resourceName: "message-text-outline (3)"), selectedImage: #imageLiteral(resourceName: "message-text-outline (3)"))
+        timeTableViewController.tabBarItem = UITabBarItem(title: "المواعيد", image: #imageLiteral(resourceName: "alarm-clock (5)"), selectedImage: #imageLiteral(resourceName: "alarm-clock (5)"))
         
         //tabBarController?.selectedViewController = homeViewController
         

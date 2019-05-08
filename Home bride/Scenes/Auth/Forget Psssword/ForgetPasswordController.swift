@@ -19,21 +19,19 @@ class ForgetPasswordController: BaseUIViewController<ForgetPasswordView> {
         trasperantNavBar()
         mainView.sendButton.addTheTarget(action: {[weak self] in
             self?.sendNumber()
-//            self?.navigationController?.pushViewController(RegisterViewController(), animated: true)
         })
-//        mainView.loginButton.addTheTarget(action: {[weak self] in
-////            self?.present(UINavigationController(rootViewController: HomeViewController()), animated: true, completion: nil)
-//        })
     }
     
     func sendNumber() {
-        guard let num = mainView.phoneTextView.text else { return }
+        guard let num = mainView.phoneTextView.text, num.count > 5 else {
+            showAlert(title: "خطأ", message: "تأكد من هاتفك")
+            return }
         let pars = [
             "phone": num
         ]
         callApi(ForgetData.self, url: "http://m4a8el.panorama-q.com/api/auth/forget", parameters: pars) {[weak self] (data) in
             if data != nil {
-                self?.navigationController?.pushViewController(VerifyViewController(), animated: true)
+                self?.navigationController?.pushViewController(VerifyViewController(phone: num), animated: true)
             }
         }
     }

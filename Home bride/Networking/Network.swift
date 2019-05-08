@@ -102,33 +102,10 @@ class Network: NSObject {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 struct UploadData {
     var data: Data
     var fileName, mimeType, name: String
 }
-
-//let asa = 
 
 func newJSONDecoder() -> JSONDecoder {
     let decoder = JSONDecoder()

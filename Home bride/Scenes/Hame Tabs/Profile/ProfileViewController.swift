@@ -24,13 +24,14 @@ class ProfileView: BaseView {
         view.layer.insertSublayer(gradientLayer, at: 0)
         return view
     }()
-    private lazy var userImage: BigImage = {
+    lazy var userImage: BigImage = {
         let img = BigImage()
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
         img.image = #imageLiteral(resourceName: "girl")
         img.viewCornerRadius = 50
         img.translatesAutoresizingMaskIntoConstraints = false
+        img.load(with: AuthService.instance.userImage)
         return img
     }()
     
@@ -45,8 +46,20 @@ class ProfileView: BaseView {
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.titleLabel?.underline()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.addTheTarget(action: {[weak self] in
-            self?.confirmSaveButton.isHidden.toggle()
+        btn.addTheTarget(action: {
+            self.confirmSaveButton.isHidden.toggle()
+            [
+                self.firstNameText,
+                self.familyNameText,
+                self.mailText,
+                self.jobText,
+                self.phoneText,
+                self.areaText,
+                self.cityText,
+                self.distinctText
+                ].forEach({ (con) in
+                    con.isEnabled.toggle()
+                })
         })
         return btn
     }()
@@ -77,13 +90,13 @@ class ProfileView: BaseView {
         sender.setImage(images[sender.tag].withRenderingMode(.alwaysOriginal), for: .normal)
         
         if sender.tag == 0 { // services
-            setupProfileView()
+            setupCollextionView()
 
         } else if sender.tag == 1 { // qualification
             qualificaionsViewSetup()
 
         } else if sender.tag == 2 { // info
-            setupCollextionView()
+            setupProfileView()
         }
     }
     
@@ -164,14 +177,29 @@ class ProfileView: BaseView {
         stack.heightAnchorConstant(constant: 60)
         
         setupProfileView()
+        [
+            firstNameText,
+            familyNameText,
+            mailText,
+            jobText,
+            phoneText,
+            areaText,
+            cityText,
+            distinctText
+            ].forEach({ (con) in
+                con.isEnabled.toggle()
+            })
+
     }
     
     private func setupProfileView() {
         qualifStack?.removeFromSuperview()
+        qualifMainCollectionView.removeFromSuperview()
         qualifStack = nil
-        scrollView.contentSize.height = 1000
+        scrollView.contentSize.height = 800
         scrollView.isScrollEnabled = ya
-        mainCollectionView.removeFromSuperview()
+        servMainCollectionView.removeFromSuperview()
+        editProfileButton.isHidden = no
 
         profileStack = UIStackView(arrangedSubviews: [
             firstNameText,
@@ -211,30 +239,39 @@ class ProfileView: BaseView {
     
     private func setupCollextionView() {
         qualifStack?.removeFromSuperview()
+        qualifMainCollectionView.removeFromSuperview()
         qualifStack = nil
         profileStack?.removeFromSuperview()
         profileStack = nil
-        scrollView.isScrollEnabled = no
+        scrollView.contentSize.height = 600
+        editProfileButton.isHidden = ya
         
-        addSubview(mainCollectionView)
-        mainCollectionView.centerXInSuperview()
-        mainCollectionView.widthAnchorWithMultiplier(multiplier: 0.9)
-        mainCollectionView.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
-        mainCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = ya
+        addSubview(servMainCollectionView)
+        servMainCollectionView.centerXInSuperview()
+        servMainCollectionView.widthAnchorWithMultiplier(multiplier: 0.9)
+        servMainCollectionView.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
+        servMainCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = ya
     }
     
-    lazy var mainCollectionView: UICollectionView = {
+    lazy var servMainCollectionView: UICollectionView = {
         var layout = ArabicCollectionFlow()
         layout.scrollDirection = .vertical
-//        layout.itemSize = CGSize(width: 70, height: 50)
         let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
         coll.backgroundColor = .clear
-//        coll.register(BaseCollCell.self, forCellWithReuseIdentifier: "HomeSalonCell")
         coll.translatesAutoresizingMaskIntoConstraints = false
         return coll
     }()
-    let qualificaionNameText = UnderLineTextField(placeH: "اسم المؤهل")
-    let theQualificaionText = UnderLineTextField(placeH: "الدرجة")
+    lazy var qualifMainCollectionView: UICollectionView = {
+        var layout = ArabicCollectionFlow()
+        layout.scrollDirection = .vertical
+        let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
+        coll.register(cellWithClass: QualCollCell.self)
+        coll.backgroundColor = .clear
+        coll.translatesAutoresizingMaskIntoConstraints = false
+        return coll
+    }()
+    let qualificaionNameText = UnderLineTextFieldd(placeH: "اسم المؤهل")
+    let theQualificaionText = UnderLineTextFieldd(placeH: "الدرجة")
     let qualificaionImage = UIButton(type: .system)
 
     lazy var confirmButton: UIButton = {
@@ -275,8 +312,9 @@ class ProfileView: BaseView {
         
         profileStack?.removeFromSuperview()
         profileStack = nil
-        mainCollectionView.removeFromSuperview()
-        scrollView.contentSize.height = 600
+        servMainCollectionView.removeFromSuperview()
+        scrollView.contentSize.height = 900
+        editProfileButton.isHidden = ya
 
         qualifStack = UIStackView(arrangedSubviews: [
             qualificaionNameText,
@@ -293,7 +331,12 @@ class ProfileView: BaseView {
         qualifStack?.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
         qualifStack?.centerXInSuperview()
         qualifStack?.heightAnchorConstant(constant: 200)
-
+        
+        addSubview(qualifMainCollectionView)
+        qualifMainCollectionView.widthAnchorWithMultiplier(multiplier: 0.9)
+        qualifMainCollectionView.heightAnchorConstant(constant: 300)
+        qualifMainCollectionView.centerXInSuperview()
+        qualifMainCollectionView.topAnchorToView(anchor: qualifStack!.bottomAnchor, constant: 10)
     }
     
     override func layoutSubviews() {
@@ -347,10 +390,21 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == mainView.qualifMainCollectionView {
+            return dataSource?.count ?? 0
+        }
         return scheduleData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == mainView.qualifMainCollectionView {
+            let cell = collectionView.dequeueReusableCell(withClass: QualCollCell.self, for: indexPath)
+            if let data = dataSource?[indexPath.row] {
+                cell.config(item: data)
+            }
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withClass: BaseCollCell.self, for: indexPath)
         if let data = scheduleData?[indexPath.row] {
             cell.configure(data)
@@ -362,10 +416,27 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         return CGSize(width: collectionView.frame.width * 0.48, height: collectionView.frame.width * 0.4)
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == mainView.qualifMainCollectionView {
+            let count = dataSource?.count ?? -1
+            if indexPath.row == count - 1 {
+                paginateQualif()
+                return
+            }
+        } else {
+            let count = scheduleData?.count ?? -1
+            if indexPath.row == count - 1 {
+                paginate()
+                return
+            }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getAllArea()
         getData()
+        getQualifData()
     }
 
     override func viewDidLoad() {
@@ -375,9 +446,11 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddServView))
         
-        mainView.mainCollectionView.delegate = self
-        mainView.mainCollectionView.dataSource = self
-        mainView.mainCollectionView.register(cellWithClass: BaseCollCell.self)
+        mainView.servMainCollectionView.delegate = self
+        mainView.servMainCollectionView.dataSource = self
+        mainView.qualifMainCollectionView.delegate = self
+        mainView.qualifMainCollectionView.dataSource = self
+        mainView.servMainCollectionView.register(cellWithClass: BaseCollCell.self)
         setupSideMenu()
         
         mainView.areaText.addTheTarget {[weak self] in
@@ -402,11 +475,20 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         }
         
         mainView.confirmSaveButton.addTheTarget {[weak self] in
-            self?.saveDate()
+            if self?.pickerUserProfileImage == nil {
+                self?.saveDate()
+            } else {
+                self?.addimageWithImage()
+            }
+//            self?.saveDate()
         }
         
         mainView.photoButton.addTheTarget {
-            self.pickUserImage()
+            self.pickUserImage(isUserImage: no)
+        }
+        
+        mainView.userImage.addTapGestureRecognizer {
+            self.pickUserImage(isUserImage: ya)
         }
         
         mainView.confirmButton.addTheTarget {
@@ -428,7 +510,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     
     var scheduleData: [ScheduleData]? {
         didSet {
-            mainView.mainCollectionView.reloadData()
+            mainView.servMainCollectionView.reloadData()
         }
     }
     
@@ -485,6 +567,42 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         }
     }
     
+    fileprivate var dataSource: [Qualification]? {
+        didSet {
+            mainView.qualifMainCollectionView.reloadData()
+        }
+    }
+    
+    fileprivate func getQualifData() {
+        let url = "http://m4a8el.panorama-q.com/api/qualifications"
+        callApi(AllQualifications.self, url: url, method: .get, parameters: nil, activityIndicator: nil) {[weak self] (data) in
+            if let data = data {
+                self?.dataSource = data.data?.qualifications
+                self?.lastPage = data.data?.paginate.totalPages ?? 1
+                self?.currentPage = 1
+                self?.isLoading = false
+            }
+        }
+    }
+    
+    private func paginateQualif() {
+        
+        guard !isLoading else { return }
+        guard lastPage > currentPage else { return }
+        isLoading = true
+        
+        let url = "http://m4a8el.panorama-q.com/api/qualifications?page=\(currentPage + 1)"
+        callApi(AllQualifications.self, url: url, method: .get, parameters: nil) {[weak self] (data) in
+            if let data = data {
+                let app = data.data?.qualifications ?? []
+                self?.dataSource?.append(contentsOf: app)
+                self?.currentPage += 1
+                self?.isLoading = false
+//                print("self.currentPage \(self.currentPage)")
+            }
+        }
+    }
+    
     private func paginate() {
         
         guard !isLoading else { return }
@@ -526,6 +644,34 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         }
     }
     
+    private func addimageWithImage() {
+        guard let img = pickerUserProfileImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
+        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+        
+        let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
+        
+        var pars = [String:Any]()
+        pars["first_name"] = mainView.firstNameText.text
+        pars["last_name"] = mainView.familyNameText.text
+        pars["email"] = mainView.mailText.text
+        pars["phone"] = mainView.phoneText.text
+        pars["job"] = mainView.jobText.text
+        if let rigonId = rigonId {
+            pars["region_id"] = rigonId
+        }
+        
+        Network.shared.uploadToServerWith(UpdateProfData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
+            if let err = err {
+                self?.showAlert(title: nil, message: err)
+            } else if let data = data {
+                guard let userData = data.data else { return }
+                AuthService.instance.setUserDefaults(update: userData)
+                self?.mainView.userImage.load(with: data.data?.image)
+                self?.showAlert(title: "", message: "تم الحفظ")
+            }
+        }
+    }
+    
     // add qualf
     private func addimage() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
@@ -553,13 +699,23 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     
     var pickerUserImage: UIImage?
     
-    @objc func pickUserImage(){
+    var pickerUserProfileImage: UIImage?{
+        didSet {
+            mainView.userImage.image = pickerUserProfileImage
+        }
+    }
+    
+    @objc func pickUserImage(isUserImage: Bool){
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         
         switch photoAuthorizationStatus {
         case .authorized:
             PhotoServices.shared.getImageFromGalary(on: self) { (image) in
-                self.pickerUserImage = image
+                if isUserImage {
+                    self.pickerUserProfileImage = image
+                } else {
+                    self.pickerUserImage = image
+                }
             }
         case .notDetermined: PHPhotoLibrary.requestAuthorization ({
             (newStatus) in
@@ -807,9 +963,24 @@ struct UpdateProf: Codable {
 //}
 
 
-
-
-
+//struct AllQualifications: Codable {
+//    let status: Int?
+//    let data: Qualifications?
+//}
+//
+//struct Qualifications: Codable {
+//    let qualifications: [Qualification]?
+//    let paginate: Paginate?
+//}
+//
+//struct Qualification: Codable {
+//    let id: Int?
+//    let name, degree: String?
+//    let date: JSONNull?
+//    let image: String?
+//}
+//
+//
 
 
 
@@ -838,6 +1009,28 @@ class UnderLineTextField: UITextField {
     init(placeH: String) {
         super.init(frame: .zero)
         text = placeH
+        textColor = lightPurple
+        font = .CairoRegular(of: 13)
+        textAlignment = .right
+        translatesAutoresizingMaskIntoConstraints = false
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        addSubview(view)
+        view.topAnchor.constraint(equalTo: bottomAnchor).isActive = ya
+        view.centerXInSuperview()
+        view.heightAnchorConstant(constant: 1)
+        view.widthAnchorWithMultiplier(multiplier: 1)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class UnderLineTextFieldd: UITextField {
+    init(placeH: String) {
+        super.init(frame: .zero)
+        placeholder = placeH
         textColor = lightPurple
         font = .CairoRegular(of: 13)
         textAlignment = .right

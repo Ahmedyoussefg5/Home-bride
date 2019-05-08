@@ -19,5 +19,7 @@ pod 'SwiftyJSON'
 #pod 'NicooPlayer'
 pod 'SpinWheelControl'
 pod 'SideMenuController'
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
 
 end

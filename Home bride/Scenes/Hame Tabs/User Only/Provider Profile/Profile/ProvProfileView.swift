@@ -76,7 +76,9 @@ class ProvProfileView: BaseView {
         
         containerView.addSubview(addressLable)
         addressLable.centerXInSuperview()
-        addressLable.topAnchorToView(anchor: nameLable.bottomAnchor, constant: 5)
+        addressLable.topAnchorToView(anchor: nameLable.bottomAnchor, constant: 1)
+        addressLable.widthAnchorWithMultiplier(multiplier: 1)
+        addressLable.numberOfLines = 0
         
         containerView.addSubview(mainCollectionView)
         mainCollectionView.centerXInSuperview()

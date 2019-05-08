@@ -15,14 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         window = UIWindow()
         window?.makeKeyAndVisible()
         print(AuthService.instance.authToken ?? "")
 
         IQKeyboardManager.shared.enable = true
-//        IQKeyboardManager.shared.enableAutoToolbar = false
-        IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
+//        IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
         
         if AuthService.instance.userRole == "client" {
             user = u
@@ -39,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window?.rootViewController = UINavigationController(rootViewController: UserHomeViewController())
             }
         }
+        
+//        window?.rootViewController = VerifyViewController(phone: "asd")
+        
+        registerForRemoteNotifications(app: application)
         
         return true
     }

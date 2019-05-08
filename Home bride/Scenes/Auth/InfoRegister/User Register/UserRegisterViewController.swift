@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import FirebaseMessaging
 
-class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendResult {
+class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendResult, SendMapResult {
+    
+    func location(name: String, lat: String, long: String) {
+        mainView.locationButton.setTitleNormalState(name)
+        self.long = long
+        self.lat = lat
+    }
+    
     weak var sender: CreateAccountButton?
     
     func result(name: String) {
@@ -16,8 +24,10 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
     }
     
     var rigonId: Int
-    var  catId: Int
-    
+    var catId: Int
+    var long: String = ""
+    var lat: String = ""
+
     func reg(){
         guard let fName = mainView.firstNameText.text, fName.count > 2 else {
             showAlert(title: "خطأ", message: "تأكد من اسمك الاول")
@@ -35,7 +45,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             showAlert(title: "خطأ", message: "تأكد من كلمة المرور, اكثر من ٥ حروف")
             return
         }
-        guard let phone = mainView.phoneText.text, phone.count > 4 else {
+        guard let phone = mainView.phoneText.text, phone.count > 4, phone.isInt else {
             showAlert(title: "خطأ", message: "تأكد من هاتفك الصحيح")
             return
         }
@@ -48,7 +58,9 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
                     "password": pass,
                     "region_id": rigonId,
                     "sub_category_id": catId,
-                    "fcm_token_ios": "asassaassasasasasasa"
+                    "fcm_token_ios": "Messaging.messaging().fcmToken" ?? "",
+                    "location[lat]": lat,
+                    "location[long]": long
             ] as [String : Any]
         
         if user == u {
@@ -59,7 +71,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
                     "email": mail,
                     "phone": phone,
                     "password": pass,
-                    "fcm_token_ios": "asassaassasasasasasa"
+                    "fcm_token_ios": "Messaging.messaging().fcmToken" ?? ""
             ]
         }
         
@@ -92,5 +104,13 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
         mainView.signUpButton.addTheTarget(action: {[weak self] in
             self?.reg()
         })
+        mainView.locationButton.addTheTarget {[weak self] in
+            self?.sender = self?.mainView.locationButton
+            let map = MapViewController()
+            map.delegate = self
+            let vc = UINavigationController(rootViewController: map)
+            vc.navbarWithdismiss()
+            self?.presentModelyVC(vc: vc)
+        }
     }
 }

@@ -32,9 +32,18 @@ class DatePickerViewController: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
         btn.addTheTarget(action: {[weak self] in
-            self?.pickerViewValue()
-            self?.delegate?.result(name: self?.getDateToStringDate(date: self?.pickerView.date ?? Date()) ?? "")
-            self?.dismissMePlease()
+            guard let self = self else { return }
+            if self.mode == .dateAndTime {
+                let date = self.getDateToStringDate(date: self.pickerView.date)
+                let time = self.getTime(date: self.pickerView.date)
+                let total = "\(date) \(time)"
+                self.delegate?.result(name: total)
+                self.dismissMePlease()
+                return
+            }
+            self.pickerViewValue()
+            self.delegate?.result(name: self.getDateToStringDate(date: self.pickerView.date))
+            self.dismissMePlease()
         })
         return btn
     }()
@@ -113,6 +122,14 @@ class DatePickerViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let myStringafd = formatter.string(from: date)
+        return myStringafd
+    }
+    
+    func getTime(date: Date) -> String {
+        let formatter = DateFormatter()
+        let time = pickerView.date
+        formatter.dateFormat = "h:m"
+        let myStringafd = formatter.string(from: time)
         return myStringafd
     }
     

@@ -52,11 +52,10 @@ class LoginViewController: BaseUIViewController<LoginView> {
                 guard let userData = userr.data else { return }
                 AuthService.instance.setUserDefaults(user: userData)
                 if userr.data?.role == "client" {
+                    user = u
                     self?.present(UINavigationController(rootViewController: UserHomeViewController()), animated: true, completion: nil)
-//                    UIApplication.shared.keyWindow?.rootViewController?.present(UserHomeViewController(), animated: true, completion: nil)
-
-//                    AuthService.instance.transiteWithViewController(UserHomeViewController())
                 } else {
+                    user = p
                     self?.present(HomeTabBarController(), animated: true, completion: nil)
                 }
             }

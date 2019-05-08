@@ -27,6 +27,10 @@ class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         tableConfiger()
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if user == p {
             tableViewItems = ["الملف الشخصي", "الاشعارات", "سجل الطلبات", "الشروط والاحكام", "عن التطبيق", "تواصل معنا", "تسجيل خروج"]
         } else {
@@ -44,6 +48,7 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 4 { return 0 }
         return 45.0
     }
     
@@ -69,7 +74,9 @@ class SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuCell", for: indexPath) as! UITableViewVibrantCell
         cell.backgroundColor = .clear
-        cell.textLabel?.text = tableViewItems[indexPath.row]
+        if indexPath.row != 4 {
+            cell.textLabel?.text = tableViewItems[indexPath.row]
+        }
         cell.textLabel?.textColor = .darkGray
         cell.textLabel?.font = .CairoSemiBold(of: 14)
         cell.textLabel?.textAlignment = .right
@@ -98,12 +105,12 @@ class SideMenuTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 NotificationCenter.default.post(name: toProfileVC, object: nil)
-                return
+                dismiss(animated: true, completion: nil)
             case 1:
                 navigationController?.pushViewController(NotificationsViewController(), animated: ya)
             case 2:
                 NotificationCenter.default.post(name: toHomeVC, object: nil)
-                return
+                dismiss(animated: true, completion: nil)
             case 3:
                 navigationController?.pushViewController(TermsViewController(), animated: ya)
             case 4:
@@ -120,6 +127,7 @@ class SideMenuTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 NotificationCenter.default.post(name: toHomeVC, object: nil)
+                dismiss(animated: true, completion: nil)
                 return
             case 1:
                 navigationController?.pushViewController(UserProfileViewController(), animated: ya)
@@ -137,8 +145,8 @@ class SideMenuTableViewController: UITableViewController {
             case 7:
                 navigationController?.pushViewController(ContactViewController(), animated: ya)
             case 8:
-                dismiss(animated: true, completion: nil)
                 AuthService.instance.restartAppAndRemoveUserDefaults()
+                dismiss(animated: true, completion: nil)
             default:
                 return
             }

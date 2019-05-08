@@ -63,6 +63,11 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
@@ -72,8 +77,6 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
         mainView.mainCollectionView.dataSource = self
         mainView.photoButton.isMenuSelected = ya
         setupSideMenu()
-        
-        getData()
     }
     
     @objc private func addItem() {

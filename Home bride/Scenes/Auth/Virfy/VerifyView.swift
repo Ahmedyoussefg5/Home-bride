@@ -21,7 +21,7 @@ class VerifyView: BaseView {
         return img
     }()
     lazy var phoneTextView: LoginTextField = {
-        let view = LoginTextField(placeHolder: "".localize)
+        let view = LoginTextField(placeHolder: "ادخل الكود".localize)
         view.backgroundColor = darkPurple
         return view
     }()
@@ -92,7 +92,7 @@ class VerifyView: BaseView {
         stack.centerXInSuperview()
         stack.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 20).isActive = ya
         stack.widthAnchorWithMultiplier(multiplier: 0.9)
-        stack.heightAnchorConstant(constant: 280)
+        stack.heightAnchorConstant(constant: 350)
     }
     
     override func layoutSubviews() {

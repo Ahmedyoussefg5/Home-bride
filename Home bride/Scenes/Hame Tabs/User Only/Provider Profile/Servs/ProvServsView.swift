@@ -152,7 +152,7 @@ class ProvServCell: UITableViewCell {
 
     func configCell(_ item: ScheduleDataViewModel) {
         titleLable.text = item.name
-        priceLable.text = "\(item.price)"
+        priceLable.text = "\(item.price) ريال"
         cellImage.load(with: item.image)
         
         if item.isSelected {

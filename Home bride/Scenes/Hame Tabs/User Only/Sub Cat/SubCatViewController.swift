@@ -28,14 +28,16 @@ class SubCatViewController: BaseUIViewController<SubCatView>, UICollectionViewDe
     }
     
     var id: Int
+    var name: String
     private var categories = [Categories]() {
         didSet {
             mainView.mainCollectionView.reloadData()
         }
     }
     
-    init(id: Int) {
+    init(id: Int, name: String) {
         self.id = id
+        self.name = name
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,7 +60,9 @@ class SubCatViewController: BaseUIViewController<SubCatView>, UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
+        
+//        title = name
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         mainView.mainCollectionView.delegate = self
         mainView.mainCollectionView.dataSource = self

@@ -26,8 +26,9 @@ class AddSevrvViewController: UIViewController {
         })
         return btn
     }()
-    let nameText = UnderLineTextField(placeH: "اسم الخدمة")
-    let costText = UnderLineTextField(placeH: "التكلفة")
+    let nameText = UnderLineTextFieldd(placeH: "اسم الخدمة")
+    let costText = UnderLineTextFieldd(placeH: "التكلفة")
+    
     lazy var photoButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("صورة الخدمة", for: .normal)
@@ -84,7 +85,7 @@ class AddSevrvViewController: UIViewController {
             confirmButton.widthAnchorWithMultiplier(multiplier: 0.9),
             confirmButton.heightAnchor.constraint(equalToConstant: 40),
             confirmButton.centerXInSuperview(),
-            confirmButton.bottomAnchorSuperView(constant: -10)
+            confirmButton.bottomAnchorSuperView(constant: -1)
             ])
         // **********************************************************
         let titleLable = UILabel()
@@ -113,14 +114,16 @@ class AddSevrvViewController: UIViewController {
            stack.widthAnchorWithMultiplier(multiplier: 0.95),
            stack.centerXInSuperview(),
            stack.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 10),
-           stack.bottomAnchor.constraint(equalTo: confirmButton.topAnchor, constant: -10)
+           stack.bottomAnchor.constraint(equalTo: confirmButton.topAnchor, constant: -5)
             ])
     }
     
     private func addimage() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
 
-        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0, let intPrice = Int(price) else { return }
+        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
+            showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
+            return }
         let url = "http://m4a8el.panorama-q.com/api/services"
         let pars = [
             "name": name,

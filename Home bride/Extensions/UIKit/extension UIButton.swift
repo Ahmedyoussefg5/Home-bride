@@ -4,6 +4,7 @@ extension UIButton {
     
     func addTrailingImageView(image: UIImage, width: CGFloat, hight: CGFloat) {
         let imageView = UIImageView(image: image)
+        imageView.tintColor = lightPurple
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false

@@ -17,13 +17,13 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
         
         mainView.locationButton.addTheTarget {[weak self] in
             if let long = self?.data?.data.lng, let lat = self?.data?.data.lat {
-                let vc = UserLocationMapViewController(long: long, lat: lat)
+                let vc = UINavigationController(rootViewController: UserLocationMapViewController(long: long, lat: lat))
                 self?.presentModelyVC(vc: vc)
             }
         }
         
         mainView.phoneButton.addTheTarget {[weak self] in
-            if let phone = self?.data?.data.client.phone {
+            if let phone = self?.data?.data.client?.phone {
                 guard let number = URL(string: "tel://" + phone) else { return }
                 UIApplication.shared.open(number)
 //                UIApplication.shared.open(number, options: [:], completionHandler: nil)
@@ -32,9 +32,19 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
         
         mainView.messageButton.addTheTarget {[weak self] in
             if let id = self?.data?.data.orderID {
-                let vc = UINavigationController(rootViewController: ChatViewController(orderId: id))
-                vc.navbarWithdismiss()
-                self?.presentModelyVC(vc: vc)
+                
+                var name = ""
+                if user == p {
+                    name = self?.data?.data.client?.name ?? ""
+                } else {
+//                    name = self?.data?.data.client..providerName ?? ""
+                }
+                
+                let vc = UINavigationController(rootViewController: ChatViewController(orderId: id, name: name))
+                self?.present(vc, animated: ya, completion: nil)
+
+//                vc.navbarWithdismiss()
+//                self?.presentModelyVC(vc: vc)
             }
         }
         
@@ -45,6 +55,11 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
         mainView.refuseButton.addTheTarget {[weak self] in
             self?.refuse()
         }
+        
+        if user != p {
+            mainView.userImage.load(with: providerImage)
+        }
+
     }
     
     private func accept() {
@@ -53,9 +68,11 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             "status": "accept",
             "_method": "PUT"
         ]
-        callApi(ReqData.self, url: url, method: .post, parameters: pars) { (data) in
+        callApi(ReqData.self, url: url, method: .post, parameters: pars) {[weak self] (data) in
             if data != nil {
-                self.showAlert(title: "", message: "تم قبول الطلب")
+                self?.showAlert(title: "", message: "تم قبول الطلب")
+                self?.mainView.acceptButton.isHidden = ya
+                self?.mainView.refuseButton.isHidden = ya
             }
         }
     }
@@ -66,9 +83,11 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
             "status": "cancel",
             "_method": "PUT"
         ]
-        callApi(ReqData.self, url: url, method: .post, parameters: pars) { (data) in
+        callApi(ReqData.self, url: url, method: .post, parameters: pars) {[weak self] (data) in
             if data != nil {
-                self.showAlert(title: "", message: "تم رفض الطلب")
+                self?.showAlert(title: "", message: "تم رفض الطلب")
+                self?.mainView.acceptButton.isHidden = ya
+                self?.mainView.refuseButton.isHidden = ya
             }
         }
     }
@@ -82,9 +101,11 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
     }
     
     var id : Int
+    var providerImage: String
     
-    init(id: Int) {
+    init(id: Int, image: String) {
         self.id = id
+        providerImage = image
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -132,7 +153,7 @@ class NewRequestDetailsView: BaseView {
         btn.setTitle("".localize, for: .normal)
         btn.setTitleColor(#colorLiteral(red: 0.6158300638, green: 0.6195418239, blue: 0.6282081604, alpha: 1), for: .normal)
         btn.titleLabel?.font = .CairoRegular(of: 13)
-        btn.addTrailingImageView(image: #imageLiteral(resourceName: "twitter (1)").withRenderingMode(.alwaysTemplate), width: 20, hight: 20)
+        btn.addTrailingImageView(image: #imageLiteral(resourceName: "instagram (2)"), width: 20, hight: 20)
         btn.contentHorizontalAlignment = .leading
         return btn
     }()
@@ -167,7 +188,7 @@ class NewRequestDetailsView: BaseView {
         return view
     }()
     
-    private lazy var userImage: UIImageView = {
+    lazy var userImage: UIImageView = {
         let img = UIImageView()
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
@@ -191,11 +212,15 @@ class NewRequestDetailsView: BaseView {
     lazy var phoneButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setBackgroundImage(#imageLiteral(resourceName: "speech-bubble (1)").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = lightPurple
+        btn.imageView?.tintColor = lightPurple
         return btn
     }()
     lazy var messageButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setBackgroundImage(#imageLiteral(resourceName: "chat").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = lightPurple
+        btn.imageView?.tintColor = lightPurple
         return btn
     }()
     
@@ -245,6 +270,10 @@ class NewRequestDetailsView: BaseView {
         
         //
         let headLablee = RequestDetailsGrayLable(title: "بيانات العميل")
+        if user != p {
+            headLablee.text = "بيانات الخبيرة"
+        }
+        
         scrollView.addSubview(headLablee)
         headLablee.translatesAutoresizingMaskIntoConstraints = no
         headLablee.trailingAnchor.constraint(equalTo: detailsContainerView.trailingAnchor).isActive = ya
@@ -259,19 +288,33 @@ class NewRequestDetailsView: BaseView {
 
         setupRequestDetailsView()
         setupAgentDetailsContainerView()
-        
-        let stack = UIStackView(arrangedSubviews: [refuseButton, acceptButton])
-        stack.axis = .horizontal
-        stack.spacing = 70
-        stack.distribution = .fillEqually
-        scrollView.addSubview(stack)
-        ActivateConstraint([
-            stack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
-            stack.heightAnchor.constraint(equalToConstant: 40),
-            stack.centerXInSuperview(),
-            stack.topAnchor.constraint(equalTo: agentDetailsContainerView.bottomAnchor, constant: 20)
-            ])
+        if user == p {
+            let stack = UIStackView(arrangedSubviews: [refuseButton, acceptButton])
+            stack.axis = .horizontal
+            stack.spacing = 70
+            stack.distribution = .fillEqually
+            scrollView.addSubview(stack)
+            ActivateConstraint([
+                stack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+                stack.heightAnchor.constraint(equalToConstant: 40),
+                stack.centerXInSuperview(),
+                stack.topAnchor.constraint(equalTo: agentDetailsContainerView.bottomAnchor, constant: 20)
+                ])
+        }
     }
+    
+    let servsTextView: UITextVieww = {
+        let txtView = UITextVieww()
+        txtView.layer.cornerRadius = 8
+        txtView.layer.borderWidth = 0.3
+        txtView.viewBorderColor = .lightGray
+        txtView.font = .CairoBold(of: 14)
+        txtView.textColor = .blueGrey
+        txtView.textAlignment = .natural
+        txtView.isEditable = no
+        txtView.translatesAutoresizingMaskIntoConstraints = false
+        return txtView
+    }()
     
     private func setupRequestDetailsView() {
         let headLable = RequestDetailsRedLable(title: "اسم الطلب")
@@ -285,7 +328,7 @@ class NewRequestDetailsView: BaseView {
                 dateLable,
                 stackSpliterGray(),
                 requestsLable,
-                //                mainTableView,
+                servsTextView,
                 stackSpliterGray(),
                 totalLable,
                 priceLable
@@ -378,16 +421,45 @@ class NewRequestDetailsView: BaseView {
     func confView(data: ReqData) {
         adrressLable.text = data.data.subCategory
         dateLable.text = data.data.date
-        priceLable.text = "\(data.data.total)"
-        phoneNumLable.text = "\(phoneNumLable.text ?? ""): \(data.data.client.phone ?? "")"
-        birthLable.text = "\(birthLable.text ?? ""): \(data.data.client.birthDate ?? "")"
+        priceLable.text = "\(data.data.total ?? 0) ريال"
 //        cityLable.text = "\(cityLable.text ?? ""): \(data.data.client.job ?? "")"
-        userImage.load(with: data.data.client.image)
-        agentNameLable.text = data.data.client.name
-        agentJobLable.text = data.data.client.job
-        faceButton.setTitleNormalState(data.data.client.social.facebook)
-        twitterButton.setTitleNormalState(data.data.client.social.twitter)
-        googleButton.setTitleNormalState(data.data.client.social.snapchat)
+        if user == p {
+            userImage.load(with: data.data.client?.image)
+        }
+        agentNameLable.text = data.data.client?.name
+        agentJobLable.text = data.data.client?.job
+        faceButton.setTitleNormalState(data.data.client?.social?.facebook)
+        twitterButton.setTitleNormalState(data.data.client?.social?.twitter)
+        googleButton.setTitleNormalState(data.data.client?.social?.snapchat)
+        
+        if data.status == 1 {
+            acceptButton.isHidden = ya
+            refuseButton.isHidden = ya
+        }
+        
+        var txt = ""
+        
+        if let services = data.data.services {
+            for serv in services {
+                let text = " \(serv.name ?? "")         \(serv.price ?? 0) ريال \n"
+                txt += text
+            }
+        }
+        
+        servsTextView.text = txt
+        
+        if user != p {
+            agentNameLable.text = data.data.provider?.name
+            agentJobLable.text = data.data.provider?.job
+            faceButton.setTitleNormalState(data.data.provider?.social?.facebook)
+            twitterButton.setTitleNormalState(data.data.provider?.social?.twitter)
+            googleButton.setTitleNormalState(data.data.provider?.social?.snapchat)
+            phoneNumLable.text = "\(phoneNumLable.text ?? ""): \(data.data.provider?.phone ?? "")"
+            birthLable.text = "\(birthLable.text ?? ""): \(data.data.provider?.birthDate ?? "")"
+        } else {
+            phoneNumLable.text = "\(phoneNumLable.text ?? ""): \(data.data.client?.phone ?? "")"
+            birthLable.text = "\(birthLable.text ?? ""): \(data.data.client?.birthDate ?? "")"
+        }
     }
 }
 
@@ -421,26 +493,28 @@ class RequestDetailsRedLable: UILabel {
 
 struct ReqData: BaseCodable {
     var status: Int
+    
     var msg: String?
+    
     let data: Req
 }
 
 struct Req: Codable {
-    let orderID, delivery, status: Int
-    let date: String
+    let orderID, delivery, status: Int?
+    let date: String?
     let lat, lng: Double?
     let deliveryFees, subCategory, region: String?
-    let services: [Service]
-    let total: Int
-    let client: Client
-//    let provider: Provider
+    let services: [Service]?
+    let total: Int?
+    let client: Client?
+    let provider: Prroviderr?
     
     enum CodingKeys: String, CodingKey {
         case orderID = "order_id"
         case delivery, status, date, lat, lng
         case deliveryFees = "delivery_fees"
         case subCategory = "sub_category"
-        case region, services, total, client//, provider
+        case region, services, total, client, provider
     }
 }
 
@@ -448,7 +522,7 @@ struct Client: Codable {
     let name, phone, job: String?
     let image: String?
     let birthDate: String?
-    let social: RevSocial
+    let social: Socialll?
     let location: Location?
     
     enum CodingKeys: String, CodingKey {
@@ -462,18 +536,18 @@ struct Location: Codable {
     let lat, lng: String?
 }
 
-struct RevSocial: Codable {
+struct Socialll: Codable {
     let facebook: String?
     let instagram, snapchat, twitter: String?
 }
 
-struct Provider: Codable {
+struct Prroviderr: Codable {
     let name, phone, job: String?
-    let image: String
+    let image: String?
     let birthDate: String?
-    let region: String
-    let location: Location
-    let social: Social
+    let region: String?
+    let location: Location?
+    let social: Socialll?
     
     enum CodingKeys: String, CodingKey {
         case name, phone, job, image
@@ -483,12 +557,18 @@ struct Provider: Codable {
 }
 
 struct Service: Codable {
-    let serviceID: Int
-    let name: String
-    let price: Int
+    let serviceID: Int?
+    let name: String?
+    let price: Int?
     
     enum CodingKeys: String, CodingKey {
         case serviceID = "service_id"
         case name, price
+    }
+}
+
+class UITextVieww: UITextView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 0, height: 80)
     }
 }
