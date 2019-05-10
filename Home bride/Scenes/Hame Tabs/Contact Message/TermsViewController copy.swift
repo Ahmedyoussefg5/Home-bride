@@ -9,7 +9,10 @@
 import UIKit
 
 class TermsViewControllerr: UIViewController {
-
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        openedViewController = ""
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

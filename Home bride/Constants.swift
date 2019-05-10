@@ -25,3 +25,5 @@ let p = UserType.provider
 let u = UserType.user
 
 var user = u
+
+var openedViewController = ""

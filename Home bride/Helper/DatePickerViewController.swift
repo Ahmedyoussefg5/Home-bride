@@ -21,6 +21,7 @@ class DatePickerViewController: UIViewController {
         picker.viewBorderColor = .paleGreyTwo
         picker.viewCornerRadius = 8
         picker.datePickerMode = mode
+        picker.locale = Locale(identifier: "en_GB")
         return picker
     }()
     lazy var confirmButton: UIButton = {
@@ -35,9 +36,10 @@ class DatePickerViewController: UIViewController {
             guard let self = self else { return }
             if self.mode == .dateAndTime {
                 let date = self.getDateToStringDate(date: self.pickerView.date)
-                let time = self.getTime(date: self.pickerView.date)
-                let total = "\(date) \(time)"
-                self.delegate?.result(name: total)
+                let time = self.getDateToStringTime(date: self.pickerView.date)
+                var total = "\(date) \(time)"
+                let totall = total.toEng()
+                self.delegate?.result(name: "\(totall)")
                 self.dismissMePlease()
                 return
             }
@@ -125,13 +127,13 @@ class DatePickerViewController: UIViewController {
         return myStringafd
     }
     
-    func getTime(date: Date) -> String {
-        let formatter = DateFormatter()
-        let time = pickerView.date
-        formatter.dateFormat = "h:m"
-        let myStringafd = formatter.string(from: time)
-        return myStringafd
-    }
+//    func getTime(date: Date) -> String {
+//        let formatter = DateFormatter()
+//        let time = pickerView.date
+//        formatter.dateFormat = "h:m"
+//        let myStringafd = formatter.string(from: time)
+//        return myStringafd
+//    }
     
     func getDateToStringTime(date: Date) -> String {
         let formatter = DateFormatter()
@@ -143,5 +145,22 @@ class DatePickerViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print(selectedDate)
+    }
+}
+
+extension String {
+    func toEng() -> String {
+        var val = self.replacingOccurrences(of: "٠", with: "0", count: 100)
+        val = val.replacingOccurrences(of: "١", with: "1", count: 100)
+        val = val.replacingOccurrences(of: "٢", with: "2", count: 100)
+        val = val.replacingOccurrences(of: "٣", with: "3", count: 100)
+        val = val.replacingOccurrences(of: "٤", with: "4", count: 100)
+        val = val.replacingOccurrences(of: "٥", with: "5", count: 100)
+        val = val.replacingOccurrences(of: "٦", with: "6", count: 100)
+        val = val.replacingOccurrences(of: "٧", with: "7", count: 100)
+        val = val.replacingOccurrences(of: "٨", with: "8", count: 100)
+        val = val.replacingOccurrences(of: "٩", with: "9", count: 100)
+        
+        return val
     }
 }

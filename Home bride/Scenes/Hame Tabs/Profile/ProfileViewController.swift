@@ -635,11 +635,16 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
             pars["region_id"] = rigonId
         }
         
-        callApi(UpdateProfData.self, url: url, parameters: pars) { (data) in
+        callApi(UpdateProfData.self, url: url, parameters: pars) {[weak self] (data) in
             if let data = data {
                 guard let userData = data.data else { return }
                 AuthService.instance.setUserDefaults(update: userData)
-                self.showAlert(title: "", message: "تم الحفظ")
+                self?.mainView.firstNameText.placeholder = userData.firstName
+                self?.mainView.familyNameText.placeholder = userData.lastName
+                self?.mainView.mailText.placeholder = userData.email
+                self?.mainView.phoneText.placeholder = userData.phone
+                self?.mainView.jobText.placeholder = userData.job
+                self?.showAlert(title: "", message: "تم الحفظ")
             }
         }
     }

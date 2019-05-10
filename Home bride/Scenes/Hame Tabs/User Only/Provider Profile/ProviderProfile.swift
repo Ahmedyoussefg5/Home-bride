@@ -9,7 +9,7 @@
 import UIKit
 
 class ProviderProfileView: BaseView {
-    private lazy var logo: UIImageView = {
+    lazy var logo: UIImageView = {
         let img = UIImageView()
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
@@ -152,6 +152,7 @@ class ProviderProfileViewController: BaseUIViewController<ProviderProfileView> {
     init(prov: Providerr) {
         data = prov
         super.init(nibName: nil, bundle: nil)
+        mainView.logo.load(with: prov.image)
     }
     
     required init?(coder aDecoder: NSCoder) {

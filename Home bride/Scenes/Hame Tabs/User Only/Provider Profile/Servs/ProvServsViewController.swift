@@ -8,7 +8,17 @@
 
 import UIKit
 
-class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewDelegate, UITableViewDataSource, SendResult {
+class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewDelegate, UITableViewDataSource, SendResult, DeliveryResulte {
+    func send(Status: Bool) {
+        getDate()
+    }
+    
+    func location(name: String, lat: String, long: String) {
+        self.lat = lat
+        self.lng = long
+        getDate()
+    }
+    
     func result(name: String) {
         print(name)
         selectedDate = name
@@ -21,6 +31,21 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         }
     }
     
+    private func getDate() {
+        let data = serv?.filter({ $0.isSelected })
+        guard let dataa = data, dataa.count > 0 else {
+            showAlert(title: "", message: "يرجى اختيار خدمة واحدة على الاقل")
+            return }
+        let vc = DatePickerViewController(mode: .dateAndTime)
+        vc.delegate = self
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {[weak self] in
+            self?.presentModelyVC(vc: vc)
+        }
+    }
+    
+    var lat: String?
+    var lng: String?
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serv?.count ?? 0
     }
@@ -77,7 +102,8 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         super.viewDidLoad()
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
-        setupNavBarApperance(title: "خدمات", addImageTitle: no, showNotifButton: no)
+//        setupNavBarApperance(title: , addImageTitle: no, showNotifButton: no)
+        title = "خدمات"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "الاجمالي", style: .plain, target: self, action: #selector(total))
         view.addSubview(act)
         act.color = mediumPurple
@@ -85,7 +111,9 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         getData()
         
         mainView.resButton.addTheTarget {[weak self] in
-            let vc = DatePickerViewController(mode: .dateAndTime)
+            self?.lng = nil
+            self?.lat = nil
+            let vc = DeliveryViewController()
             vc.delegate = self
             self?.presentModelyVC(vc: vc)
         }
@@ -111,12 +139,18 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
 
         let url = "http://m4a8el.panorama-q.com/api/reservation"
         
-        let pars = [
-            "delivery": 1,
+        var pars = [
+            "delivery": 0,
             "date": date,
             "services": ids
             ] as [String : Any]
         
+        if let lng = lng, let lat = lat {
+            pars["lng"] = lng
+            pars["lat"] = lat
+            pars["delivery"] = 1
+        }
+
         callApi(ResResposeData.self, url: url, method: .post, parameters: pars, activityIndicator: act) {[weak self] (data) in
             if data != nil {
                 self?.showAlert(title: "", message: "تم الحجز بنجاح")

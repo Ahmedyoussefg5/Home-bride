@@ -276,6 +276,7 @@ class AuthService {
     func restartAppAndRemoveUserDefaults() {
         removeUserDefaults()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                openedViewController = ""
                 guard let window =  UIApplication.shared.keyWindow else { fatalError() }
                 window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
                 UIView.transition(with: window, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)

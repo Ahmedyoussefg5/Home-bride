@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow()
         window?.makeKeyAndVisible()
+        window?.backgroundColor = .white
         print(AuthService.instance.authToken ?? "")
 
         IQKeyboardManager.shared.enable = true

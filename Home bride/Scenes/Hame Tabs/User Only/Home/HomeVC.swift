@@ -213,8 +213,8 @@ class UserHomeViewController: BaseUIViewController<UserHomeView>, SpinWheelContr
         act.fillSuperview()
         
         mainView.arrowImage.addTapGestureRecognizer {[weak self] in
-            let vc = SubCatViewController(id: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].id ?? 0, name: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].name ?? "")
-            self?.navigationController?.pushViewController(UserTabBarController(vc: vc), animated: ya)
+//            let vc = SubCatViewController(id: , name:  ?? "")
+            self?.navigationController?.pushViewController(UserTabBarController(id: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].id, name: self?.allCategories[self?.mainView.spinWheelControl.selectedIndex ?? 0].name), animated: ya)
         }
         
         //
@@ -235,7 +235,7 @@ class UserHomeViewController: BaseUIViewController<UserHomeView>, SpinWheelContr
 //        }
         
         mainView.seeAllButton.addTheTarget {[weak self] in
-            self?.navigationController?.pushViewController(UserTabBarController(vc: AllCatViewController()), animated: ya)
+            self?.navigationController?.pushViewController(UserTabBarController(id: nil, name: nil), animated: ya)
         }
     }
     

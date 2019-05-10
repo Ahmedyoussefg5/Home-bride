@@ -34,6 +34,7 @@ class ChatViewController: UIViewController {
         title = name
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
+        mainView.mainTableView.keyboardDismissMode = .onDrag
         mainView.chatTxt.delegate = self
         mainView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
     }
@@ -41,7 +42,11 @@ class ChatViewController: UIViewController {
     func getMess() {
         callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in
             if let data = data {
+                self?.lastPage = data.data?.messages.paginate?.totalPages ?? 1
+                self?.currentPage = 1
+                self?.isLoading = false
                 self?.messages = data.data?.messages.messages.reversed()
+                self?.paginate()
             }
         }
     }
@@ -55,21 +60,49 @@ class ChatViewController: UIViewController {
         didSet {
             mainView.mainTableView.reloadData()
             if self.messages?.count ?? 0 > 3 {
-                mainView.mainTableView.scrollToBottom()
+//                if !isLoading {
+                    mainView.mainTableView.scrollToBottom()
+//                }
             }
         }
     }
 
     @objc private func sendMessage() {
-        guard let message = mainView.chatTxt.text , message.count > 0 else { return }
-        self.mainView.chatTxt.text = ""
+        guard let message = mainView.chatTxt.text , message.trimmedString.count > 0 else { return }
+        
+        mainView.chatTxt.text = ""
+        
         let pars = [
             "order_id": orderId,
             "message": message
             ] as [String : Any]
+        
         callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat", parameters: pars) {[weak self] (data) in
             if let data = data {
                 self?.messages = data.data?.messages.messages.reversed()
+            }
+        }
+    }
+    
+    var currentPage = 1
+    var lastPage = 2
+    var isLoading = true
+
+    private func paginate() {
+        
+        guard !isLoading else { return }
+        guard lastPage > currentPage else { return }
+        isLoading = true
+        
+        let url = "http://m4a8el.panorama-q.com/api/chat/\(orderId)?page=\(currentPage + 1)"
+        
+        callApi(AllMessData.self, url: url, method: .get, parameters: nil) {[weak self] (data) in
+            guard let self = self else { return }
+            if let data = data, let da = data.data {
+                self.messages?.insert(contentsOf: da.messages.messages, at: 0)
+                self.currentPage += 1
+                self.isLoading = false
+                self.paginate()
             }
         }
     }
@@ -118,7 +151,7 @@ struct MessClass: Codable {
 
 struct Messages: Codable {
     let messages: [Message]
-    let paginate: Paginate
+    let paginate: Paginate?
 }
 
 struct Message: Codable {

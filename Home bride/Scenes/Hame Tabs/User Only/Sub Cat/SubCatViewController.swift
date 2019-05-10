@@ -62,7 +62,8 @@ class SubCatViewController: BaseUIViewController<SubCatView>, UICollectionViewDe
         super.viewDidLoad()
         setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
         
-//        title = name
+        title = name
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         mainView.mainCollectionView.delegate = self
         mainView.mainCollectionView.dataSource = self

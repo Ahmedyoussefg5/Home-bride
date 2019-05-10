@@ -59,4 +59,25 @@ class AllCatViewController: BaseUIViewController<AllCatView>, UICollectionViewDe
         getAllcategories()
     }
     
+    var id: Int?
+    var name: String?
+
+    init(id: Int?, name: String?) {
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let id = id, first {//, let name = name {
+            navigationController?.pushViewController(SubCatViewController(id: id, name: name ?? ""), animated: ya)
+            first = no
+        }
+    }
+    
+    var first = ya
 }

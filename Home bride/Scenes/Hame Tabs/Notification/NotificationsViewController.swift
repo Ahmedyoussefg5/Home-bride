@@ -45,13 +45,16 @@ class NotificationsViewController: BaseUIViewController<NotificationsView>, UITa
             mainView.mainTableView.reloadData()
         }
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        openedViewController = ""
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
+//        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
         title = "الاشعارات"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
-        setupSideMenu()
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
+//        setupSideMenu()
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
         

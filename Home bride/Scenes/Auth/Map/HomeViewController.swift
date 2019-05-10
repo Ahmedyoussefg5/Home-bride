@@ -26,8 +26,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var firstItem: MKMapItem? {
         didSet {
-//            drawLine()
-            mainView.searchBar.text = firstItem?.name
+            if let loc = firstItem?.name, loc != "Unknown Location" {
+                mainView.searchBar.text = loc
+            }
         }
     }
     

@@ -14,7 +14,10 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.data.orders.count ?? 0
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        openedViewController = ""
+    }
     lazy var mainTableView: UITableView = {
         let tableV = UITableView()
         tableV.isTransperant()
@@ -39,16 +42,21 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
         super.viewDidLoad()
         setupSideMenu()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        if user == p {
+            setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        } else {
+            title = "سجل الطلبات"
+        }
 
         view.addSubview(mainTableView)
         mainTableView.fillSuperview()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        if user == p {
+            setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
+        }
         getData()
     }
     

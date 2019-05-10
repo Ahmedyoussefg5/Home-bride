@@ -107,15 +107,31 @@ class SideMenuTableViewController: UITableViewController {
                 NotificationCenter.default.post(name: toProfileVC, object: nil)
                 dismiss(animated: true, completion: nil)
             case 1:
+                guard openedViewController != "NotificationsViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "NotificationsViewController"
                 navigationController?.pushViewController(NotificationsViewController(), animated: ya)
             case 2:
                 NotificationCenter.default.post(name: toHomeVC, object: nil)
                 dismiss(animated: true, completion: nil)
             case 3:
+                guard openedViewController != "TermsViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "TermsViewController"
                 navigationController?.pushViewController(TermsViewController(), animated: ya)
             case 4:
+                guard openedViewController != "TermsViewControllerr" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "TermsViewControllerr"
                 navigationController?.pushViewController(TermsViewControllerr(), animated: ya)
             case 5:
+                guard openedViewController != "ContactViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "ContactViewController"
                 navigationController?.pushViewController(ContactViewController(), animated: ya)
             case 6:
                 AuthService.instance.restartAppAndRemoveUserDefaults()
@@ -130,19 +146,41 @@ class SideMenuTableViewController: UITableViewController {
                 dismiss(animated: true, completion: nil)
                 return
             case 1:
+                guard openedViewController != "UserProfileViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "UserProfileViewController"
                 navigationController?.pushViewController(UserProfileViewController(), animated: ya)
             case 2:
+                guard openedViewController != "NotificationsViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "NotificationsViewController"
                 navigationController?.pushViewController(NotificationsViewController(), animated: ya)
                 return
-                //        case 4:
-            //            vc = SettingsViewController()
             case 3:
+                guard openedViewController != "HomeNewReqViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "HomeNewReqViewController"
                 navigationController?.pushViewController(HomeNewReqViewController(), animated: ya)
             case 5:
+                guard openedViewController != "TermsViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "TermsViewController"
                 navigationController?.pushViewController(TermsViewController(), animated: ya)
             case 6:
+                guard openedViewController != "TermsViewControllerr" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "TermsViewControllerr"
                 navigationController?.pushViewController(TermsViewControllerr(), animated: ya)
             case 7:
+                guard openedViewController != "ContactViewController" else {
+                    dismiss(animated: true, completion: nil)
+                    return }
+                openedViewController = "ContactViewController"
                 navigationController?.pushViewController(ContactViewController(), animated: ya)
             case 8:
                 AuthService.instance.restartAppAndRemoveUserDefaults()

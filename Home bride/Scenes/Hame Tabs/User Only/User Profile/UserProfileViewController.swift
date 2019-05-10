@@ -146,8 +146,8 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
+//        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
         
         mainView.userImage.addTapGestureRecognizer {[weak self] in
             self?.pickUserImage()
@@ -163,7 +163,10 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
             }
         }
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        openedViewController = ""
+    }
     private func saveDate() {
         let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
         var pars = [String:Any]()
@@ -172,11 +175,15 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
         pars["email"] = mainView.mailText.text
         pars["phone"] = mainView.phoneText.text
         
-        callApi(UpdateProfData.self, url: url, parameters: pars) { (data) in
+        callApi(UpdateProfData.self, url: url, parameters: pars) {[weak self] (data) in
             if let data = data {
                 guard let userData = data.data else { return }
                 AuthService.instance.setUserDefaults(update: userData)
-                self.showAlert(title: "", message: "تم الحفظ")
+                self?.mainView.firstNameText.placeholder = userData.firstName
+                self?.mainView.familyNameText.placeholder = userData.lastName
+                self?.mainView.mailText.placeholder = userData.email
+                self?.mainView.phoneText.placeholder = userData.phone
+                self?.showAlert(title: "", message: "تم الحفظ")
             }
         }
     }

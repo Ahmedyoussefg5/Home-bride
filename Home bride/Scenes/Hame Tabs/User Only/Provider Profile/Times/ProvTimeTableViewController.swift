@@ -57,9 +57,6 @@ class ProvTimeTableViewController: BaseUIViewController<ProvTimeTableView>, UITa
         }
     }
     
-    var currentPage = 1
-    var lastPage = 2
-    var isLoading = true
     private func getData() {
         let url = "http://m4a8el.panorama-q.com/api/schedules/\(id)"
         callApi(AllSchedules.self, url: url, method: .get, parameters: nil, activityIndicator: activ) { (data) in
@@ -72,6 +69,9 @@ class ProvTimeTableViewController: BaseUIViewController<ProvTimeTableView>, UITa
         }
     }
     
+    var currentPage = 1
+    var lastPage = 2
+    var isLoading = true
     private func paginate() {
         
         guard !isLoading else { return }
