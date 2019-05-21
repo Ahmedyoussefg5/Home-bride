@@ -58,7 +58,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
                     "password": pass,
                     "region_id": rigonId,
                     "sub_category_id": catId,
-                    "fcm_token_ios": "Messaging.messaging().fcmToken" ?? "",
+                    "fcm_token_ios": Messaging.messaging().fcmToken ?? "",
                     "location[lat]": lat,
                     "location[long]": long
             ] as [String : Any]
@@ -71,7 +71,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
                     "email": mail,
                     "phone": phone,
                     "password": pass,
-                    "fcm_token_ios": "Messaging.messaging().fcmToken" ?? ""
+                    "fcm_token_ios": Messaging.messaging().fcmToken ?? ""
             ]
         }
         

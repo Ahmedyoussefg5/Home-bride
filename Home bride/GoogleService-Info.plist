@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>754994060872-589g3977etk79pvkc9hpo76g0e52fbtq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.754994060872-589g3977etk79pvkc9hpo76g0e52fbtq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAQ_e35Fbo3PkhIluaHrfbUEvI-t-F5tUk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>754994060872</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.panorama.homebride</string>
+	<key>PROJECT_ID</key>
+	<string>home-bride</string>
+	<key>STORAGE_BUCKET</key>
+	<string>home-bride.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:754994060872:ios:7e7b86aaf987acf8</string>
+	<key>DATABASE_URL</key>
+	<string>https://home-bride.firebaseio.com</string>
+</dict>
+</plist>

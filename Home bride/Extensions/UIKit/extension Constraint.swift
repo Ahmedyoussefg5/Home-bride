@@ -335,6 +335,22 @@ extension UIView {
     }
 }
 
+extension UIView {
+    @discardableResult
+    func stack(_ axis: NSLayoutConstraint.Axis = .vertical, views: UIView..., spacing: CGFloat = 0, addTo view: UIView? = nil) -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: views)
+        stackView.axis = axis
+        stackView.spacing = spacing
+        if let view = view {
+            view.addSubview(stackView)
+        } else {
+            addSubview(stackView)
+        }
+        stackView.fillSuperview()
+        return stackView
+    }
+}
+
 struct AnchoredConstraints {
     var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
 }

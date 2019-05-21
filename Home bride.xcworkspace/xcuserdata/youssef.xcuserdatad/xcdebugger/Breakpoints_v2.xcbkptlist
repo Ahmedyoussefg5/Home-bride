@@ -22,31 +22,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Home_bride.PhotoServices.imagePickerController(_: __C.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;__C.UIImagePickerControllerInfoKey, Any&gt;) -&gt; ()"
+                  symbolName = "closure #2 () -&gt; () in Home_bride.PhotoServices.imagePickerController(_: __C.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;__C.UIImagePickerControllerInfoKey, Any&gt;) -&gt; ()"
                   moduleName = "Home bride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Data/IOS%20Projects/Home%20bride/Home%20bride/Helper/PhotosManger.swift"
-                  timestampString = "579128381.244149"
+                  timestampString = "580130573.868421"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
                   endingLineNumber = "76"
-                  offsetFromSymbolStart = "1259">
+                  offsetFromSymbolStart = "32">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Home_bride.PhotoServices.imagePickerController(_: __C.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;__C.UIImagePickerControllerInfoKey, Any&gt;) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in Home_bride.PhotoServices.imagePickerController(_: __C.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;__C.UIImagePickerControllerInfoKey, Any&gt;) -&gt; ()"
                   moduleName = "Home bride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Data/IOS%20Projects/Home%20bride/Home%20bride/Helper/PhotosManger.swift"
-                  timestampString = "579128381.255235"
+                  timestampString = "580130573.875373"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
                   endingLineNumber = "77"
-                  offsetFromSymbolStart = "32">
+                  offsetFromSymbolStart = "41">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
-            timestampString = "579098924.938303"
+            timestampString = "579440649.368382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "435"
-            endingLineNumber = "435"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "confView(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
-            timestampString = "579098925.4424469"
+            timestampString = "579440649.368943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
-            landmarkName = "confView(data:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "accept()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,14 +89,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Home bride/Helper/DatePickerViewController.swift"
-            timestampString = "579105793.6369849"
+            filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
+            timestampString = "579440649.369321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "accept()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

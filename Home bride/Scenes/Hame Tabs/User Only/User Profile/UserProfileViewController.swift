@@ -167,6 +167,7 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
         super.viewDidDisappear(animated)
         openedViewController = ""
     }
+    
     private func saveDate() {
         let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
         var pars = [String:Any]()

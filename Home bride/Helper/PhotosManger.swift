@@ -11,7 +11,6 @@ import MobileCoreServices
 import UIKit
 import AVFoundation
 
-
 class PhotoServices: NSObject {
     
     static let shared = PhotoServices()

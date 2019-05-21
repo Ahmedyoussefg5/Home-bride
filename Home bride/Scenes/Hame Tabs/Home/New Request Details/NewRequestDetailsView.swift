@@ -66,7 +66,8 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
         let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
         let pars = [
             "status": "accept",
-            "_method": "PUT"
+            "_method": "PUT",
+            "delivery_fees": mainView.priceTxt.text ?? "0"
         ]
         callApi(ReqData.self, url: url, method: .post, parameters: pars) {[weak self] (data) in
             if data != nil {
@@ -131,13 +132,26 @@ class NewRequestDetailsView: BaseView {
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
-    let adrressLable = RequestDetailsGrayLable(title: "القسم الرئيسي - القسم الفرعي - نوع الطلب")
-    let dateLable = RequestDetailsGrayLable(title: "123-12-12")
-    let priceLable = RequestDetailsGrayLable(title: "السعر: ١٢٣٠٠٠ ريال")
+    let adrressLable = RequestDetailsGrayLable(title: "")
+    let dateLable = RequestDetailsGrayLable(title: "")
+    let priceLable = RequestDetailsGrayLable(title: "")
+    let costLable = RequestDetailsGrayLable(title: "")
 
     let phoneNumLable = RequestDetailsGrayLable(title: "رقم الجوال")
     let birthLable = RequestDetailsGrayLable(title: "تاريخ الميلاد")
 //    let cityLable = RequestDetailsGrayLable(title: "الوظيفة")
+    lazy var priceTxt: UITextField = {
+        let txt = UITextField()
+        txt.textAlignment = .natural
+        txt.placeholder = "سعر الذهاب للمنزل"
+        txt.backgroundColor = .white
+        txt.textColor = .darkGray
+        txt.font = .CairoSemiBold(of: 15)
+        txt.setLeftPaddingPoints(5)
+        txt.setRightPaddingPoints(5)
+        txt.layer.cornerRadius = 6.0
+        return txt
+    }()
 
     lazy var faceButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -266,7 +280,7 @@ class NewRequestDetailsView: BaseView {
         detailsContainerView.topAnchor.constraint(equalTo: headLable.bottomAnchor, constant: 10).isActive = ya
         detailsContainerView.widthAnchorWithMultiplier(multiplier: 0.9)
         detailsContainerView.centerXInSuperview()
-        detailsContainerView.heightAnchorConstant(constant: 200)
+        detailsContainerView.heightAnchorConstant(constant: 330)
         
         //
         let headLablee = RequestDetailsGrayLable(title: "بيانات العميل")
@@ -289,6 +303,12 @@ class NewRequestDetailsView: BaseView {
         setupRequestDetailsView()
         setupAgentDetailsContainerView()
         if user == p {
+            scrollView.addSubview(priceTxt)
+            priceTxt.topAnchorToView(anchor: agentDetailsContainerView.bottomAnchor)
+            priceTxt.widthAnchorWithMultiplier(multiplier: 0.7)
+            priceTxt.centerXInSuperview()
+            priceTxt.heightAnchorConstant(constant: 40)
+            
             let stack = UIStackView(arrangedSubviews: [refuseButton, acceptButton])
             stack.axis = .horizontal
             stack.spacing = 70
@@ -298,7 +318,7 @@ class NewRequestDetailsView: BaseView {
                 stack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
                 stack.heightAnchor.constraint(equalToConstant: 40),
                 stack.centerXInSuperview(),
-                stack.topAnchor.constraint(equalTo: agentDetailsContainerView.bottomAnchor, constant: 20)
+                stack.topAnchor.constraint(equalTo: priceTxt.bottomAnchor, constant: 10)
                 ])
         }
     }
@@ -318,6 +338,7 @@ class NewRequestDetailsView: BaseView {
     
     private func setupRequestDetailsView() {
         let headLable = RequestDetailsRedLable(title: "اسم الطلب")
+        let homeCostLable = RequestDetailsRedLable(title: "سعر الذهاب للمنزل")
         let requestsLable = RequestDetailsRedLable(title: "الخدمات المطلوبة")
         let totalLable = RequestDetailsRedLable(title: "اجمالي الحساب")
         
@@ -325,6 +346,8 @@ class NewRequestDetailsView: BaseView {
             UIStackView(arrangedSubviews: [
                 headLable,
                 adrressLable,
+                homeCostLable,
+                costLable,
                 dateLable,
                 stackSpliterGray(),
                 requestsLable,
@@ -422,6 +445,7 @@ class NewRequestDetailsView: BaseView {
         adrressLable.text = data.data.subCategory
         dateLable.text = data.data.date
         priceLable.text = "\(data.data.total ?? 0) ريال"
+        costLable.text = "\(data.data.deliveryFees ?? "0") ريال"
 //        cityLable.text = "\(cityLable.text ?? ""): \(data.data.client.job ?? "")"
         if user == p {
             userImage.load(with: data.data.client?.image)
@@ -459,7 +483,15 @@ class NewRequestDetailsView: BaseView {
         } else {
             phoneNumLable.text = "\(phoneNumLable.text ?? ""): \(data.data.client?.phone ?? "")"
             birthLable.text = "\(birthLable.text ?? ""): \(data.data.client?.birthDate ?? "")"
+            if data.data.delivery == 1 {
+                priceTxt.isHidden = no
+                locationButton.isHidden = ya
+            } else {
+                priceTxt.isHidden = ya
+            }
+
         }
+        
     }
 }
 

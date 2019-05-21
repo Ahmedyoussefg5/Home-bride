@@ -10,38 +10,38 @@ import UIKit
 
 class GalaryView: BaseView {
     
-    var selected = 0 {
-        didSet {
-            mainCollectionView.reloadData()
-        }
-    } // Pics
-    // 1 = vids
+//    var selected = 0 {
+//        didSet {
+//            mainCollectionView.reloadData()
+//        }
+//    } // Pics
+//    // 1 = vids
     
     lazy var photoButton: menuButton = {
         let btn = menuButton(title: "البوم الصور")
         btn.setTitleColor(lightPurple, for: .normal)
         btn.addTheTarget(action: {[weak self] in
-            self?.asd(sender: btn)
-            self?.selected = 0
+//            self?.asd(sender: btn)
+//            self?.selected = 0
         })
         return btn
     }()
     
-    func asd(sender: menuButton) {
-        [photoButton, vidButton].forEach { (btn) in
-            btn.isMenuSelected = no
-        }
-        sender.isMenuSelected = ya
-    }
+//    func asd(sender: menuButton) {
+//        [photoButton, vidButton].forEach { (btn) in
+//            btn.isMenuSelected = no
+//        }
+//        sender.isMenuSelected = ya
+//    }
     
-    lazy var vidButton: menuButton = {
-        let btn = menuButton(title: "البوم الفيديوهات")
-        btn.addTheTarget(action: {[weak self] in
-            self?.asd(sender: btn)
-            self?.selected = 1
-        })
-        return btn
-    }()
+//    lazy var vidButton: menuButton = {
+//        let btn = menuButton(title: "البوم الفيديوهات")
+//        btn.addTheTarget(action: {[weak self] in
+//            self?.asd(sender: btn)
+//            self?.selected = 1
+//        })
+//        return btn
+//    }()
     lazy var mainCollectionView: UICollectionView = {
         var layout = ArabicCollectionFlow()
         layout.scrollDirection = .vertical
@@ -53,11 +53,11 @@ class GalaryView: BaseView {
     }()
     override func setupView() {
         super.setupView()
-        addSubview(vidButton)
-        vidButton.leadingAnchorSuperView()
-        vidButton.topAnchorSuperView()
-        vidButton.widthAnchorWithMultiplier(multiplier: 0.5)
-        vidButton.heightAnchorConstant(constant: 50)
+//        addSubview(vidButton)
+//        vidButton.leadingAnchorSuperView()
+//        vidButton.topAnchorSuperView()
+//        vidButton.widthAnchorWithMultiplier(multiplier: 0.5)
+//        vidButton.heightAnchorConstant(constant: 50)
         
         addSubview(photoButton)
         photoButton.trailingAnchorAnchorSuperView()

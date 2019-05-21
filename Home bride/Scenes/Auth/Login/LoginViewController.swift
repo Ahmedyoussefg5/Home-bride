@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseMessaging
 
 class LoginViewController: BaseUIViewController<LoginView> {
     
@@ -44,7 +45,7 @@ class LoginViewController: BaseUIViewController<LoginView> {
         let pars = [
                     "email": mail,
                     "password": pass,
-                    "fcm_token_ios": "asassaassasasasasasa"
+                    "fcm_token_ios": Messaging.messaging().fcmToken ?? ""
             ] as [String : Any]
         
         callApi(RegisterModel.self, url: url, parameters: pars) {[weak self] (data) in

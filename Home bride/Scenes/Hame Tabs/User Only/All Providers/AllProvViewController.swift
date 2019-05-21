@@ -53,8 +53,14 @@ class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionView
         let url = "http://m4a8el.panorama-q.com/api/providers/\(id)"
         
         callApi(AllProvData.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
-            if let data = data {
-                self?.categories = data.data
+            if let data = data, var provs = data.data {
+                for ind in provs.indices {
+                    if provs[ind].isOnline {
+                        provs.safeSwap(from: ind, to: 0)
+                    }
+                }
+                print(provs)
+                self?.categories = provs
             }
         }
     }
@@ -78,7 +84,7 @@ class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionView
 struct AllProvData: BaseCodable {
     var status: Int
     var msg: String?
-    let data: [Providerr]
+    let data: [Providerr]?
 }
 
 struct Providerr: Codable {

@@ -6,8 +6,8 @@ import FirebaseMessaging
 
 extension AppDelegate  {
     func registerForRemoteNotifications(app: UIApplication) {
-
-//        FirebaseApp.configure()
+        
+        FirebaseApp.configure()
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         
@@ -46,7 +46,7 @@ extension AppDelegate {
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-//        CrashLogger.log(error)
+        //        CrashLogger.log(error)
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }
     
@@ -101,9 +101,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
+        //        if let messageID = userInfo[gcmMessageIDKey] {
+        //            print("Message ID: \(messageID)")
+        //        }
         
         // Print full message.
         print(userInfo)
@@ -129,12 +129,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         //    }
         
         //handlleFCM(userInfo: userInfo)
-        if AuthService.instance.shouldShowNotifications {
-            NotificationCenter.default.post(name: .changeNotificationIcon, object: nil, userInfo: nil)
-            completionHandler([.alert, .badge, .sound])
-        } else {
-            completionHandler([.badge])
-        }
+        //        if AuthService.instance.shouldShowNotifications {
+        //            NotificationCenter.default.post(name: .changeNotificationIcon, object: nil, userInfo: nil)
+        completionHandler([.alert, .badge, .sound])
+        //        } else {
+        //            completionHandler([.badge])
+        //        }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -142,7 +142,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         UIApplication.shared.applicationIconBadgeNumber = 0
         
-//        let userInfo = response.notification.request.content.userInfo
+        //        let userInfo = response.notification.request.content.userInfo
         
         //Print message ID.
         //  if let messageID = userInfo[gcmMessageIDKey] {
@@ -150,15 +150,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         //  }
         //  Print full message.
         //  print(userInfo)
-//        if let user = userInfo["aps"] {
-//            if let users = user as? NSDictionary {
-//                let alert = users["alert"] as? NSDictionary
-////                if showNotificationsViewController {
-////                    NotificationCenter.default.post(name: .didReciveResponseFromUserForRemoteNotificationOpenAllNotifications, object: nil, userInfo: alert as? [AnyHashable : Any])
-////                }
-//                print(alert as Any)
-//            }
-//        }
+        //        if let user = userInfo["aps"] {
+        //            if let users = user as? NSDictionary {
+        //                let alert = users["alert"] as? NSDictionary
+        ////                if showNotificationsViewController {
+        ////                    NotificationCenter.default.post(name: .didReciveResponseFromUserForRemoteNotificationOpenAllNotifications, object: nil, userInfo: alert as? [AnyHashable : Any])
+        ////                }
+        //                print(alert as Any)
+        //            }
+        //        }
         
         //handlleFCM(userInfo: userInfo)
         completionHandler()
@@ -170,8 +170,8 @@ extension AppDelegate: MessagingDelegate {
         // Note: This callback is fired at each app startup and whenever a new token is generated.
         print("Firebase registration token: \(fcmToken)")
         Messaging.messaging().subscribe(toTopic: "all")
-        // TODO: If necessary send token to application server.
-//        ApiService.shared.getData(User.self, requestData: .setUserFirebaseToken(tocken: fcmToken))
+        
+        Network.shared.getData(UpdateProfData.self, url: "http://m4a8el.panorama-q.com/api/user/update/profile", parameters: ["fcm_token_ios":fcmToken], method: .post) { (message, data) in }
     }
     
     // [START ios_10_"data"_message]

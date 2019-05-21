@@ -121,6 +121,7 @@
 		E8DE7D7B226F943A00016D9E /* CollectionArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE7D74226F93DE00016D9E /* CollectionArrayDataSource.swift */; };
 		E8DE7D7C226F943A00016D9E /* CollectionDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE7D75226F93DE00016D9E /* CollectionDataProvider.swift */; };
 		E8DE7D7D226F943A00016D9E /* CollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE7D76226F93DE00016D9E /* CollectionDataSource.swift */; };
+		E8E26F1B22941074001D6784 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8E26F1A22941073001D6784 /* GoogleService-Info.plist */; };
 		E8F3E755226D0FAC000A9D16 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F3E754226D0FAC000A9D16 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +245,7 @@
 		E8DE7D75226F93DE00016D9E /* CollectionDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataProvider.swift; sourceTree = "<group>"; };
 		E8DE7D76226F93DE00016D9E /* CollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataSource.swift; sourceTree = "<group>"; };
 		E8DE7D77226F93DE00016D9E /* GenericDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericDataSource.h; sourceTree = "<group>"; };
+		E8E26F1A22941073001D6784 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8F3E754226D0FAC000A9D16 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FD36F78FB1ED6C0E90EFD135 /* Pods_Home_bride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_bride.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -336,6 +338,7 @@
 				E83B042B226A86A700674F19 /* Assets.xcassets */,
 				E83B042D226A86A700674F19 /* LaunchScreen.storyboard */,
 				E83B0430226A86A700674F19 /* Info.plist */,
+				E8E26F1A22941073001D6784 /* GoogleService-Info.plist */,
 				E866F2E72272956C0052538D /* Constants.swift */,
 			);
 			path = "Home bride";
@@ -841,6 +844,7 @@
 			files = (
 				E83B042F226A86A700674F19 /* LaunchScreen.storyboard in Resources */,
 				E83B04A3226A8AF600674F19 /* Cairo-ExtraLight.ttf in Resources */,
+				E8E26F1B22941074001D6784 /* GoogleService-Info.plist in Resources */,
 				E83B04A6226A8AF600674F19 /* Cairo-SemiBold.ttf in Resources */,
 				E83B04A5226A8AF600674F19 /* Cairo-Regular.ttf in Resources */,
 				E83B04A2226A8AF600674F19 /* Cairo-Bold.ttf in Resources */,
@@ -1159,14 +1163,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6Z5X4XX28B;
+				DEVELOPMENT_TEAM = 9VAZQU789U;
 				INFOPLIST_FILE = "Home bride/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com..PanoramaAlme-bride";
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1179,14 +1183,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6Z5X4XX28B;
+				DEVELOPMENT_TEAM = 9VAZQU789U;
 				INFOPLIST_FILE = "Home bride/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com..PanoramaAlme-bride";
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

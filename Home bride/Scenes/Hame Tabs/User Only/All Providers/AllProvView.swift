@@ -39,6 +39,14 @@ class ProvCell: UICollectionViewCell {
         view.layer.applySketchShadow(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.19), alpha: 1, x: 0, y: 3, blur: 2, spread: 0)
         return view
     }()
+    
+    private lazy var onlineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     private lazy var cellImage: UIImageView = {
         let img = UIImageView()
         img.clipsToBounds = true
@@ -67,6 +75,12 @@ class ProvCell: UICollectionViewCell {
         cellImage.heightAnchorWithMultiplier(multiplier: 0.9)
         cellImage.widthAnchorEqualHeightAnchor()
 
+        containerView.addSubview(onlineView)
+        onlineView.trailingAnchorAnchorSuperView(constant: -5)
+        onlineView.bottomAnchorSuperView(constant: -5)
+        onlineView.widthAnchorConstant(constant: 20)
+        onlineView.heightAnchorConstant(constant: 20)
+        onlineView.viewCornerRadius = 10
         
         let lab = UILabel()
         lab.font = UIFont.CairoRegular(of: 13)
@@ -85,6 +99,7 @@ class ProvCell: UICollectionViewCell {
     func configCell(_ item: Providerr) {
         lable.text = "\(item.firstName)  \(item.lastName)"
         cellImage.load(with: item.image)
+        item.isOnline ? (onlineView.backgroundColor = .green) : (onlineView.backgroundColor = .lightGray)
     }
     
     required init?(coder aDecoder: NSCoder) {
