@@ -60,9 +60,9 @@ class GalaryView: BaseView {
 //        vidButton.heightAnchorConstant(constant: 50)
         
         addSubview(photoButton)
-        photoButton.trailingAnchorAnchorSuperView()
+        photoButton.centerXInSuperview()
         photoButton.topAnchorSuperView()
-        photoButton.widthAnchorWithMultiplier(multiplier: 0.5)
+        photoButton.widthAnchorWithMultiplier(multiplier: 0.95)
         photoButton.heightAnchorConstant(constant: 50)
         
         addSubview(mainCollectionView)
@@ -70,7 +70,6 @@ class GalaryView: BaseView {
         mainCollectionView.topAnchor.constraint(equalTo: photoButton.bottomAnchor).isActive = ya
         mainCollectionView.widthAnchorWithMultiplier(multiplier: 0.95)
         mainCollectionView.bottomAnchorSuperView(constant: 0)
-        
     }
     
 }

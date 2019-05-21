@@ -26,6 +26,8 @@ class ChatViewController: UIViewController {
         fatalError()
     }
     
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getMess()
@@ -37,16 +39,26 @@ class ChatViewController: UIViewController {
         mainView.mainTableView.keyboardDismissMode = .onDrag
         mainView.chatTxt.delegate = self
         mainView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        
+        timer = Timer(timeInterval: 2, target: self, selector: #selector(getMess), userInfo: nil, repeats: true)
     }
     
-    func getMess() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc func getMess() {
         callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in
-            if let data = data {
-                self?.lastPage = data.data?.messages.paginate?.totalPages ?? 1
-                self?.currentPage = 1
-                self?.isLoading = false
-                self?.messages = data.data?.messages.messages.reversed()
-                self?.paginate()
+            if self?.messages == nil {
+                if let data = data, self?.messages?.count ?? 0 != data.data?.messages.messages.count ?? 0 {
+                    self?.lastPage = data.data?.messages.paginate?.totalPages ?? 1
+                    self?.currentPage = 1
+                    self?.isLoading = false
+                    self?.messages = data.data?.messages.messages.reversed()
+                    self?.paginate()
+                }
             }
         }
     }

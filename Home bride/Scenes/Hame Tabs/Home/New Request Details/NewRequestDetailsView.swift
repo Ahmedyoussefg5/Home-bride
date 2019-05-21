@@ -128,7 +128,7 @@ class NewRequestDetailsView: BaseView {
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.alwaysBounceVertical = true
-        scroll.contentSize.height = 800
+        scroll.contentSize.height = 900
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
@@ -146,6 +146,8 @@ class NewRequestDetailsView: BaseView {
         txt.placeholder = "سعر الذهاب للمنزل"
         txt.backgroundColor = .white
         txt.textColor = .darkGray
+        txt.viewBorderColor = .lightGray
+        txt.viewBorderWidth = 0.5
         txt.font = .CairoSemiBold(of: 15)
         txt.setLeftPaddingPoints(5)
         txt.setRightPaddingPoints(5)
@@ -304,7 +306,7 @@ class NewRequestDetailsView: BaseView {
         setupAgentDetailsContainerView()
         if user == p {
             scrollView.addSubview(priceTxt)
-            priceTxt.topAnchorToView(anchor: agentDetailsContainerView.bottomAnchor)
+            priceTxt.topAnchorToView(anchor: agentDetailsContainerView.bottomAnchor, constant: 5)
             priceTxt.widthAnchorWithMultiplier(multiplier: 0.7)
             priceTxt.centerXInSuperview()
             priceTxt.heightAnchorConstant(constant: 40)
@@ -445,7 +447,7 @@ class NewRequestDetailsView: BaseView {
         adrressLable.text = data.data.subCategory
         dateLable.text = data.data.date
         priceLable.text = "\(data.data.total ?? 0) ريال"
-        costLable.text = "\(data.data.deliveryFees ?? "0") ريال"
+        costLable.text = "\(data.data.deliveryFees ?? "لم يحدد") ريال"
 //        cityLable.text = "\(cityLable.text ?? ""): \(data.data.client.job ?? "")"
         if user == p {
             userImage.load(with: data.data.client?.image)
@@ -485,9 +487,10 @@ class NewRequestDetailsView: BaseView {
             birthLable.text = "\(birthLable.text ?? ""): \(data.data.client?.birthDate ?? "")"
             if data.data.delivery == 1 {
                 priceTxt.isHidden = no
-                locationButton.isHidden = ya
+                locationButton.isHidden = no
             } else {
                 priceTxt.isHidden = ya
+                locationButton.isHidden = ya
             }
 
         }

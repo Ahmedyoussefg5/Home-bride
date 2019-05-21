@@ -26,7 +26,7 @@
                   moduleName = "Home bride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Data/IOS%20Projects/Home%20bride/Home%20bride/Helper/PhotosManger.swift"
-                  timestampString = "580130573.868421"
+                  timestampString = "580140790.446789"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -41,7 +41,7 @@
                   moduleName = "Home bride"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Data/IOS%20Projects/Home%20bride/Home%20bride/Helper/PhotosManger.swift"
-                  timestampString = "580130573.875373"
+                  timestampString = "580140790.457335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
@@ -58,44 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
-            timestampString = "579440649.368382"
+            timestampString = "580140789.9849631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
             landmarkName = "confView(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
-            timestampString = "579440649.368943"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "accept()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Home bride/Scenes/Hame Tabs/Home/New Request Details/NewRequestDetailsView.swift"
-            timestampString = "579440649.369321"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "accept()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
