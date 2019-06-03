@@ -42,6 +42,10 @@ class DatePickerViewController: UIViewController {
                 self.delegate?.result(name: "\(totall)")
                 self.dismissMePlease()
                 return
+            } else if self.mode == .time {
+                self.delegate?.result(name: self.getTime(date: self.pickerView.date))
+                self.dismissMePlease()
+                return
             }
             self.pickerViewValue()
             self.delegate?.result(name: self.getDateToStringDate(date: self.pickerView.date))
@@ -127,13 +131,13 @@ class DatePickerViewController: UIViewController {
         return myStringafd
     }
     
-//    func getTime(date: Date) -> String {
-//        let formatter = DateFormatter()
-//        let time = pickerView.date
-//        formatter.dateFormat = "h:m"
-//        let myStringafd = formatter.string(from: time)
-//        return myStringafd
-//    }
+    func getTime(date: Date) -> String {
+        let formatter = DateFormatter()
+        let time = pickerView.date
+        formatter.dateFormat = "HH:mm"
+        let myStringafd = formatter.string(from: time)
+        return myStringafd
+    }
     
     func getDateToStringTime(date: Date) -> String {
         let formatter = DateFormatter()
@@ -144,7 +148,7 @@ class DatePickerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print(selectedDate)
+//        print(selectedDate)
     }
 }
 

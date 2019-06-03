@@ -696,6 +696,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
                 if data.msg != nil {
                     self?.showAlert(title: nil, message: data.msg)
                 } else {
+                    self?.getQualifData()
                     self?.showAlert(title: "", message: "تم الحفظ")
                 }
             }

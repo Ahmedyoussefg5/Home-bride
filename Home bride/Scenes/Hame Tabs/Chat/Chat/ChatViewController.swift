@@ -26,7 +26,7 @@ class ChatViewController: UIViewController {
         fatalError()
     }
     
-    var timer: Timer?
+//    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +40,14 @@ class ChatViewController: UIViewController {
         mainView.chatTxt.delegate = self
         mainView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         
-        timer = Timer(timeInterval: 2, target: self, selector: #selector(getMess), userInfo: nil, repeats: true)
+//        timer = Timer(timeInterval: 2, target: self, selector: #selector(getMess), userInfo: nil, repeats: true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        timer?.invalidate()
-        timer = nil
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        timer?.invalidate()
+//        timer = nil
+//    }
     
     @objc func getMess() {
         callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in

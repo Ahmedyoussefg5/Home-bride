@@ -458,7 +458,7 @@ class NewRequestDetailsView: BaseView {
         twitterButton.setTitleNormalState(data.data.client?.social?.twitter)
         googleButton.setTitleNormalState(data.data.client?.social?.snapchat)
         
-        if data.status == 1 {
+        if data.data.status == 1 {
             acceptButton.isHidden = ya
             refuseButton.isHidden = ya
         }

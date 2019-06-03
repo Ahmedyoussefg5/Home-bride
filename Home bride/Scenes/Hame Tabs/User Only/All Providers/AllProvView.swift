@@ -9,6 +9,7 @@
 import UIKit
 
 class AllProvView: BaseView {
+    let searchText = UISearchBar()
     
     lazy var mainCollectionView: UICollectionView = {
         var layout = ArabicCollectionFlow()
@@ -22,10 +23,18 @@ class AllProvView: BaseView {
     
     override func setupView() {
         super.setupView()
-        
+        addSubview(searchText)
+        searchText.widthAnchorWithMultiplier(multiplier: 1)
+        searchText.centerXInSuperview()
+        searchText.topAnchorSuperView()
+//        searchText.heightAnchorConstant(constant: 45)
         addSubview(mainCollectionView)
-        mainCollectionView.fillSuperviewSafeArea()
-        
+        mainCollectionView.widthAnchorWithMultiplier(multiplier: 1)
+        mainCollectionView.centerXInSuperview()
+        mainCollectionView.topAnchorToView(anchor: searchText.bottomAnchor)
+        mainCollectionView.bottomAnchorSuperView()
+
+        searchText.placeholder = "بحث"
     }
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return categories.count
     }
@@ -29,6 +29,12 @@ class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionView
     
 //    var id: Int
     private var categories = [Providerr]() {
+        didSet {
+            mainView.mainCollectionView.reloadData()
+        }
+    }
+    
+    private var categoriesStorage = [Providerr]() {
         didSet {
             mainView.mainCollectionView.reloadData()
         }
@@ -59,8 +65,8 @@ class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionView
                         provs.safeSwap(from: ind, to: 0)
                     }
                 }
-                print(provs)
                 self?.categories = provs
+                self?.categoriesStorage = provs
             }
         }
     }
@@ -75,7 +81,18 @@ class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionView
 
         mainView.mainCollectionView.delegate = self
         mainView.mainCollectionView.dataSource = self
+        mainView.searchText.delegate = self
         getAllcategories()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count == 0 {
+            categories = categoriesStorage
+        } else {
+            categories = categories.filter({
+                $0.firstName.contains(searchText) || $0.lastName.contains(searchText)
+            })
+        }
     }
     
 }

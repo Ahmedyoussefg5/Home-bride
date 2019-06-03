@@ -130,6 +130,8 @@ class ProviderProfileViewController: BaseUIViewController<ProviderProfileView> {
         view.addSubview(act)
         act.fillSuperview()
 
+        addNotificationObserver(name: .popProviderProfile, selector: #selector(popMe))
+        
         mainView.button1.addTheTarget {[weak self] in
             self?.presentModelyVC(vc: ProvGalaryViewController(id: self?.data.id ?? 0))
         }
@@ -147,6 +149,10 @@ class ProviderProfileViewController: BaseUIViewController<ProviderProfileView> {
         }
     }
     
+    deinit {
+        removeNotificationsObservers()
+    }
+    
     var data: Providerr
     
     init(prov: Providerr) {
@@ -157,6 +163,12 @@ class ProviderProfileViewController: BaseUIViewController<ProviderProfileView> {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func popMe() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9, execute: {[weak self] in
+            self?.navigationController?.popViewController(animated: ya)
+        })
     }
     
 //    private func getAllcategories() {

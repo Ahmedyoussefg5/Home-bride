@@ -15,4 +15,5 @@ extension Notification.Name {
     static let userJoinedSalon = Notification.Name("UserJoinedSalon")
     static let newSalonAdded = Notification.Name("NewSalonAdded")
     static let refreshHomeSalons = Notification.Name("RefreshHomeSalons")
+    static let popProviderProfile = Notification.Name("PopProviderProfile")
 }

@@ -120,7 +120,7 @@ class TimeTableViewController: BaseUIViewController<TimeTableView>, UITableViewD
         let url = "http://m4a8el.panorama-q.com/api/schedules"
         let pars: [String : Any] = [
             "from": internalSchedule.from,
-            "to": internalSchedule.to,
+            "to"  : internalSchedule.to,
             "date": internalSchedule.day
             ]
         

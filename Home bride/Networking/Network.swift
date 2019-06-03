@@ -58,14 +58,15 @@ class Network: NSObject {
     }
     
     func uploadToServerWith<T: Codable>(_ decoder: T.Type, data: UploadData, url: String, method: HTTPMethod = .post, parameters: [String:Any]?, progress: ((Progress) -> Void)?, completion: ((_ error: String?, _ data: T?) -> Void)? = nil) {
-        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         upload(multipartFormData: { (mal) in
             mal.append(data.data, withName: data.name, fileName: data.fileName, mimeType: data.mimeType)
             for (key, val) in parameters ?? [:] {
                 mal.append("\(val)".data(using: String.Encoding.utf8)!, withName: key as String)
             }
         }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold, to: url, method: method, headers: header) { (response) in
-            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
             switch response {
             
             case .success(let requestUp, _, _):

@@ -35,10 +35,11 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         let data = serv?.filter({ $0.isSelected })
         guard let dataa = data, dataa.count > 0 else {
             showAlert(title: "", message: "يرجى اختيار خدمة واحدة على الاقل")
-            return }
+            return
+        }
         let vc = DatePickerViewController(mode: .dateAndTime)
         vc.delegate = self
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {[weak self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {[weak self] in
             self?.presentModelyVC(vc: vc)
         }
     }
@@ -153,8 +154,11 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
 
         callApi(ResResposeData.self, url: url, method: .post, parameters: pars, activityIndicator: act) {[weak self] (data) in
             if data != nil {
-                self?.showAlert(title: "", message: "تم الحجز بنجاح")
-                self?.navigationController?.popToRootViewController(animated: ya)
+                self?.showAlert(title: "", messages: nil, message: "تم الحجز بنجاح", selfDismissing: true, time: 0.5)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
+                    self?.navigationController?.popViewController(animated: ya)
+                    NotificationCenter.default.post(name: .popProviderProfile, object: nil)
+                })
             }
         }
     }
@@ -162,9 +166,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
 
 struct AllServData: BaseCodable {
     var status: Int
-    
     var msg: String?
-    
     let data: serv
 }
 
