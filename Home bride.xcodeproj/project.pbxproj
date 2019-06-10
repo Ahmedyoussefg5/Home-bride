@@ -98,6 +98,7 @@
 		E8681BF3226B4A8000E93C31 /* ForgetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF0226B4A4500E93C31 /* ForgetPassword.swift */; };
 		E8681BF6226B4E7400E93C31 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF5226B4E6C00E93C31 /* TabBarController.swift */; };
 		E8681BF9226B4EA900E93C31 /* HomeNewReqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */; };
+		E869DA0A22AEEF5300C54F30 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869DA0922AEEF5300C54F30 /* ImagePreviewViewController.swift */; };
 		E86E7BE7227F3BBD00E4FD11 /* FirNot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E7BE6227F3BBD00E4FD11 /* FirNot.swift */; };
 		E87FB40F2277708F0075805E /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FB40E2277708F0075805E /* LocationView.swift */; };
 		E87FBDF22278831000A02983 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B0446226A8A7D00674F19 /* VerifyViewController.swift */; };
@@ -209,6 +210,7 @@
 		E85948B1227B0C7A007A7511 /* ProvTimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvTimeTableViewController.swift; sourceTree = "<group>"; };
 		E85948B8227B32F9007A7511 /* ProvProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvProfileViewController.swift; sourceTree = "<group>"; };
 		E85948B9227B32F9007A7511 /* ProvProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvProfileView.swift; sourceTree = "<group>"; };
+		E85BD6C122A5388D009AAB8C /* Home bride.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Home bride.entitlements"; sourceTree = "<group>"; };
 		E86150E822740A55001524F5 /* Reg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reg.swift; sourceTree = "<group>"; };
 		E86150EA2274AA6E001524F5 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E866F2E72272956C0052538D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		E8681BF1226B4A4500E93C31 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
 		E8681BF5226B4E6C00E93C31 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewReqViewController.swift; sourceTree = "<group>"; };
+		E869DA0922AEEF5300C54F30 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		E86E7BE6227F3BBD00E4FD11 /* FirNot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirNot.swift; sourceTree = "<group>"; };
 		E87FB40E2277708F0075805E /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		E87FBDF42278908900A02983 /* AddSevrvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSevrvViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +330,7 @@
 		E83B0423226A86A500674F19 /* Home bride */ = {
 			isa = PBXGroup;
 			children = (
+				E85BD6C122A5388D009AAB8C /* Home bride.entitlements */,
 				E86150E722740A43001524F5 /* Model */,
 				E816C45F2273316D00EA3C32 /* Networking */,
 				E8DE7D6B226F93BE00016D9E /* Resources */,
@@ -493,6 +497,7 @@
 		E83B0477226A8A9200674F19 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E869DA0922AEEF5300C54F30 /* ImagePreviewViewController.swift */,
 				E83B0478226A8A9200674F19 /* AppLanguage.swift */,
 				E83B0479226A8A9200674F19 /* constants.swift */,
 				E83B047A226A8A9200674F19 /* DatePickerViewController.swift */,
@@ -611,27 +616,35 @@
 		E8681BF4226B4E4000E93C31 /* Hame Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				E869DA0B22AF029B00C54F30 /* Provider Only */,
 				E88502AF2279ACEF006EA67B /* User Only */,
 				E812D21B22791DF200F31C98 /* Contact Message */,
 				E83B04AE226A8C9400674F19 /* SideMenuTableViewController.swift */,
 				E8681BF5226B4E6C00E93C31 /* TabBarController.swift */,
 				E866F2F322729E480052538D /* Notification */,
 				E866F2E9227296870052538D /* Chat */,
-				E8C711B02272049B008A783B /* Time Table */,
-				E8C711AD2271F063008A783B /* Galary */,
-				E8F3E753226D0F9C000A9D16 /* Profile */,
-				E8681BF7226B4E8A00E93C31 /* Home */,
+				E8681BF7226B4E8A00E93C31 /* Requests */,
 			);
 			path = "Hame Tabs";
 			sourceTree = "<group>";
 		};
-		E8681BF7226B4E8A00E93C31 /* Home */ = {
+		E8681BF7226B4E8A00E93C31 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
 				E8C63DE6226BCEB800E460EE /* New Request Details */,
 				E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */,
 			);
-			path = Home;
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		E869DA0B22AF029B00C54F30 /* Provider Only */ = {
+			isa = PBXGroup;
+			children = (
+				E8C711AD2271F063008A783B /* Galary */,
+				E8C711B02272049B008A783B /* Time Table */,
+				E8F3E753226D0F9C000A9D16 /* Profile */,
+			);
+			path = "Provider Only";
 			sourceTree = "<group>";
 		};
 		E88502AF2279ACEF006EA67B /* User Only */ = {
@@ -816,6 +829,11 @@
 				TargetAttributes = {
 					E83B0420226A86A500674F19 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -942,6 +960,7 @@
 				E80871E22275DCAA00FB6BFB /* Video Player.swift in Sources */,
 				E83B04AC226A8B0200674F19 /* LoginView.swift in Sources */,
 				E83B0484226A8AA700674F19 /* extension CALayer.swift in Sources */,
+				E869DA0A22AEEF5300C54F30 /* ImagePreviewViewController.swift in Sources */,
 				E83B047F226A8A9700674F19 /* NewRequestViews.swift in Sources */,
 				E80871E02275D38100FB6BFB /* PhotosManger.swift in Sources */,
 				E8681BEE226B45A200E93C31 /* UserRegisterViewController.swift in Sources */,
@@ -1162,6 +1181,7 @@
 			baseConfigurationReference = C27EF2132CEAD86FE9A90500 /* Pods-Home bride.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Home bride/Home bride.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VAZQU789U;
 				INFOPLIST_FILE = "Home bride/Info.plist";
@@ -1182,6 +1202,7 @@
 			baseConfigurationReference = 5A12B1EEAFE71EECEFECA677 /* Pods-Home bride.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Home bride/Home bride.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VAZQU789U;
 				INFOPLIST_FILE = "Home bride/Info.plist";

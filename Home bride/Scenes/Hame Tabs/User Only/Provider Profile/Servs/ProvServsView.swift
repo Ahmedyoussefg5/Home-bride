@@ -69,6 +69,10 @@ class ProvServCell: UITableViewCell {
         img.clipsToBounds = true
         img.contentMode = .scaleToFill
         img.translatesAutoresizingMaskIntoConstraints = false
+        img.isUserInteractionEnabled = true
+        img.addTapGestureRecognizer(action: {[weak self] in
+            self?.pressOnImageView?()
+        })
         return img
     }()
     
@@ -149,6 +153,7 @@ class ProvServCell: UITableViewCell {
     
     var pressCalender: (() -> Void)?
     var pressReq: (() -> Void)?
+    var pressOnImageView: (() -> Void)?
 
     func configCell(_ item: ScheduleDataViewModel) {
         titleLable.text = item.name

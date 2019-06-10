@@ -72,7 +72,7 @@ extension UIImageView {
 }
 
 extension UIImageView {
-    func load(with url: String?) {
+    func load(with url: String?, cop: ((_ status: Bool) -> Void)? = nil) {
         guard let urlString = url?.filterAsURL else { return }
         guard let url = URL(string: urlString) else { return }
 //        SDWebImageActivityIndicator.gray
@@ -83,9 +83,11 @@ extension UIImageView {
         sd_setImage(with: url, placeholderImage: placeHolder, options: options, progress: nil) {[weak self] (image, error, _, _) in
             if error != nil {
                 self?.image = placeHolder
-                    return
+                cop?(false)
+                return
             }
             self?.image = image
+            cop?(true)
         }
     }
 }

@@ -56,6 +56,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         
         if let data = serv?[indexPath.row] {
             cell.configCell(data)
+            
             cell.pressCalender = {[weak self] in
                 self?.presentModelyVC(vc: ProvTimeTableViewController(id: self?.id ?? 0))
             }
@@ -63,6 +64,10 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
                 self?.serv![indexPath.row].isSelected.toggle()
                 tableView.reloadData()
             }
+            cell.pressOnImageView = {[weak self] in
+                self?.openImage(with: self?.serv![indexPath.row].image ?? "")
+            }
+            
         }
         
         return cell
@@ -161,6 +166,10 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
                 })
             }
         }
+    }
+    
+    private func openImage(with image: String) {
+        navigationController?.pushViewController(ImagePreviewViewController(image: image), animated: true)
     }
 }
 

@@ -46,7 +46,7 @@ extension AppDelegate {
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        //        CrashLogger.log(error)
+        // CrashLogger.log(error)
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }
     
@@ -171,7 +171,7 @@ extension AppDelegate: MessagingDelegate {
         print("Firebase registration token: \(fcmToken)")
         Messaging.messaging().subscribe(toTopic: "all")
         
-        Network.shared.getData(UpdateProfData.self, url: "http://m4a8el.panorama-q.com/api/user/update/profile", parameters: ["fcm_token_ios":fcmToken], method: .post) { (message, data) in }
+        Network.shared.getData(UpdateProfData.self, url: "http://m4a8el.panorama-q.com/api/user/update/profile", parameters: ["fcm_token_ios" : fcmToken], method: .post) { (message, data) in }
     }
     
     // [START ios_10_"data"_message]

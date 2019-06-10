@@ -13,6 +13,7 @@ extension UIViewController {
     
     func presentModelyVC(vc: UIViewController) {
         vc.modalPresentationStyle = .custom
+        vc.definesPresentationContext = true
         present(vc, animated: true, completion: nil)
     }
     
@@ -219,7 +220,8 @@ extension UIViewController {
 
             if let data = data {
                 if data.status == 200 || data.status == 201 {
-                    comp(data); return
+                    comp(data)
+                    return
                 } else {
                     comp(nil)
                     if shouldShowAlert {

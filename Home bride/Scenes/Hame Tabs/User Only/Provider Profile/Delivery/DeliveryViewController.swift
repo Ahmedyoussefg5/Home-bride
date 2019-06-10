@@ -17,7 +17,7 @@ class DeliveryView: BaseView {
     
     lazy var goButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("الذهاب الى الخبيرة", for: .normal)
+        btn.setTitle("الذهاب الى مكان عمل الخبيرة", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.layer.cornerRadius = 10
@@ -29,7 +29,7 @@ class DeliveryView: BaseView {
     }()
     lazy var contactButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("التواصل مع الخبيرة", for: .normal)
+        btn.setTitle("طلب الخبيرة للمنزل", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.layer.cornerRadius = 10
