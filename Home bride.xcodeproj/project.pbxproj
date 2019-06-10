@@ -99,6 +99,7 @@
 		E8681BF6226B4E7400E93C31 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF5226B4E6C00E93C31 /* TabBarController.swift */; };
 		E8681BF9226B4EA900E93C31 /* HomeNewReqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */; };
 		E869DA0A22AEEF5300C54F30 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869DA0922AEEF5300C54F30 /* ImagePreviewViewController.swift */; };
+		E869DA0D22AF103300C54F30 /* AddQualifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869DA0C22AF103300C54F30 /* AddQualifViewController.swift */; };
 		E86E7BE7227F3BBD00E4FD11 /* FirNot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E7BE6227F3BBD00E4FD11 /* FirNot.swift */; };
 		E87FB40F2277708F0075805E /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FB40E2277708F0075805E /* LocationView.swift */; };
 		E87FBDF22278831000A02983 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B0446226A8A7D00674F19 /* VerifyViewController.swift */; };
@@ -226,6 +227,7 @@
 		E8681BF5226B4E6C00E93C31 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E8681BF8226B4EA900E93C31 /* HomeNewReqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewReqViewController.swift; sourceTree = "<group>"; };
 		E869DA0922AEEF5300C54F30 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
+		E869DA0C22AF103300C54F30 /* AddQualifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQualifViewController.swift; sourceTree = "<group>"; };
 		E86E7BE6227F3BBD00E4FD11 /* FirNot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirNot.swift; sourceTree = "<group>"; };
 		E87FB40E2277708F0075805E /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		E87FBDF42278908900A02983 /* AddSevrvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSevrvViewController.swift; sourceTree = "<group>"; };
@@ -651,12 +653,12 @@
 			isa = PBXGroup;
 			children = (
 				E821B637227ED9DE008AB4B2 /* UserTabBarController.swift */,
-				E821B634227E00B3008AB4B2 /* User Profile */,
 				E85948A3227AD1C1007A7511 /* Provider Profile */,
+				E88502B02279ACFD006EA67B /* Home */,
+				E88502B32279BF10006EA67B /* Sub Cat */,
+				E821B634227E00B3008AB4B2 /* User Profile */,
 				E88502BD2279E7BC006EA67B /* All Providers */,
 				E88502B82279D9BE006EA67B /* All Cats */,
-				E88502B32279BF10006EA67B /* Sub Cat */,
-				E88502B02279ACFD006EA67B /* Home */,
 			);
 			path = "User Only";
 			sourceTree = "<group>";
@@ -790,6 +792,7 @@
 			isa = PBXGroup;
 			children = (
 				E87FBDF42278908900A02983 /* AddSevrvViewController.swift */,
+				E869DA0C22AF103300C54F30 /* AddQualifViewController.swift */,
 				E8F3E754226D0FAC000A9D16 /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -967,6 +970,7 @@
 				E8681BF6226B4E7400E93C31 /* TabBarController.swift in Sources */,
 				E866F2EC227296EF0052538D /* ChatHomeViewController.swift in Sources */,
 				E80871DC2275BED500FB6BFB /* GalaryModels.swift in Sources */,
+				E869DA0D22AF103300C54F30 /* AddQualifViewController.swift in Sources */,
 				E88502BC2279DA21006EA67B /* AllCatViewController.swift in Sources */,
 				E83B04BC226AB86900674F19 /* HomeViewController.swift in Sources */,
 				E83B048B226A8AA700674F19 /* extension+UIColor+UIFonts.swift in Sources */,
@@ -1190,7 +1194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebridee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1211,7 +1215,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebridee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

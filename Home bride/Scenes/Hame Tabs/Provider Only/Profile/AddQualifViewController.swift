@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class AddSevrvViewController: UIViewController {
+class AddQualifViewController: UIViewController {
     
     weak var delegate: SendResult?    
     
@@ -26,17 +26,57 @@ class AddSevrvViewController: UIViewController {
             if let id = self.id {
                 self.editService(id: id)
             } else {
-                self.addService()
+                self.addQualif()
             }
         })
         return btn
     }()
-    private let nameText = UnderLineTextFieldd(placeH: "اسم الخدمة")
-    private let costText = UnderLineTextFieldd(placeH: "التكلفة")
+    private let nameText = UnderLineTextFieldd(placeH: "اسم المؤهل")
+    private let costText = UnderLineTextFieldd(placeH: "سنوات الخبرة")
+    
+//    let qualificaionNameText = UnderLineTextFieldd(placeH: )
+//    let theQualificaionText = UnderLineTextFieldd(placeH: )
+//    let qualificaionImage = UIButton(type: .system)
+//
+//    lazy var confirmButton: UIButton = {
+//        let btn = UIButton(type: .system)
+//        btn.setTitle("حفظ", for: .normal)
+//        btn.setTitleColor(.white, for: .normal)
+//        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+//        btn.layer.cornerRadius = 15
+//        btn.translatesAutoresizingMaskIntoConstraints = false
+//        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
+//        btn.addTheTarget(action: {[weak self] in
+//            //            self?.addimage()
+//        })
+//        return btn
+//    }()
+//    lazy var photoButton: UIButton = {
+//        let btn = UIButton(type: .system)
+//        btn.setTitle("صورة المؤهل", for: .normal)
+//        btn.contentHorizontalAlignment = .trailing
+//        btn.setTitleColor(.gray, for: .normal)
+//        btn.addBottomLine()
+//        //btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
+//        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+//        btn.translatesAutoresizingMaskIntoConstraints = false
+//        let view = UIView()
+//        view.backgroundColor = .lightGray
+//        btn.addSubview(view)
+//        view.topAnchor.constraint(equalTo: btn.bottomAnchor).isActive = ya
+//        view.centerXInSuperview()
+//        view.heightAnchorConstant(constant: 1)
+//        view.widthAnchorWithMultiplier(multiplier: 1)
+//        btn.addTheTarget(action: {[weak self] in
+//            //            self?.pickUserImage()
+//        })
+//        return btn
+//    }()
+
     
     private lazy var photoButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("صورة الخدمة", for: .normal)
+        btn.setTitle("صورة المؤهل", for: .normal)
         btn.contentHorizontalAlignment = .trailing
         btn.setTitleColor(.gray, for: .normal)
         btn.addBottomLine()
@@ -126,27 +166,31 @@ class AddSevrvViewController: UIViewController {
             ])
     }
     
-    private func addService() {
+    // add qualf
+    private func addQualif() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
+        guard let name = nameText.text, name.count > 1 ,
+            let degree = costText.text, degree.count > 0,
+            let intPrice = Int(degree) else {
+                showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
+                return }
 
-        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
-            showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
-            return }
-        let url = "http://m4a8el.panorama-q.com/api/services"
+        let url = "http://m4a8el.panorama-q.com/api/qualifications"
         let pars = [
             "name": name,
-            "price": intPrice
+            "degree": degree
             ] as [String : Any]
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         
-        Network.shared.uploadToServerWith(AddServiceData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
+        Network.shared.uploadToServerWith(AllQualifeData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
             if let err = err {
                 self?.showAlert(title: nil, message: err)
             } else if let data = data {
                 if data.msg != nil {
                     self?.showAlert(title: nil, message: data.msg)
                 } else {
-                    self?.vc?.getServicesData()
+                    self?.vc?.getQualifData()
+//                    self?.showAlert(title: "", message: "تم الحفظ")
                     self?.dismissMePlease()
                 }
             }
@@ -156,17 +200,17 @@ class AddSevrvViewController: UIViewController {
     private func editService(id: Int) {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
         
-        guard let name = nameText.text, name.count > 1 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
+        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
-        let url = "http://m4a8el.panorama-q.com/api/services/\(id)"
+        let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"
         let pars = [
             "name": name,
-            "price": intPrice
+            "price": price
             ] as [String : Any]
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         
-        Network.shared.uploadToServerWith(AddServiceData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
+        Network.shared.uploadToServerWith(AddQualification.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
             if let err = err {
                 self?.showAlert(title: nil, message: err)
             } else if let data = data {
@@ -205,4 +249,19 @@ class AddSevrvViewController: UIViewController {
         super.viewWillDisappear(animated)
 
     }
+}
+
+//Add Qoualif
+struct AddQualification: BaseCodable {
+    var status: Int
+    var msg: String?
+    let data: AddQualificationsClass?
+}
+
+// MARK: - DataClass
+struct AddQualificationsClass: Codable {
+    let name: String?
+    let id: Int?
+    let degree: String?
+    let image: String?
 }

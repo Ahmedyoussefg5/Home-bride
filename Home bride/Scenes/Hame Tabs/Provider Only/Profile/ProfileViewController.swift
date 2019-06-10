@@ -195,6 +195,7 @@ class ProfileView: BaseView {
     private func setupProfileView() {
         qualifStack?.removeFromSuperview()
         qualifMainCollectionView.removeFromSuperview()
+        addQualifButton.removeFromSuperview()
         qualifStack = nil
         scrollView.contentSize.height = 800
         scrollView.isScrollEnabled = ya
@@ -237,9 +238,23 @@ class ProfileView: BaseView {
         return btn
     }()
     
+    lazy var addQualifButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("اضافة مؤهل", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+        btn.layer.cornerRadius = 15
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
+        btn.addTheTarget(action: {[weak self] in
+        })
+        return btn
+    }()
+    
     private func setupCollextionView() {
         qualifStack?.removeFromSuperview()
         qualifMainCollectionView.removeFromSuperview()
+        addQualifButton.removeFromSuperview()
         qualifStack = nil
         profileStack?.removeFromSuperview()
         profileStack = nil
@@ -265,49 +280,12 @@ class ProfileView: BaseView {
         var layout = ArabicCollectionFlow()
         layout.scrollDirection = .vertical
         let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
-        coll.register(cellWithClass: QualCollCell.self)
+        coll.register(cellWithClass: BaseCollCell.self)
         coll.backgroundColor = .clear
         coll.translatesAutoresizingMaskIntoConstraints = false
         return coll
     }()
-    let qualificaionNameText = UnderLineTextFieldd(placeH: "اسم المؤهل")
-    let theQualificaionText = UnderLineTextFieldd(placeH: "الدرجة")
-    let qualificaionImage = UIButton(type: .system)
 
-    lazy var confirmButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setTitle("حفظ", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = .CairoSemiBold(of: 15)
-        btn.layer.cornerRadius = 15
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
-        btn.addTheTarget(action: {[weak self] in
-//            self?.addimage()
-        })
-        return btn
-    }()
-    lazy var photoButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setTitle("صورة المؤهل", for: .normal)
-        btn.contentHorizontalAlignment = .trailing
-        btn.setTitleColor(.gray, for: .normal)
-        btn.addBottomLine()
-        //btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
-        btn.titleLabel?.font = .CairoSemiBold(of: 15)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        btn.addSubview(view)
-        view.topAnchor.constraint(equalTo: btn.bottomAnchor).isActive = ya
-        view.centerXInSuperview()
-        view.heightAnchorConstant(constant: 1)
-        view.widthAnchorWithMultiplier(multiplier: 1)
-        btn.addTheTarget(action: {[weak self] in
-//            self?.pickUserImage()
-        })
-        return btn
-    }()
     private func qualificaionsViewSetup() {
         
         profileStack?.removeFromSuperview()
@@ -316,27 +294,17 @@ class ProfileView: BaseView {
         scrollView.contentSize.height = 900
         editProfileButton.isHidden = ya
 
-        qualifStack = UIStackView(arrangedSubviews: [
-            qualificaionNameText,
-            theQualificaionText,
-            photoButton,
-            stackSpliter(),
-            confirmButton
-            ])
-        qualifStack?.axis = v
-        qualifStack?.distribution = .fillEqually
-        qualifStack?.spacing = 10
-        scrollView.addSubview(qualifStack!)
-        qualifStack?.widthAnchorWithMultiplier(multiplier: 0.9)
-        qualifStack?.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
-        qualifStack?.centerXInSuperview()
-        qualifStack?.heightAnchorConstant(constant: 200)
-        
         addSubview(qualifMainCollectionView)
         qualifMainCollectionView.widthAnchorWithMultiplier(multiplier: 0.9)
-        qualifMainCollectionView.heightAnchorConstant(constant: 300)
+        qualifMainCollectionView.heightAnchorConstant(constant: 400)
         qualifMainCollectionView.centerXInSuperview()
-        qualifMainCollectionView.topAnchorToView(anchor: qualifStack!.bottomAnchor, constant: 10)
+        qualifMainCollectionView.topAnchorToView(anchor: stack.bottomAnchor, constant: 10)
+        
+        addSubview(addQualifButton)
+        addQualifButton.centerXInSuperview()
+        addQualifButton.topAnchorToView(anchor: qualifMainCollectionView.bottomAnchor, constant: 10)
+        addQualifButton.widthAnchorWithMultiplier(multiplier: 0.9)
+        addQualifButton.heightAnchorConstant(constant: 40)
     }
     
     override func layoutSubviews() {
@@ -399,21 +367,33 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == mainView.qualifMainCollectionView {
-            let cell = collectionView.dequeueReusableCell(withClass: QualCollCell.self, for: indexPath)
-            if let data = dataSource?[indexPath.row] {
-                cell.config(item: data)
+            let cell = collectionView.dequeueReusableCell(withClass: BaseCollCell.self, for: indexPath)
+            if let data = dataSource?[o: indexPath.row] {
+                cell.configure(data)
+            }
+            cell.pressDelete = {[weak self] in
+                self?.delQuaif(id: self?.dataSource?[o: indexPath.row]?.id ?? 0)
+            }
+            cell.pressEdit = {[weak self] in
+                self?.showEditQuaifView(id: self?.dataSource?[o: indexPath.row]?.id ?? 0)
             }
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withClass: BaseCollCell.self, for: indexPath)
-        if let data = scheduleData?[indexPath.row] {
+        if let data = scheduleData?[o: indexPath.row] {
             cell.configure(data)
+        }
+        cell.pressDelete = {[weak self] in
+            self?.delService(id: self?.scheduleData?[o: indexPath.row]?.id ?? 0)
+        }
+        cell.pressEdit = {[weak self] in
+            self?.showEditServView(id: self?.scheduleData?[o: indexPath.row]?.id ?? 0)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width * 0.48, height: collectionView.frame.width * 0.4)
+        return CGSize(width: collectionView.frame.width * 1, height: collectionView.frame.width * 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -435,7 +415,8 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getAllArea()
-        getData()
+        
+        getServicesData()
         getQualifData()
     }
 
@@ -483,16 +464,16 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
 //            self?.saveDate()
         }
         
-        mainView.photoButton.addTheTarget {
-            self.pickUserImage(isUserImage: no)
-        }
+//        mainView.photoButton.addTheTarget {
+//            self.pickUserImage(isUserImage: no)
+//        }
         
         mainView.userImage.addTapGestureRecognizer {
             self.pickUserImage(isUserImage: ya)
         }
         
-        mainView.confirmButton.addTheTarget {
-            self.addimage()
+        mainView.addQualifButton.addTheTarget {
+            self.showAddQualifView()
         }
     }
     
@@ -505,7 +486,23 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     @objc func showAddServView() {
-        presentModelyVC(vc: AddSevrvViewController(vc: self))
+        presentModelyVC(vc: AddSevrvViewController(vc: self, id: nil))
+    }
+    
+    @objc func showAddQualifView() {
+        presentModelyVC(vc: AddQualifViewController(vc: self, id: nil))
+    }
+    
+    func showEditServView(id: Int) {
+        presentModelyVC(vc: AddSevrvViewController(vc: self, id: id))
+    }
+    
+    @objc func showAddQuaifView() {
+        presentModelyVC(vc: AddQualifViewController(vc: self, id: nil))
+    }
+    
+    func showEditQuaifView(id: Int) {
+        presentModelyVC(vc: AddQualifViewController(vc: self, id: id))
     }
     
     var scheduleData: [ScheduleData]? {
@@ -555,7 +552,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     var lastPage = 2
     var isLoading = true
     
-    func getData() {
+    func getServicesData() {
         let url = "http://m4a8el.panorama-q.com/api/services"
         callApi(AllServiceData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
@@ -567,13 +564,27 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         }
     }
     
+    func delService(id: Int) {
+        let url = "http://m4a8el.panorama-q.com/api/services/\(id)"
+        callApi(BaseModel.self, url: url, method: .delete, parameters: nil) { (data) in
+            self.getServicesData()
+        }
+    }
+
+    func delQuaif(id: Int) {
+        let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"
+        callApi(BaseModel.self, url: url, method: .delete, parameters: nil) { (data) in
+            self.getQualifData()
+        }
+    }
+
     fileprivate var dataSource: [Qualification]? {
         didSet {
             mainView.qualifMainCollectionView.reloadData()
         }
     }
     
-    fileprivate func getQualifData() {
+    func getQualifData() {
         let url = "http://m4a8el.panorama-q.com/api/qualifications"
         callApi(AllQualifications.self, url: url, method: .get, parameters: nil, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
@@ -677,31 +688,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         }
     }
     
-    // add qualf
-    private func addimage() {
-        guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
-        
-        guard let name = mainView.qualificaionNameText.text, name.count > 2 , let degree = mainView.theQualificaionText.text, degree.count > 0 else { return }
-        let url = "http://m4a8el.panorama-q.com/api/qualifications"
-        let pars = [
-            "name": name,
-            "degree": degree
-            ] as [String : Any]
-        let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
-        
-        Network.shared.uploadToServerWith(AllQualifeData.self, data: imageData, url: url, method: .post, parameters: pars, progress: nil) {[weak self] (err, data) in
-            if let err = err {
-                self?.showAlert(title: nil, message: err)
-            } else if let data = data {
-                if data.msg != nil {
-                    self?.showAlert(title: nil, message: data.msg)
-                } else {
-                    self?.getQualifData()
-                    self?.showAlert(title: "", message: "تم الحفظ")
-                }
-            }
-        }
-    }
+    
     
     var pickerUserImage: UIImage?
     
@@ -739,14 +726,13 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
 
 // MARK: - Your Model
 
-struct BaseModel {
-    public let caption: String
-    public let imageName: String
-
-    public init(caption: String, imageName: String) {
-        self.caption = caption
-        self.imageName = imageName
-    }
+struct BaseModel: BaseCodable {
+    var status: Int
+    
+    var msg: String?
+    
+//    let status: String
+    let data: String
 }
 
 // MARK: - Your Cell
@@ -790,6 +776,37 @@ class BaseCollCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    private lazy var delButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("حذف", for: .normal)
+        btn.contentHorizontalAlignment = .center
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .CairoSemiBold(of: 13)
+        btn.backgroundColor = lightPurple.withAlphaComponent(0.5)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTheTarget(action: {[weak self] in
+            self?.pressDelete?()
+        })
+        return btn
+    }()
+    private lazy var editButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("تعديل", for: .normal)
+        btn.contentHorizontalAlignment = .center
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .CairoSemiBold(of: 13)
+        btn.backgroundColor = lightPurple.withAlphaComponent(0.5)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTheTarget(action: {[weak self] in
+            self?.pressEdit?()
+        })
+        return btn
+    }()
+    
+    var pressDelete: (() -> Void)?
+    var pressEdit: (() -> Void)?
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
@@ -804,18 +821,31 @@ class BaseCollCell: UICollectionViewCell {
         containerView.fillSuperview(padding: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
         
         containerView.addSubview(cellImage)
-        cellImage.fillSuperview(padding: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+        cellImage.leadingAnchorSuperView(constant: 0)
+        cellImage.heightAnchorWithMultiplier(multiplier: 0.7)
+        cellImage.topAnchorSuperView(constant: 0)
+        cellImage.widthAnchorWithMultiplier(multiplier: 0.7)
         
         containerView.addSubview(titleLable)
-        titleLable.bottomAnchorSuperView(constant: 0)
-        titleLable.centerXInSuperview()
-        
+        titleLable.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 5).isActive = true
+        titleLable.topAnchor.constraint(equalTo: cellImage.topAnchor, constant: 0).isActive = true
+
         containerView.addSubview(dateLable)
-        dateLable.widthAnchorConstant(constant: 30)
+        dateLable.widthAnchorConstant(constant: 60)
         dateLable.topAnchorSuperView(constant: 15)
         dateLable.heightAnchorConstant(constant: 20)
-        dateLable.trailingAnchorAnchorSuperView(constant: 0)
+        dateLable.leadingAnchorSuperView(constant: 0)
         
+        containerView.addSubview(editButton)
+        containerView.addSubview(delButton)
+
+        editButton.leadingAnchorSuperView(constant: 0)
+        editButton.bottomAnchorSuperView(constant: 0)
+        editButton.widthAnchorWithMultiplier(multiplier: 0.48)
+
+        delButton.trailingAnchorAnchorSuperView(constant: 0)
+        delButton.bottomAnchorSuperView(constant: 0)
+        delButton.widthAnchorWithMultiplier(multiplier: 0.48)
     }
 
     // MARK: - ConfigurableCell
@@ -824,12 +854,14 @@ class BaseCollCell: UICollectionViewCell {
         titleLable.text = item.name
         dateLable.text = "\(item.price)"
     }
+    
+    // MARK: - ConfigurableCell
+    func configure(_ item: Qualification) {
+        cellImage.load(with: item.image)
+        titleLable.text = item.name
+        dateLable.text = item.degree
+    }
 }
-
-
-
-
-
 
 
 // AddServiceData
@@ -877,32 +909,6 @@ struct QualifeData: Codable {
     let degree: String
     let image: String
 }
-
-//struct Provider: Codable {
-//    let name, phone: String
-////    let location: JSONNull?
-//    let info, activityType: String
-//    let image: String
-//    let region, city, area: String
-//    let social: Social
-//
-//    enum CodingKeys: String, CodingKey {
-//        case name, phone, location, info
-//        case activityType = "activity_type"
-//        case image, region, city, area, social
-//    }
-//}
-
-//struct Social: Codable {
-//    let facebookLink, instagramLink, snapchatLink, twitterLink: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case facebookLink = "facebook_link"
-//        case instagramLink = "instagram_link"
-//        case snapchatLink = "snapchat_link"
-//        case twitterLink = "twitter_link"
-//    }
-//}
 
 struct Services: Codable {
     let schedules: [ScheduleData]
@@ -956,38 +962,6 @@ struct UpdateProf: Codable {
         case email
     }
 }
-
-//struct Social: Codable {
-//    let twitterLink, instagramLink, facebookLink, snapchatLink: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case twitterLink = "twitter_link"
-//        case instagramLink = "instagram_link"
-//        case facebookLink = "facebook_link"
-//        case snapchatLink = "snapchat_link"
-//    }
-//}
-
-
-//struct AllQualifications: Codable {
-//    let status: Int?
-//    let data: Qualifications?
-//}
-//
-//struct Qualifications: Codable {
-//    let qualifications: [Qualification]?
-//    let paginate: Paginate?
-//}
-//
-//struct Qualification: Codable {
-//    let id: Int?
-//    let name, degree: String?
-//    let date: JSONNull?
-//    let image: String?
-//}
-//
-//
-
 
 
 

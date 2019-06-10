@@ -88,6 +88,8 @@ struct Qualifications: Codable {
 struct Qualification: Codable {
     let id: Int
     let name: String
-//    let degree, date: String?
+    let degree, date: String?
     let image: String
 }
+
+

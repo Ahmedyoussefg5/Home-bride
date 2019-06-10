@@ -77,6 +77,7 @@ class DeliveryViewController: BaseUIViewController<DeliveryView>, SendMapResult{
         dismissMePlease()
     }
     
+    weak var delegate: DeliveryResulte?
     var lat: String = ""
     var lng: String = ""
 
@@ -98,6 +99,4 @@ class DeliveryViewController: BaseUIViewController<DeliveryView>, SendMapResult{
             self?.dismissMePlease()
         }
     }
-    
-    weak var delegate: DeliveryResulte?
 }
