@@ -19,7 +19,7 @@ class WelcomeView: BaseView {
     }()
     lazy var provButton: UIButton = {
         let btn = UIButton(type: .system)
-        let title = "خبيرة حفلات"
+        let title = "خبيرة"
         let lable = UILabel()
         lable.text = title
         btn.addSubview(lable)

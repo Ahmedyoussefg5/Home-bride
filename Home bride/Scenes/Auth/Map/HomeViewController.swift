@@ -80,6 +80,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
             centerMapOnUserLocation()
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.showAlert(title: "", messages: nil, message: "اضغط مطولا لتغيير موقعك", selfDismissing: true, time: 1)
+        }
     }
     
     func addDoubleTap() {
