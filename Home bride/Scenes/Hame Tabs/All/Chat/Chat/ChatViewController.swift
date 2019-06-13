@@ -40,18 +40,14 @@ class ChatViewController: UIViewController {
         mainView.chatTxt.delegate = self
         mainView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         
-//        timer = Timer(timeInterval: 2, target: self, selector: #selector(getMess), userInfo: nil, repeats: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getMess), name: .didReciveMessage, object: nil)
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        timer?.invalidate()
-//        timer = nil
-//    }
-    
     @objc func getMess() {
+        
         callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in
-            if self?.messages == nil {
+//            if self?.messages == nil {
                 if let data = data, self?.messages?.count ?? 0 != data.data?.messages.messages.count ?? 0 {
                     self?.lastPage = data.data?.messages.paginate?.totalPages ?? 1
                     self?.currentPage = 1
@@ -59,13 +55,14 @@ class ChatViewController: UIViewController {
                     self?.messages = data.data?.messages.messages.reversed()
                     self?.paginate()
                 }
-            }
+//            }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideKeyboardWhenTappedAround()
+        UIApplication.shared.applicationIconBadgeNumber = 0
+//        hideKeyboardWhenTappedAround()
     }
     
     var messages: [Message]? {

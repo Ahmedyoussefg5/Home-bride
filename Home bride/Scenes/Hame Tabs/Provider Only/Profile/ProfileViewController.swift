@@ -10,6 +10,9 @@ import UIKit
 import Photos
 
 class ProfileView: BaseView {
+    
+    weak var vc: ProfileViewController?
+    
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.alwaysBounceVertical = true
@@ -89,6 +92,8 @@ class ProfileView: BaseView {
         }
         sender.setImage(images[sender.tag].withRenderingMode(.alwaysOriginal), for: .normal)
         
+        vc?.selectedTab = sender.tag
+        
         if sender.tag == 0 { // services
             setupCollextionView()
 
@@ -107,24 +112,7 @@ class ProfileView: BaseView {
     let mailText = UnderLineTextField(placeH: AuthService.instance.userEmail ?? "البريد الالكتروني")
     let jobText = UnderLineTextField(placeH: AuthService.instance.userJob ?? "المهنة")
     let phoneText = UnderLineTextField(placeH: AuthService.instance.userPhone ?? "رقم الجوال")
-//    let genderText: UnderLineTextField = {
-//        if AuthService.instance.userGender != "" {
-//            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "النوع")
-//            return txt
-//        } else {
-//            let txt = UnderLineTextField(placeH: "النوع")
-//            return txt
-//        }
-//    }()
-//    let birthText: UnderLineTextField = {
-//        if AuthService.instance.userGender != "" {
-//            let txt = UnderLineTextField(placeH: AuthService.instance.userGender ?? "تاريخ الميلاد")
-//            return txt
-//        } else {
-//            let txt = UnderLineTextField(placeH: "تاريخ الميلاد")
-//            return txt
-//        }
-//    }()
+
     lazy var areaText: CreateAccountButton = {
         let btn = CreateAccountButton(title: "منطقة", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
         return btn
@@ -137,7 +125,39 @@ class ProfileView: BaseView {
         let btn = CreateAccountButton(title: "حي", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
         return btn
     }()
-
+    
+    lazy var confirmSaveButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("حفظ", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+        btn.layer.cornerRadius = 15
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
+        btn.isHidden = ya
+        btn.addTheTarget(action: {[weak self] in
+        })
+        return btn
+    }()
+    
+    lazy var servMainCollectionView: UICollectionView = {
+        var layout = ArabicCollectionFlow()
+        layout.scrollDirection = .vertical
+        let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
+        coll.backgroundColor = .clear
+        coll.translatesAutoresizingMaskIntoConstraints = false
+        return coll
+    }()
+    lazy var qualifMainCollectionView: UICollectionView = {
+        var layout = ArabicCollectionFlow()
+        layout.scrollDirection = .vertical
+        let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
+        coll.register(cellWithClass: BaseCollCell.self)
+        coll.backgroundColor = .clear
+        coll.translatesAutoresizingMaskIntoConstraints = false
+        return coll
+    }()
+    
     override func setupView() {
         super.setupView()
         
@@ -195,7 +215,6 @@ class ProfileView: BaseView {
     private func setupProfileView() {
         qualifStack?.removeFromSuperview()
         qualifMainCollectionView.removeFromSuperview()
-        addQualifButton.removeFromSuperview()
         qualifStack = nil
         scrollView.contentSize.height = 800
         scrollView.isScrollEnabled = ya
@@ -224,37 +243,25 @@ class ProfileView: BaseView {
         profileStack?.heightAnchorConstant(constant: 470)
     }
     
-    lazy var confirmSaveButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setTitle("حفظ", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = .CairoSemiBold(of: 15)
-        btn.layer.cornerRadius = 15
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
-        btn.isHidden = ya
-        btn.addTheTarget(action: {[weak self] in
-        })
-        return btn
-    }()
+
     
-    lazy var addQualifButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setTitle("اضافة مؤهل", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = .CairoSemiBold(of: 15)
-        btn.layer.cornerRadius = 15
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
-        btn.addTheTarget(action: {[weak self] in
-        })
-        return btn
-    }()
+//    lazy var addQualifButton: UIButton = {
+//        let btn = UIButton(type: .system)
+//        btn.setTitle("اضافة مؤهل", for: .normal)
+//        btn.setTitleColor(.white, for: .normal)
+//        btn.titleLabel?.font = .CairoSemiBold(of: 15)
+//        btn.layer.cornerRadius = 15
+//        btn.translatesAutoresizingMaskIntoConstraints = false
+//        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
+//        btn.addTheTarget(action: {[weak self] in
+//        })
+//        return btn
+//    }()
     
     private func setupCollextionView() {
         qualifStack?.removeFromSuperview()
         qualifMainCollectionView.removeFromSuperview()
-        addQualifButton.removeFromSuperview()
+//        addQualifButton.removeFromSuperview()
         qualifStack = nil
         profileStack?.removeFromSuperview()
         profileStack = nil
@@ -267,24 +274,6 @@ class ProfileView: BaseView {
         servMainCollectionView.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
         servMainCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = ya
     }
-    
-    lazy var servMainCollectionView: UICollectionView = {
-        var layout = ArabicCollectionFlow()
-        layout.scrollDirection = .vertical
-        let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
-        coll.backgroundColor = .clear
-        coll.translatesAutoresizingMaskIntoConstraints = false
-        return coll
-    }()
-    lazy var qualifMainCollectionView: UICollectionView = {
-        var layout = ArabicCollectionFlow()
-        layout.scrollDirection = .vertical
-        let coll = UICollectionView (frame: .zero, collectionViewLayout: layout)
-        coll.register(cellWithClass: BaseCollCell.self)
-        coll.backgroundColor = .clear
-        coll.translatesAutoresizingMaskIntoConstraints = false
-        return coll
-    }()
 
     private func qualificaionsViewSetup() {
         
@@ -300,11 +289,11 @@ class ProfileView: BaseView {
         qualifMainCollectionView.centerXInSuperview()
         qualifMainCollectionView.topAnchorToView(anchor: stack.bottomAnchor, constant: 10)
         
-        addSubview(addQualifButton)
-        addQualifButton.centerXInSuperview()
-        addQualifButton.topAnchorToView(anchor: qualifMainCollectionView.bottomAnchor, constant: 10)
-        addQualifButton.widthAnchorWithMultiplier(multiplier: 0.9)
-        addQualifButton.heightAnchorConstant(constant: 40)
+//        addSubview(addQualifButton)
+//        addQualifButton.centerXInSuperview()
+//        addQualifButton.topAnchorToView(anchor: qualifMainCollectionView.bottomAnchor, constant: 10)
+//        addQualifButton.widthAnchorWithMultiplier(multiplier: 0.9)
+//        addQualifButton.heightAnchorConstant(constant: 40)
     }
     
     override func layoutSubviews() {
@@ -322,6 +311,17 @@ class BigImage: UIImageView {
 
 class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SendResult {
     
+    var selectedTab: Int = 0 {
+        didSet {
+            if selectedTab == 2 {
+                navigationItem.leftBarButtonItem = nil
+            } else if selectedTab == 1 {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddQualifView))
+            } else {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddServView))
+            }
+        }
+    }
     
     var rigonId: Int?
     var  catId: Int?
@@ -415,9 +415,10 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getAllArea()
-        
         getServicesData()
         getQualifData()
+        
+        mainView.vc = self
     }
 
     override func viewDidLoad() {
@@ -425,7 +426,6 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         
         setupNavBarApperance(title: "", addImageTitle: ya, showNotifButton: no)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), landscapeImagePhone: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(handleSideMenu))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddServView))
         
         mainView.servMainCollectionView.delegate = self
         mainView.servMainCollectionView.dataSource = self
@@ -461,19 +461,10 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
             } else {
                 self?.addimageWithImage()
             }
-//            self?.saveDate()
         }
-        
-//        mainView.photoButton.addTheTarget {
-//            self.pickUserImage(isUserImage: no)
-//        }
         
         mainView.userImage.addTapGestureRecognizer {
             self.pickUserImage(isUserImage: ya)
-        }
-        
-        mainView.addQualifButton.addTheTarget {
-            self.showAddQualifView()
         }
     }
     

@@ -73,6 +73,17 @@ class AddQualifViewController: UIViewController {
 //        return btn
 //    }()
 
+    private lazy var userImage: UIImageView = {
+        let img = UIImageView()
+        img.clipsToBounds = true
+        img.contentMode = .scaleToFill
+        img.widthAnchorConstant(constant: 30)
+        img.heightAnchorConstant(constant: 30)
+        //        img.image = #imageLiteral(resourceName: "checkbox")
+        //        img.viewCornerRadius = 40
+        //        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
     
     private lazy var photoButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -90,6 +101,11 @@ class AddQualifViewController: UIViewController {
         view.centerXInSuperview()
         view.heightAnchorConstant(constant: 1)
         view.widthAnchorWithMultiplier(multiplier: 1)
+        
+        btn.addSubview(userImage)
+        userImage.leadingAnchorSuperView(constant: 10)
+        userImage.centerYInSuperview()
+        
         btn.addTheTarget(action: {[weak self] in
             self?.pickUserImage()
         })
@@ -224,7 +240,11 @@ class AddQualifViewController: UIViewController {
         }
     }
     
-    var pickerUserImage: UIImage?
+    var pickerUserImage: UIImage? {
+        didSet {
+            userImage.image = pickerUserImage
+        }
+    }
     
     @objc func pickUserImage(){
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()

@@ -71,7 +71,6 @@
 		E83B04AF226A8C9400674F19 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B04AE226A8C9400674F19 /* SideMenuTableViewController.swift */; };
 		E83B04B0226A952D00674F19 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B0442226A8A7D00674F19 /* RegisterView.swift */; };
 		E83B04B1226A952D00674F19 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B0443226A8A7D00674F19 /* RegisterViewController.swift */; };
-		E83B04B5226AB80900674F19 /* LocationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B04B4226AB80900674F19 /* LocationSelectViewController.swift */; };
 		E83B04BB226AB86900674F19 /* MapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B04B7226AB86700674F19 /* MapSearchVC.swift */; };
 		E83B04BC226AB86900674F19 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B04B8226AB86800674F19 /* HomeViewController.swift */; };
 		E83B04BD226AB86900674F19 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83B04B9226AB86800674F19 /* HomeView.swift */; };
@@ -115,6 +114,7 @@
 		E88502C12279E7FC006EA67B /* AllProvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88502BE2279E7C8006EA67B /* AllProvViewController.swift */; };
 		E89D009A2299EFE100EDC245 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E89D00992299EFE100EDC245 /* GoogleService-Info.plist */; };
 		E8B7FB7622845DD000EEC23C /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B7FB7522845DA900EEC23C /* DeliveryViewController.swift */; };
+		E8C17DC622B15BEC005AEB93 /* Reg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C17DC522B15BEC005AEB93 /* Reg.swift */; };
 		E8C63DE5226BA63800E460EE /* NewRequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C63DE4226BA63800E460EE /* NewRequestDetailsView.swift */; };
 		E8C711AF2271F0C1008A783B /* GalaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C711AE2271F088008A783B /* GalaryViewController.swift */; };
 		E8C711B2227204F9008A783B /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C711B1227204A4008A783B /* TimeTableViewController.swift */; };
@@ -198,7 +198,6 @@
 		E83B047B226A8A9200674F19 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		E83B047C226A8A9200674F19 /* TableManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableManger.swift; sourceTree = "<group>"; };
 		E83B04AE226A8C9400674F19 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
-		E83B04B4226AB80900674F19 /* LocationSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectViewController.swift; sourceTree = "<group>"; };
 		E83B04B7226AB86700674F19 /* MapSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchVC.swift; sourceTree = "<group>"; };
 		E83B04B8226AB86800674F19 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E83B04B9226AB86800674F19 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -241,6 +240,7 @@
 		E88502BF2279E7C8006EA67B /* AllProvView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProvView.swift; sourceTree = "<group>"; };
 		E89D00992299EFE100EDC245 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8B7FB7522845DA900EEC23C /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
+		E8C17DC522B15BEC005AEB93 /* Reg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg.swift; sourceTree = "<group>"; };
 		E8C63DE4226BA63800E460EE /* NewRequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestDetailsView.swift; sourceTree = "<group>"; };
 		E8C711AE2271F088008A783B /* GalaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaryViewController.swift; sourceTree = "<group>"; };
 		E8C711B1227204A4008A783B /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
@@ -353,7 +353,6 @@
 		E83B0439226A8A7400674F19 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				E83B04B4226AB80900674F19 /* LocationSelectViewController.swift */,
 				E83B043A226A8A7D00674F19 /* Auth */,
 				E8681BF4226B4E4000E93C31 /* Hame Tabs */,
 			);
@@ -574,6 +573,7 @@
 		E86150E722740A43001524F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E8C17DC522B15BEC005AEB93 /* Reg.swift */,
 				E86150E822740A55001524F5 /* Reg.swift */,
 			);
 			path = Model;
@@ -618,14 +618,10 @@
 		E8681BF4226B4E4000E93C31 /* Hame Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				E8681BF5226B4E6C00E93C31 /* TabBarController.swift */,
+				E8C17DC422B15B18005AEB93 /* All */,
 				E869DA0B22AF029B00C54F30 /* Provider Only */,
 				E88502AF2279ACEF006EA67B /* User Only */,
-				E812D21B22791DF200F31C98 /* Contact Message */,
-				E83B04AE226A8C9400674F19 /* SideMenuTableViewController.swift */,
-				E8681BF5226B4E6C00E93C31 /* TabBarController.swift */,
-				E866F2F322729E480052538D /* Notification */,
-				E866F2E9227296870052538D /* Chat */,
-				E8681BF7226B4E8A00E93C31 /* Requests */,
 			);
 			path = "Hame Tabs";
 			sourceTree = "<group>";
@@ -704,6 +700,18 @@
 				E8B7FB7522845DA900EEC23C /* DeliveryViewController.swift */,
 			);
 			path = Delivery;
+			sourceTree = "<group>";
+		};
+		E8C17DC422B15B18005AEB93 /* All */ = {
+			isa = PBXGroup;
+			children = (
+				E83B04AE226A8C9400674F19 /* SideMenuTableViewController.swift */,
+				E866F2E9227296870052538D /* Chat */,
+				E8681BF7226B4E8A00E93C31 /* Requests */,
+				E866F2F322729E480052538D /* Notification */,
+				E812D21B22791DF200F31C98 /* Contact Message */,
+			);
+			path = All;
 			sourceTree = "<group>";
 		};
 		E8C63DE6226BCEB800E460EE /* New Request Details */ = {
@@ -833,6 +841,9 @@
 					E83B0420226A86A500674F19 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1000,10 +1011,10 @@
 				E83B048E226A8AA700674F19 /* ViewController+.swift in Sources */,
 				E85948A5227AD1ED007A7511 /* ProviderProfile.swift in Sources */,
 				E83B04AF226A8C9400674F19 /* SideMenuTableViewController.swift in Sources */,
-				E83B04B5226AB80900674F19 /* LocationSelectViewController.swift in Sources */,
 				E83B0491226A8AAF00674F19 /* extension UIButton.swift in Sources */,
 				E88502BB2279DA21006EA67B /* AllCatView.swift in Sources */,
 				E83B0498226A8AAF00674F19 /* extension UIView.swift in Sources */,
+				E8C17DC622B15BEC005AEB93 /* Reg.swift in Sources */,
 				E83B0494226A8AAF00674F19 /* extension UIImage.swift in Sources */,
 				E83B04BD226AB86900674F19 /* HomeView.swift in Sources */,
 				E821B636227E0109008AB4B2 /* UserProfileViewController.swift in Sources */,
@@ -1194,7 +1205,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebridee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1215,7 +1226,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebridee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

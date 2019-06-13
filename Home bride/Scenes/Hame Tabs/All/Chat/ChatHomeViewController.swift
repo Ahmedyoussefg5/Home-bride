@@ -46,6 +46,8 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
         sendMessage()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(sendMessage), name: .didReciveMessage, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

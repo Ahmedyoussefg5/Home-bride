@@ -85,7 +85,6 @@ final class ImageScrollView: UIScrollView {
         minimumZoomScale = minScale
         zoomScale = minScale
     }
-    
 }
 
 extension ImageScrollView: UIScrollViewDelegate {

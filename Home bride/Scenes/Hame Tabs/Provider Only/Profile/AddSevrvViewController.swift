@@ -12,7 +12,17 @@ import Photos
 class AddSevrvViewController: UIViewController {
     
     weak var delegate: SendResult?    
-    
+    private lazy var userImage: UIImageView = {
+        let img = UIImageView()
+        img.clipsToBounds = true
+        img.contentMode = .scaleToFill
+        img.widthAnchorConstant(constant: 30)
+        img.heightAnchorConstant(constant: 30)
+//        img.image = #imageLiteral(resourceName: "checkbox")
+//        img.viewCornerRadius = 40
+//        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
     private lazy var confirmButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("حفظ", for: .normal)
@@ -40,7 +50,7 @@ class AddSevrvViewController: UIViewController {
         btn.contentHorizontalAlignment = .trailing
         btn.setTitleColor(.gray, for: .normal)
         btn.addBottomLine()
-//        btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
+        //  btn.backgroundColor = #colorLiteral(red: 0.9371561408, green: 0.9373133779, blue: 0.9371339679, alpha: 1)
         btn.titleLabel?.font = .CairoSemiBold(of: 15)
         btn.translatesAutoresizingMaskIntoConstraints = false
         let view = UIView()
@@ -50,6 +60,11 @@ class AddSevrvViewController: UIViewController {
         view.centerXInSuperview()
         view.heightAnchorConstant(constant: 1)
         view.widthAnchorWithMultiplier(multiplier: 1)
+        
+        btn.addSubview(userImage)
+        userImage.leadingAnchorSuperView(constant: 10)
+        userImage.centerYInSuperview()
+        
         btn.addTheTarget(action: {[weak self] in
             self?.pickUserImage()
         })
@@ -180,7 +195,11 @@ class AddSevrvViewController: UIViewController {
         }
     }
     
-    var pickerUserImage: UIImage?
+    var pickerUserImage: UIImage? {
+        didSet {
+            userImage.image = pickerUserImage
+        }
+    }
     
     @objc func pickUserImage(){
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
@@ -199,10 +218,5 @@ class AddSevrvViewController: UIViewController {
         case .restricted: print("User do not have access to photo album.")
         case .denied: print("User has denied the permission.")
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
     }
 }

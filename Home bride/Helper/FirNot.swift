@@ -6,6 +6,7 @@ import FirebaseMessaging
 
 extension AppDelegate  {
     func registerForRemoteNotifications(app: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
@@ -107,19 +108,26 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         // Print full message.
         print(userInfo)
-        //        if let user = userInfo["aps"] {
-        //            let users = user as? NSDictionary
-        //            let alert = users["alert"] as? NSDictionary
-        //        }
-        //        let content = UNMutableNotificationContent()
-        //        content.title = (alert["title"] as? String)!
-        //        content.body = (alert["body"] as? String)!
-        //        content.sound = UNNotificationSound.default
-        //        content.setValue(true, forKey: "shouldAlwaysAlertWhileAppIsForeground")
-        //        content.setValue(true, forKey: "shouldPauseMedia")
-        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        //        let notificationRequest = UNNotificationRequest(identifier: "\(arc4random())", content: content, trigger: trigger)
-        //        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+        
+        if let user = userInfo["aps"] {
+            let users = user as? NSDictionary
+            let alert = users?["alert"] as? NSDictionary
+            
+            if let messageBody = alert?["body"] as? String {
+                print(messageBody)
+                
+                NotificationCenter.default.post(name: .didReciveMessage, object: nil)
+            }
+        }
+        // let content = UNMutableNotificationContent()
+        // content.title = (alert["title"] as? String)!
+        // content.body = (alert["body"] as? String)!
+        // content.sound = UNNotificationSound.default
+        //  content.setValue(true, forKey: "shouldAlwaysAlertWhileAppIsForeground")
+        //  content.setValue(true, forKey: "shouldPauseMedia")
+        //  let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        // let notificationRequest = UNNotificationRequest(identifier: "\(arc4random())", content: content, trigger: trigger)
+        // UNUserNotificationCenter.current().add(notificationRequest) { (error) in
         //            if let error = error {
         //                print(error)
         //            } else {
