@@ -40,7 +40,7 @@ class ProfileView: BaseView {
     
     lazy var gradientLayer = LinearGradientLayer(colors: [mediumPurple, lightPurple])
     lazy var stack = UIStackView(arrangedSubviews: getRatingButtons())
-
+    
     let nameLable = WhiteLable(text: AuthService.instance.userFirstName ?? "Name")
     lazy var editProfileButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -96,10 +96,10 @@ class ProfileView: BaseView {
         
         if sender.tag == 0 { // services
             setupCollextionView()
-
+            
         } else if sender.tag == 1 { // qualification
             qualificaionsViewSetup()
-
+            
         } else if sender.tag == 2 { // info
             setupProfileView()
         }
@@ -112,7 +112,7 @@ class ProfileView: BaseView {
     let mailText = UnderLineTextField(placeH: AuthService.instance.userEmail ?? "البريد الالكتروني")
     let jobText = UnderLineTextField(placeH: AuthService.instance.userJob ?? "المهنة")
     let phoneText = UnderLineTextField(placeH: AuthService.instance.userPhone ?? "رقم الجوال")
-
+    
     lazy var areaText: CreateAccountButton = {
         let btn = CreateAccountButton(title: "منطقة", image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate))
         return btn
@@ -175,7 +175,7 @@ class ProfileView: BaseView {
         profileContainerView.addSubview(userImage)
         userImage.centerXInSuperview()
         userImage.topAnchorSuperView(constant: 15)
-
+        
         profileContainerView.addSubview(nameLable)
         nameLable.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 3).isActive = ya
         nameLable.centerXInSuperview()
@@ -197,8 +197,7 @@ class ProfileView: BaseView {
         stack.heightAnchorConstant(constant: 60)
         
         setupProfileView()
-        [
-            firstNameText,
+        [firstNameText,
             familyNameText,
             mailText,
             jobText,
@@ -209,7 +208,6 @@ class ProfileView: BaseView {
             ].forEach({ (con) in
                 con.isEnabled.toggle()
             })
-
     }
     
     private func setupProfileView() {
@@ -220,7 +218,7 @@ class ProfileView: BaseView {
         scrollView.isScrollEnabled = ya
         servMainCollectionView.removeFromSuperview()
         editProfileButton.isHidden = no
-
+        
         profileStack = UIStackView(arrangedSubviews: [
             firstNameText,
             familyNameText,
@@ -242,26 +240,11 @@ class ProfileView: BaseView {
         profileStack?.centerXInSuperview()
         profileStack?.heightAnchorConstant(constant: 470)
     }
-    
 
-    
-//    lazy var addQualifButton: UIButton = {
-//        let btn = UIButton(type: .system)
-//        btn.setTitle("اضافة مؤهل", for: .normal)
-//        btn.setTitleColor(.white, for: .normal)
-//        btn.titleLabel?.font = .CairoSemiBold(of: 15)
-//        btn.layer.cornerRadius = 15
-//        btn.translatesAutoresizingMaskIntoConstraints = false
-//        btn.backgroundColor = #colorLiteral(red: 0.9285544753, green: 0.3886299729, blue: 0.6461874247, alpha: 1)
-//        btn.addTheTarget(action: {[weak self] in
-//        })
-//        return btn
-//    }()
-    
     private func setupCollextionView() {
         qualifStack?.removeFromSuperview()
         qualifMainCollectionView.removeFromSuperview()
-//        addQualifButton.removeFromSuperview()
+        //        addQualifButton.removeFromSuperview()
         qualifStack = nil
         profileStack?.removeFromSuperview()
         profileStack = nil
@@ -274,7 +257,7 @@ class ProfileView: BaseView {
         servMainCollectionView.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 10).isActive = ya
         servMainCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = ya
     }
-
+    
     private func qualificaionsViewSetup() {
         
         profileStack?.removeFromSuperview()
@@ -282,18 +265,12 @@ class ProfileView: BaseView {
         servMainCollectionView.removeFromSuperview()
         scrollView.contentSize.height = 900
         editProfileButton.isHidden = ya
-
+        
         addSubview(qualifMainCollectionView)
         qualifMainCollectionView.widthAnchorWithMultiplier(multiplier: 0.9)
         qualifMainCollectionView.heightAnchorConstant(constant: 400)
         qualifMainCollectionView.centerXInSuperview()
         qualifMainCollectionView.topAnchorToView(anchor: stack.bottomAnchor, constant: 10)
-        
-//        addSubview(addQualifButton)
-//        addQualifButton.centerXInSuperview()
-//        addQualifButton.topAnchorToView(anchor: qualifMainCollectionView.bottomAnchor, constant: 10)
-//        addQualifButton.widthAnchorWithMultiplier(multiplier: 0.9)
-//        addQualifButton.heightAnchorConstant(constant: 40)
     }
     
     override func layoutSubviews() {
@@ -324,7 +301,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     var rigonId: Int?
-    var  catId: Int?
+    var catId: Int?
     
     func result(name: String) {
         sender?.setTitleNormalState(name)
@@ -420,7 +397,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         
         mainView.vc = self
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -506,10 +483,16 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     private var allCity = [Area]()
     private var allRigon = [Area]()
     
+    private var provider: Provider? {
+        didSet {
+            mainView.areaText.setTitle(provider?.area ?? "منطقة", for: .normal)
+            mainView.cityText.setTitle(provider?.city ?? "مدينة", for: .normal)
+            mainView.distinctText.setTitle(provider?.region ?? "حي", for: .normal)
+        }
+    }
+    
     private func getAllArea() {
-        
         let url = "http://m4a8el.panorama-q.com/api/locations/areas"
-        
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.allArea = data.data
@@ -518,9 +501,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func getCity(id: Int) {
-        
         let url = "http://m4a8el.panorama-q.com/api/locations/cities/\(id)"
-        
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.allCity = data.data
@@ -529,9 +510,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func getRigon(id: Int) {
-        
         let url = "http://m4a8el.panorama-q.com/api/locations/regions/\(id)"
-        
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.allRigon = data.data
@@ -548,6 +527,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         callApi(AllServiceData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.scheduleData = data.data?.services.schedules
+                self.provider = data.data?.provider
                 self.lastPage = data.data?.services.paginate.totalPages ?? 1
                 self.currentPage = 1
                 self.isLoading = false
@@ -561,14 +541,14 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
             self.getServicesData()
         }
     }
-
+    
     func delQuaif(id: Int) {
         let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"
         callApi(BaseModel.self, url: url, method: .delete, parameters: nil) { (data) in
             self.getQualifData()
         }
     }
-
+    
     fileprivate var dataSource: [Qualification]? {
         didSet {
             mainView.qualifMainCollectionView.reloadData()
@@ -588,7 +568,6 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func paginateQualif() {
-        
         guard !isLoading else { return }
         guard lastPage > currentPage else { return }
         isLoading = true
@@ -600,13 +579,12 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
                 self?.dataSource?.append(contentsOf: app)
                 self?.currentPage += 1
                 self?.isLoading = false
-//                print("self.currentPage \(self.currentPage)")
+                //                print("self.currentPage \(self.currentPage)")
             }
         }
     }
     
     private func paginate() {
-        
         guard !isLoading else { return }
         guard lastPage > currentPage else { return }
         isLoading = true
@@ -630,8 +608,8 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         pars["last_name"] = mainView.familyNameText.text
         pars["email"] = mainView.mailText.text
         pars["phone"] = mainView.phoneText.text
-//        pars["birth_date"] = mainView.birthText.text
-//        pars["gender"] = mainView.genderText.text
+        // pars["birth_date"] = mainView.birthText.text
+        // pars["gender"] = mainView.genderText.text
         pars["job"] = mainView.jobText.text
         if let rigonId = rigonId {
             pars["region_id"] = rigonId
@@ -679,8 +657,6 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         }
     }
     
-    
-    
     var pickerUserImage: UIImage?
     
     var pickerUserProfileImage: UIImage?{
@@ -722,7 +698,7 @@ struct BaseModel: BaseCodable {
     
     var msg: String?
     
-//    let status: String
+    //    let status: String
     let data: String
 }
 
@@ -751,7 +727,7 @@ class BaseCollCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-//        label.text = "12 may"
+        //        label.text = "12 may"
         label.backgroundColor = #colorLiteral(red: 0.9132761359, green: 0.3805814981, blue: 0.6425676346, alpha: 1)
         label.font = .CairoRegular(of: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -762,7 +738,7 @@ class BaseCollCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.textAlignment = .center
-//        label.text = "ashdhahannas"
+        //        label.text = "ashdhahannas"
         label.font = .CairoRegular(of: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -796,7 +772,7 @@ class BaseCollCell: UICollectionViewCell {
     
     var pressDelete: (() -> Void)?
     var pressEdit: (() -> Void)?
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -820,7 +796,7 @@ class BaseCollCell: UICollectionViewCell {
         containerView.addSubview(titleLable)
         titleLable.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 5).isActive = true
         titleLable.topAnchor.constraint(equalTo: cellImage.topAnchor, constant: 0).isActive = true
-
+        
         containerView.addSubview(dateLable)
         dateLable.widthAnchorConstant(constant: 60)
         dateLable.topAnchorSuperView(constant: 15)
@@ -829,16 +805,16 @@ class BaseCollCell: UICollectionViewCell {
         
         containerView.addSubview(editButton)
         containerView.addSubview(delButton)
-
+        
         editButton.leadingAnchorSuperView(constant: 0)
         editButton.bottomAnchorSuperView(constant: 0)
         editButton.widthAnchorWithMultiplier(multiplier: 0.48)
-
+        
         delButton.trailingAnchorAnchorSuperView(constant: 0)
         delButton.bottomAnchorSuperView(constant: 0)
         delButton.widthAnchorWithMultiplier(multiplier: 0.48)
     }
-
+    
     // MARK: - ConfigurableCell
     func configure(_ item: ScheduleData) {
         cellImage.load(with: item.image)
@@ -873,23 +849,19 @@ struct ServiceDate: Codable {
 // get services
 struct AllServiceData: BaseCodable {
     var status: Int
-    
     var msg: String?
-    
     let data: ServiceData?
 }
 
 struct ServiceData: Codable {
-//    let provider: Provider
+    let provider: Provider
     let services: Services
 }
 
 // add qualf
 struct AllQualifeData: BaseCodable {
     var status: Int
-    
     var msg: String?
-    
     let data: QualifeData
 }
 
@@ -906,14 +878,31 @@ struct Services: Codable {
     let paginate: Paginate
 }
 
-
 struct ScheduleData: Codable {
     let id: Int
     let name: String
     let price: Int
     let image: String
-//    var isSelected: Bool = false
+    //    var isSelected: Bool = false
 }
+
+// MARK: - Provider
+struct Provider: Codable {
+//    let social: Social?
+    let info, phone: String?
+//    let location: JSONNull?
+    let region, name, city, activityType: String?
+    let image: String?
+    let area: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case info, phone, region, name, city
+        case activityType = "activity_type"
+        case image, area
+    }
+}
+
+// **********************************
 
 // update prof
 struct UpdateProfData: BaseCodable {
@@ -927,12 +916,12 @@ struct UpdateProf: Codable {
     let activityType: String?
     let lastName, role: String
     let subCategoryName, categoryName, info: String?
-//    let location: JSONNull?
+    // let location: JSONNull?
     let gender, firstName, job: String?
     let image: String?
     let deliveryRate: String?
     let isVerified, subCategoryID: Int?
-//    let social: Social
+    // let social: Social
     let id: Int
     let birthDate, email: String?
     

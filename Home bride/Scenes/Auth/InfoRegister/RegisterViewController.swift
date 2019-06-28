@@ -43,7 +43,6 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
                 }
             }
         }
-
         
         if sender == mainView.mainJobButton {
             var id = 0

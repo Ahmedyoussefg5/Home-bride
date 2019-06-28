@@ -11,30 +11,17 @@ import Photos
 
 class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if mainView.selected == 0 {
             return dataSource?.images.count ?? 0
-//        } else {
-//            return dataSource?.videos.count ?? 0
-//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: GalaryCollCell.self, for: indexPath)
-//        if mainView.selected == 0 {
             cell.configure(dataSource?.images.image[indexPath.row].image ?? "", vid: no)
-//        } else {
-//            cell.configure(dataSource?.videos.video[indexPath.row].video ?? "", vid: ya)
-//        }
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if mainView.selected == 1 {
-//            let vc = UINavigationController(rootViewController: VideoPlayer(url: dataSource?.videos.video[indexPath.row].video ?? ""))
-//            vc.navbarWithdismiss()
-//            presentModelyVC(vc: vc)
-//        }
+        navigationController?.pushViewController(ImagePreviewViewController(image: dataSource?.images.image[indexPath.row].image ?? ""), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -80,23 +67,7 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
     }
     
     @objc private func addItem() {
-//        if mainView.selected == 1 {
-//            let alert = UIAlertController(title: nil, message: "اضف لينك فيديو", preferredStyle: .alert)
-//            alert.addTextField { (text) in
-//                print(text.text ?? "")
-//            }
-//            alert.addAction(UIAlertAction(title: "اضف", style: .default, handler: { (_) in
-//                guard let link = alert.textFields?.first?.text else { return }
-//                self.addVidio(link: link)
-//            }))
-//            alert.addAction(UIAlertAction(title: "تراجع", style: .destructive, handler: { (_) in
-//                alert.dismissMePlease()
-//            }))
-//            present(alert, animated: true)
-////            alert.textFields?.first?.text = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-//        } else {
             pickUserImage()
-//        }
     }
     
     private func addimage() {

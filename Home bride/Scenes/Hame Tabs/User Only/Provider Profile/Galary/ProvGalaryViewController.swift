@@ -9,6 +9,7 @@
 import UIKit
 
 class ProvGalaryViewController: BaseUIViewController<ProvGalaryView>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return dataSource?.count ?? 0
 //            return dataSource?.videos.count ?? 0
@@ -26,11 +27,9 @@ class ProvGalaryViewController: BaseUIViewController<ProvGalaryView>, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if mainView.selected == 1 {
-//            let vc = UINavigationController(rootViewController: VideoPlayer(url: dataSource?.videos.video[indexPath.row].video ?? ""))
-//            vc.navbarWithdismiss()
-//            presentModelyVC(vc: vc)
-//        }
+        let vc = UINavigationController(rootViewController: ImagePreviewViewController(image: dataSource?[indexPath.row] ?? "", withDismiss: true))
+        vc.navbarWithdismiss()
+        presentModelyVC(vc: vc)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -62,12 +61,20 @@ class ProvGalaryViewController: BaseUIViewController<ProvGalaryView>, UICollecti
             }
         }
     }
+    
     let act = UIActivityIndicatorView(style: .whiteLarge)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dismissGeasture = UITapGestureRecognizer(target: self, action: #selector(dismissMePlease))
-        mainView.addGestureRecognizer(dismissGeasture)
+        let backButton = UIButton()
+        mainView.head.addSubview(backButton)
+        backButton.centerYInSuperview()
+        backButton.leadingAnchorSuperView(constant: 20)
+        backButton.setTitle("X", for: .normal)
+        backButton.addTheTarget {[weak self] in
+            self?.dismissMePlease()
+        }
+        
         mainView.mainCollectionView.delegate = self
         mainView.mainCollectionView.dataSource = self
         getData()

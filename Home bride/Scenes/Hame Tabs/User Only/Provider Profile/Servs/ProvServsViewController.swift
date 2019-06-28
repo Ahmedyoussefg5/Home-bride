@@ -67,9 +67,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
             cell.pressOnImageView = {[weak self] in
                 self?.openImage(with: self?.serv![indexPath.row].image ?? "")
             }
-            
         }
-        
         return cell
     }
     

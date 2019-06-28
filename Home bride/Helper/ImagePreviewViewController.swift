@@ -7,14 +7,17 @@
 //
 
 import UIKit
-final class ImagePreviewViewController: UIViewController {
+
+class ImagePreviewViewController: UIViewController {
     
     private lazy var scrollView = ImageScrollView(image: image)
     
     var image: String
+    var withDismiss: Bool
     
-    init(image: String) {
+    init(image: String, withDismiss: Bool = false) {
         self.image = image
+        self.withDismiss = withDismiss
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,8 +32,19 @@ final class ImagePreviewViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if withDismiss {
+            navigationItem.leftBarButtonItem =
+                UIBarButtonItem(image: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysTemplate),
+                                landscapeImagePhone: #imageLiteral(resourceName: "downArrow").withRenderingMode(.alwaysOriginal), style: .plain,
+                                target: self, action: #selector(dismissMePlease))
+        }
     }
     
     override func viewDidLayoutSubviews() {

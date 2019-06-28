@@ -112,5 +112,8 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             vc.navbarWithdismiss()
             self?.presentModelyVC(vc: vc)
         }
+        mainView.tearmsButton.addTheTarget {[weak self] in
+            self?.navigationController?.pushViewController(TermsViewController(), animated: true)
+        }
     }
 }

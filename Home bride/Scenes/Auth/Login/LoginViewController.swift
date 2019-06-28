@@ -61,7 +61,5 @@ class LoginViewController: BaseUIViewController<LoginView> {
                 }
             }
         }
-        
     }
-
 }

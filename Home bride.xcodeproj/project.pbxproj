@@ -114,7 +114,6 @@
 		E88502C12279E7FC006EA67B /* AllProvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88502BE2279E7C8006EA67B /* AllProvViewController.swift */; };
 		E89D009A2299EFE100EDC245 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E89D00992299EFE100EDC245 /* GoogleService-Info.plist */; };
 		E8B7FB7622845DD000EEC23C /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B7FB7522845DA900EEC23C /* DeliveryViewController.swift */; };
-		E8C17DC622B15BEC005AEB93 /* Reg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C17DC522B15BEC005AEB93 /* Reg.swift */; };
 		E8C63DE5226BA63800E460EE /* NewRequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C63DE4226BA63800E460EE /* NewRequestDetailsView.swift */; };
 		E8C711AF2271F0C1008A783B /* GalaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C711AE2271F088008A783B /* GalaryViewController.swift */; };
 		E8C711B2227204F9008A783B /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C711B1227204A4008A783B /* TimeTableViewController.swift */; };
@@ -1014,7 +1013,6 @@
 				E83B0491226A8AAF00674F19 /* extension UIButton.swift in Sources */,
 				E88502BB2279DA21006EA67B /* AllCatView.swift in Sources */,
 				E83B0498226A8AAF00674F19 /* extension UIView.swift in Sources */,
-				E8C17DC622B15BEC005AEB93 /* Reg.swift in Sources */,
 				E83B0494226A8AAF00674F19 /* extension UIImage.swift in Sources */,
 				E83B04BD226AB86900674F19 /* HomeView.swift in Sources */,
 				E821B636227E0109008AB4B2 /* UserProfileViewController.swift in Sources */,
@@ -1200,12 +1198,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VAZQU789U;
 				INFOPLIST_FILE = "Home bride/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebridee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1221,12 +1219,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9VAZQU789U;
 				INFOPLIST_FILE = "Home bride/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebride;
+				PRODUCT_BUNDLE_IDENTIFIER = com.panorama.homebridee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

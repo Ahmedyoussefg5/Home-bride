@@ -144,13 +144,13 @@ class AddSevrvViewController: UIViewController {
     private func addService() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
 
-        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
+        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0 else {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
         let url = "http://m4a8el.panorama-q.com/api/services"
         let pars = [
             "name": name,
-            "price": intPrice
+            "price": price
             ] as [String : Any]
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         
@@ -171,13 +171,14 @@ class AddSevrvViewController: UIViewController {
     private func editService(id: Int) {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
         
-        guard let name = nameText.text, name.count > 1 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
+        guard let name = nameText.text, name.count > 1 , let price = costText.text, price.count > 0 else {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
+        
         let url = "http://m4a8el.panorama-q.com/api/services/\(id)"
         let pars = [
             "name": name,
-            "price": intPrice
+            "price": price
             ] as [String : Any]
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         

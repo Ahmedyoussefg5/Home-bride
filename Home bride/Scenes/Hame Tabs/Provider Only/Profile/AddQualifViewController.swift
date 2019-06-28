@@ -186,8 +186,7 @@ class AddQualifViewController: UIViewController {
     private func addQualif() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
         guard let name = nameText.text, name.count > 1 ,
-            let degree = costText.text, degree.count > 0,
-            let intPrice = Int(degree) else {
+            let degree = costText.text, degree.count > 0 else {
                 showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
                 return }
 
@@ -216,7 +215,7 @@ class AddQualifViewController: UIViewController {
     private func editService(id: Int) {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
         
-        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0, let intPrice = Int(price) else {
+        guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0 else {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
         let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"

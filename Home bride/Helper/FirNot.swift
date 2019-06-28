@@ -13,9 +13,11 @@ extension AppDelegate  {
         UNUserNotificationCenter.current().delegate = self
         
         UNUserNotificationCenter.current().requestAuthorization( options: [.alert, .badge, .sound], completionHandler: {_, _ in})
+        
         app.registerForRemoteNotifications()
     }
 }
+
 extension AppDelegate {
     
     func ConnectToFCM() {

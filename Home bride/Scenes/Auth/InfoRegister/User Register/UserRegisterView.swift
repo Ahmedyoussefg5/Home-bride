@@ -68,6 +68,11 @@ class UserRegisterView: BaseView {
         let btn = CreateAccountButton(title: "تحديد المكان", image: #imageLiteral(resourceName: "facebook-placeholder-for-locate-places-on-maps").withRenderingMode(.alwaysTemplate))
         return btn
     }()
+    lazy var tearmsButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("الشروط والاحكام", for: .normal)
+        return btn
+    }()
     override func setupView() {
         layer.insertSublayer(gradientLayerr, at: 0)
 
@@ -107,6 +112,7 @@ class UserRegisterView: BaseView {
         //
 
         //
+        tearmsButton.heightAnchorConstant(constant: 30)
         let stack = UIStackView(arrangedSubviews:
             [title,
              locationButton,
@@ -118,7 +124,7 @@ class UserRegisterView: BaseView {
              mailText,
              stackSpliter(),
              signUpButton,
-//             titlee,
+             tearmsButton,
             ])
         
         stack.axis = v
@@ -128,7 +134,7 @@ class UserRegisterView: BaseView {
         stack.centerXInSuperview()
         stack.topAnchorSuperView(constant: 10)
         stack.widthAnchorWithMultiplier(multiplier: 0.9)
-        stack.heightAnchorConstant(constant: 470)
+        stack.heightAnchorConstant(constant: 500)
 
 //        loginView.addSubview(socialStack)
 //        socialStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20).isActive = true

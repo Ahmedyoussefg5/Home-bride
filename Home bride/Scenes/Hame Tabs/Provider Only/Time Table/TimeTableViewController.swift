@@ -404,7 +404,7 @@ class AddTimeTableView: UIView {
     
     private lazy var saveButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("حفظ", for: .normal)
+        btn.setTitle("تم", for: .normal)
         btn.contentHorizontalAlignment = .center
         btn.setTitleColor(.white, for: .normal)
         btn.addBottomLine()

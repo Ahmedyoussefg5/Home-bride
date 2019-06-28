@@ -21,7 +21,7 @@ class DatePickerViewController: UIViewController {
         picker.viewBorderColor = .paleGreyTwo
         picker.viewCornerRadius = 8
         picker.datePickerMode = mode
-        picker.locale = Locale(identifier: "en_GB")
+//        picker.locale = Locale(identifier: "en_GB")
         return picker
     }()
     lazy var confirmButton: UIButton = {

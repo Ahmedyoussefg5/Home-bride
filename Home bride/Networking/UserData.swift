@@ -124,26 +124,7 @@ class AuthService {
         }
     }
     
-    var userMemberShip: String? {
-        get {
-            return defaults.value(forKey: "userMemberShip") as? String
-        }
-        set {
-            defaults.set(newValue, forKey: "userMemberShip")
-        }
-    }
-    
-    // userCountry
-    var userCountryUrl: String? {
-        get {
-            return defaults.value(forKey: UserCountry) as? String
-        }
-        set {
-            defaults.set(newValue, forKey: UserCountry)
-        }
-    }
-    
-    var lastRequest: Int? {
+    var regionId: Int? {
         get {
             return defaults.value(forKey: LastRequest) as? Int
         }
@@ -197,15 +178,6 @@ class AuthService {
         }
     }
     
-    var shouldShowNotifications: Bool {
-        get {
-            return defaults.value(forKey: ShouldShowNotifications) as? Bool ?? true
-        }
-        set {
-            defaults.set(newValue, forKey: ShouldShowNotifications)
-        }
-    }
-    
     func setUserDefaults(update user: UpdateProf) {
         
         isLoggedIn = true
@@ -221,6 +193,8 @@ class AuthService {
         userJob = user.subCategoryName
         userdate = user.birthDate
         userRole = user.role
+//        regionId = user.
+        
     }
     
     func setUserDefaults(reset user: UserSet) {
@@ -238,6 +212,8 @@ class AuthService {
 //        userJob = user.subCategoryName
         userdate = user.birthDate
         userRole = user.role ?? "client"
+        regionId = user.regionID
+//        userArea = user.
     }
     
     func setUserDefaults(user: UserData) {
@@ -257,6 +233,7 @@ class AuthService {
         userJob = user.subCategoryName
         userdate = user.birthDate
         userRole = user.role
+        regionId = user.regionID
     }
     
     private func removeUserDefaults()  {
@@ -269,8 +246,7 @@ class AuthService {
         userFirstName = nil
         userLastName = nil
         userGender = nil
-        userMemberShip = nil
-        shouldShowNotifications = true
+        regionId = nil
     }
     
     func restartAppAndRemoveUserDefaults() {
