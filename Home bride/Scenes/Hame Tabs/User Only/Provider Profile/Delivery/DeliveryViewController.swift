@@ -9,8 +9,8 @@
 import UIKit
 
 protocol DeliveryResulte: class {
-    func send(Status: Bool)
-    func location(name: String, lat: String, long: String)
+    func send(Status: Bool, copon: String?)
+    func location(name: String, lat: String, long: String, copon: String?)
 }
 
 class DeliveryView: BaseView {
@@ -39,6 +39,20 @@ class DeliveryView: BaseView {
         })
         return btn
     }()
+    lazy var coponTxt: UITextField = {
+        let txt = UITextField()
+        txt.textAlignment = .right
+        txt.placeholder = "ادخل الكوبون"
+        txt.backgroundColor = .white
+        txt.textColor = .darkGray
+        txt.viewBorderColor = .lightGray
+        txt.viewBorderWidth = 0.5
+        txt.font = .CairoSemiBold(of: 15)
+        txt.setLeftPaddingPoints(5)
+        txt.setRightPaddingPoints(5)
+        txt.layer.cornerRadius = 6.0
+        return txt
+    }()
     private lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,28 +72,33 @@ class DeliveryView: BaseView {
         containerView.centerXInSuperview()
         containerView.centerYInSuperview()
         containerView.widthAnchorWithMultiplier(multiplier: 0.9)
-        containerView.heightAnchorConstant(constant: 190)
+        containerView.heightAnchorConstant(constant: 220)
         
-        let stack = UIStackView(arrangedSubviews: [goButton, contactButton])
+        let stack = UIStackView(arrangedSubviews: [goButton, contactButton, coponTxt])
         stack.axis = v
         stack.distribution = .fillEqually
-        stack.spacing = 30
+        stack.spacing = 20
         containerView.addSubview(stack)
         stack.fillSuperview(padding: UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10))
     }
 }
 
-class DeliveryViewController: BaseUIViewController<DeliveryView>, SendMapResult{
+class DeliveryViewController: BaseUIViewController<DeliveryView>, SendMapResult {
+    
     func location(name: String, lat: String, long: String) {
         self.lng = long
         self.lat = lat
-        delegate?.location(name: name, lat: lat, long: long)
+        if self.mainView.coponTxt.text != nil && self.mainView.coponTxt.text != "" {
+            self.copon = self.mainView.coponTxt.text
+        }
+        delegate?.location(name: name, lat: lat, long: long, copon: mainView.coponTxt.text)
         dismissMePlease()
     }
     
     weak var delegate: DeliveryResulte?
-    var lat: String = ""
-    var lng: String = ""
+    var lat = ""
+    var lng = ""
+    var copon: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +114,10 @@ class DeliveryViewController: BaseUIViewController<DeliveryView>, SendMapResult{
         }
         
         mainView.goButton.addTheTarget {[weak self] in
-            self?.delegate?.send(Status: no)
+            if self?.mainView.coponTxt.text != nil && self?.mainView.coponTxt.text != "" {
+                self?.copon = self?.mainView.coponTxt.text
+            }
+            self?.delegate?.send(Status: no, copon: self?.copon)
             self?.dismissMePlease()
         }
     }

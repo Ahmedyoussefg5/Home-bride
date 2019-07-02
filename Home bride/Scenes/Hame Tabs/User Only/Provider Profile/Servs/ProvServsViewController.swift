@@ -9,13 +9,16 @@
 import UIKit
 
 class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewDelegate, UITableViewDataSource, SendResult, DeliveryResulte {
-    func send(Status: Bool) {
+    
+    func send(Status: Bool, copon: String?) {
+        self.copon = copon
         getDate()
     }
     
-    func location(name: String, lat: String, long: String) {
+    func location(name: String, lat: String, long: String, copon: String?) {
         self.lat = lat
         self.lng = long
+        self.copon = copon
         getDate()
     }
     
@@ -46,6 +49,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
     
     var lat: String?
     var lng: String?
+    var copon: String?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serv?.count ?? 0
@@ -100,6 +104,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
             }
         }
     }
+    
     let act = UIActivityIndicatorView(style: .whiteLarge)
 
     override func viewDidLoad() {
@@ -117,6 +122,8 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         mainView.resButton.addTheTarget {[weak self] in
             self?.lng = nil
             self?.lat = nil
+            self?.copon = nil
+            
             let vc = DeliveryViewController()
             vc.delegate = self
             self?.presentModelyVC(vc: vc)
@@ -153,6 +160,10 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
             pars["lng"] = lng
             pars["lat"] = lat
             pars["delivery"] = 1
+        }
+        
+        if let copon = copon {
+            pars["coupon"] = copon
         }
 
         callApi(ResResposeData.self, url: url, method: .post, parameters: pars, activityIndicator: act) {[weak self] (data) in
