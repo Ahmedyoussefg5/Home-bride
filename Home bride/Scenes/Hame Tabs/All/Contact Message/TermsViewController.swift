@@ -43,7 +43,7 @@ class TermsViewController: UIViewController {
     }()
 
     func send() {
-        callApi(Terms.self, url: "http://m4a8el.panorama-q.com/api/terms", method: .get, parameters: nil) {[weak self] (data) in
+        callApi(Terms.self, url: "http://homebride-sa.com/api/terms", method: .get, parameters: nil) {[weak self] (data) in
             self?.messageTextView.text = data?.data
         }
     }

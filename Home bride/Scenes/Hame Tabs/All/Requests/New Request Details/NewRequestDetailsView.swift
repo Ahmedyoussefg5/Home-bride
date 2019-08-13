@@ -63,7 +63,7 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
     }
     
     private func accept() {
-        let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
+        let url = "http://homebride-sa.com/api/reservation/\(id)"
         let pars = [
             "status": "accept",
             "_method": "PUT",
@@ -79,7 +79,7 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
     }
     
     private func refuse() {
-        let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
+        let url = "http://homebride-sa.com/api/reservation/\(id)"
         let pars = [
             "status": "cancel",
             "_method": "PUT"
@@ -115,7 +115,7 @@ class NewRequestDetailsViewController: BaseUIViewController<NewRequestDetailsVie
     }
     
     private func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/reservation/\(id)"
+        let url = "http://homebride-sa.com/api/reservation/\(id)"
         callApi(ReqData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.data = data

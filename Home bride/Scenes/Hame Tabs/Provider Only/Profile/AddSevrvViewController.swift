@@ -147,7 +147,7 @@ class AddSevrvViewController: UIViewController {
         guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0 else {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
-        let url = "http://m4a8el.panorama-q.com/api/services"
+        let url = "http://homebride-sa.com/api/services"
         let pars = [
             "name": name,
             "price": price
@@ -175,7 +175,7 @@ class AddSevrvViewController: UIViewController {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
         
-        let url = "http://m4a8el.panorama-q.com/api/services/\(id)"
+        let url = "http://homebride-sa.com/api/services/\(id)"
         let pars = [
             "name": name,
             "price": price

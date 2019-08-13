@@ -49,7 +49,7 @@ class SubCatViewController: BaseUIViewController<SubCatView>, UICollectionViewDe
     
     private func getCat() {
         act.color = mediumPurple
-        let url = "http://m4a8el.panorama-q.com/api/sub_categories/\(id)"
+        let url = "http://homebride-sa.com/api/sub_categories/\(id)"
         
         callApi(AllCategories.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
             if let data = data {

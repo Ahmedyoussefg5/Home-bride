@@ -49,6 +49,7 @@ class NotificationsViewController: BaseUIViewController<NotificationsView>, UITa
         super.viewDidDisappear(animated)
         openedViewController = ""
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupNavBarApperance(title: "", addImageTitle: no, showNotifButton: no)
@@ -58,7 +59,7 @@ class NotificationsViewController: BaseUIViewController<NotificationsView>, UITa
         mainView.mainTableView.delegate = self
         mainView.mainTableView.dataSource = self
         
-        let url = "http://m4a8el.panorama-q.com/api/notifications"
+        let url = "http://homebride-sa.com/api/notifications"
         callApi(AllNotification.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.nots = data.data.notifications
@@ -78,7 +79,7 @@ class NotificationsViewController: BaseUIViewController<NotificationsView>, UITa
         guard lastPage > currentPage else { return }
         isLoading = true
         
-        let url = "http://m4a8el.panorama-q.com/api/notifications?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/notifications?page=\(currentPage + 1)"
         callApi(AllNotification.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.nots?.append(contentsOf: data.data.notifications)

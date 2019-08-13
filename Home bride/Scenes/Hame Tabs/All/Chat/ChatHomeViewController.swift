@@ -62,7 +62,7 @@ class ChatHomeViewController: BaseUIViewController<ChatHomeView>, UITableViewDel
     }
     
     @objc private func sendMessage() {
-        callApi(AllChat.self, url: "http://m4a8el.panorama-q.com/api/chat", method: .get, parameters: nil) {[weak self] (data) in
+        callApi(AllChat.self, url: "http://homebride-sa.com/api/chat", method: .get, parameters: nil) {[weak self] (data) in
             if let data = data {
                 self?.chat = data.data?.chats
             }

@@ -149,7 +149,7 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
 
     private func getAllArea() {
         
-        let url = "http://m4a8el.panorama-q.com/api/locations/areas"
+        let url = "http://homebride-sa.com/api/locations/areas"
         
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
             if let data = data {
@@ -160,7 +160,7 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
     
     private func getCity(id: Int) {
         
-        let url = "http://m4a8el.panorama-q.com/api/locations/cities/\(id)"
+        let url = "http://homebride-sa.com/api/locations/cities/\(id)"
         
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
             if let data = data {
@@ -171,7 +171,7 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
 
     private func getRigon(id: Int) {
         
-        let url = "http://m4a8el.panorama-q.com/api/locations/regions/\(id)"
+        let url = "http://homebride-sa.com/api/locations/regions/\(id)"
         
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
             if let data = data {
@@ -181,7 +181,7 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
     }
     
     private func getAllcategories() {
-        let url = "http://m4a8el.panorama-q.com/api/categories"
+        let url = "http://homebride-sa.com/api/categories"
         
         callApi(AllCategories.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
@@ -192,7 +192,7 @@ class RegisterViewController: BaseUIViewController<RegisterView>, SendResult {
     
     private func getCat(id: Int) {
         
-        let url = "http://m4a8el.panorama-q.com/api/sub_categories/\(id)"
+        let url = "http://homebride-sa.com/api/sub_categories/\(id)"
         
         callApi(AllCategories.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
             if let data = data {

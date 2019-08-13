@@ -41,7 +41,7 @@ class LoginViewController: BaseUIViewController<LoginView> {
             return
         }
         
-        let url = "http://m4a8el.panorama-q.com/api/auth/login"
+        let url = "http://homebride-sa.com/api/auth/login"
         let pars = [
                     "email": mail,
                     "password": pass,

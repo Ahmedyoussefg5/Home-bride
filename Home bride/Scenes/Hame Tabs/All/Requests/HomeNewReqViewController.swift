@@ -66,7 +66,7 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
     var isLoading = true
     
     private func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/reservation"
+        let url = "http://homebride-sa.com/api/reservation"
         callApi(AllResvsData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.data = data
@@ -83,7 +83,7 @@ class HomeNewReqViewController: BaseUIViewController<VV>, UITableViewDelegate, U
         guard lastPage > currentPage else { return }
         isLoading = true
         
-        let url = "http://m4a8el.panorama-q.com/api/reservation?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/reservation?page=\(currentPage + 1)"
         callApi(AllResvsData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.data?.data.orders.append(contentsOf: data.data.orders)

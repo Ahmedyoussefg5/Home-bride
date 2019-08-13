@@ -56,7 +56,7 @@ class AllProvViewController: BaseUIViewController<AllProvView>, UICollectionView
     
     private func getAllcategories() {
         act.color = mediumPurple
-        let url = "http://m4a8el.panorama-q.com/api/providers/\(id)"
+        let url = "http://homebride-sa.com/api/providers/\(id)"
         
         callApi(AllProvData.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
             if let data = data, var provs = data.data {

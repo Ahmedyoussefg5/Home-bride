@@ -50,7 +50,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             return
         }
         
-        var url = "http://m4a8el.panorama-q.com/api/auth/register/provider"
+        var url = "http://homebride-sa.com/api/auth/register/provider"
         var pars = ["first_name": fName,
                     "last_name": sName,
                     "email": mail,
@@ -64,7 +64,7 @@ class UserRegisterViewController: BaseUIViewController<UserRegisterView>, SendRe
             ] as [String : Any]
         
         if user == u {
-            url = "http://m4a8el.panorama-q.com/api/auth/register/client"
+            url = "http://homebride-sa.com/api/auth/register/client"
             pars.removeAll()
             pars = ["first_name": fName,
                     "last_name": sName,

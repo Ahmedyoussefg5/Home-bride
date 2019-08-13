@@ -42,7 +42,7 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
     }
     
     fileprivate func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/galleries"
+        let url = "http://homebride-sa.com/api/galleries"
         callApi(AllGalaryData.self, url: url, method: .get, parameters: nil) {[weak self] (data) in
             if let data = data {
                 self?.dataSource = data.data?.galleries
@@ -72,7 +72,7 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
     
     private func addimage() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
-        let url = "http://m4a8el.panorama-q.com/api/galleries?type=image"
+        let url = "http://homebride-sa.com/api/galleries?type=image"
         
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         
@@ -94,7 +94,7 @@ class GalaryViewController: BaseUIViewController<GalaryView>, UICollectionViewDe
     }
     
     private func addVidio(link: String) {
-        let url = "http://m4a8el.panorama-q.com/api/galleries"
+        let url = "http://homebride-sa.com/api/galleries"
         let pars = [
             "type": "video",
             "video": link

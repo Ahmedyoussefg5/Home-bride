@@ -11,7 +11,7 @@ import Foundation
 let toProfileVC = Notification.Name("toProfileVC")
 let toHomeVC = Notification.Name("toHomeVC")
 
-let BaseURL = URL(string: "http://m4a8el.panorama-q.com/api/auth/")!
+let BaseURL = URL(string: "http://homebride-sa.com/api/auth/")!
 var header = ["X-localization" : "ar",
     "Authorization" : "bearer \(AuthService.instance.authToken ?? "")"
 ]

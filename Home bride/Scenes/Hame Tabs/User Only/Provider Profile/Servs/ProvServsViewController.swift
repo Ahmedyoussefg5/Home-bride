@@ -97,7 +97,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
     }
     
     fileprivate func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/services/\(id)"
+        let url = "http://homebride-sa.com/api/services/\(id)"
         callApi(AllServData.self, url: url, method: .get, parameters: nil, activityIndicator: act) {[weak self] (data) in
             if let data = data {
                 self?.serv = data.data.services.schedules.map({ ScheduleDataViewModel(id: $0.id, name: $0.name, price: $0.price, image: $0.image, isSelected: false) })
@@ -148,7 +148,7 @@ class ProvServsViewController: BaseUIViewController<ProvServsView>, UITableViewD
         guard let dataa = data, dataa.count > 0 else { return }
         let ids = dataa.map({ $0.id })
 
-        let url = "http://m4a8el.panorama-q.com/api/reservation"
+        let url = "http://homebride-sa.com/api/reservation"
         
         var pars = [
             "delivery": 0,

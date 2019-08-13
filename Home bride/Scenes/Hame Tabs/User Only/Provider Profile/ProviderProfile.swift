@@ -172,7 +172,7 @@ class ProviderProfileViewController: BaseUIViewController<ProviderProfileView> {
     }
     
 //    private func getAllcategories() {
-//        let url = "http://m4a8el.panorama-q.com/api/categories"
+//        let url = "http://homebride-sa.com/api/categories"
 //
 //        callApi(AllCategories.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: act) {[weak self] (data) in
 //            if let data = data {

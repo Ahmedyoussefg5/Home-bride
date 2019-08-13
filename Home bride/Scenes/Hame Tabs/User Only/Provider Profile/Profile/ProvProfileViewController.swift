@@ -47,7 +47,7 @@ class ProvProfileViewController: BaseUIViewController<ProvProfileView>, UICollec
     }
     
     fileprivate func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"
+        let url = "http://homebride-sa.com/api/qualifications/\(id)"
         callApi(AllQualifications.self, url: url, method: .get, parameters: nil, activityIndicator: act) {[weak self] (data) in
             if let data = data {
                 self?.dataSource = data.data?.qualifications

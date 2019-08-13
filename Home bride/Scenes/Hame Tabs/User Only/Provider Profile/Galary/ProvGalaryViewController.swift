@@ -54,7 +54,7 @@ class ProvGalaryViewController: BaseUIViewController<ProvGalaryView>, UICollecti
     }
     
     fileprivate func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/galleries/\(id)"
+        let url = "http://homebride-sa.com/api/galleries/\(id)"
         callApi(AllGalaryData.self, url: url, method: .get, parameters: nil, activityIndicator: act) {[weak self] (data) in
             if let data = data {
                 self?.dataSource = data.data?.galleries.images.image.map({ $0.image })

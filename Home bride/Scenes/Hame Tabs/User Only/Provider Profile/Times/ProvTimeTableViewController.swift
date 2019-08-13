@@ -58,7 +58,7 @@ class ProvTimeTableViewController: BaseUIViewController<ProvTimeTableView>, UITa
     }
     
     private func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/schedules/\(id)"
+        let url = "http://homebride-sa.com/api/schedules/\(id)"
         callApi(AllSchedules.self, url: url, method: .get, parameters: nil, activityIndicator: activ) { (data) in
             if let data = data {
                 self.allSchedules = data
@@ -78,7 +78,7 @@ class ProvTimeTableViewController: BaseUIViewController<ProvTimeTableView>, UITa
         guard lastPage > currentPage else { return }
         isLoading = true
 
-        let url = "http://m4a8el.panorama-q.com/api/schedules?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/schedules?page=\(currentPage + 1)"
         callApi(AllSchedules.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.allSchedules?.data?.schedules.append(contentsOf: data.data?.schedules ?? [])

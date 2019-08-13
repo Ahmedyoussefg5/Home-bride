@@ -190,7 +190,7 @@ class AddQualifViewController: UIViewController {
                 showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
                 return }
 
-        let url = "http://m4a8el.panorama-q.com/api/qualifications"
+        let url = "http://homebride-sa.com/api/qualifications"
         let pars = [
             "name": name,
             "degree": degree
@@ -218,7 +218,7 @@ class AddQualifViewController: UIViewController {
         guard let name = nameText.text, name.count > 2 , let price = costText.text, price.count > 0 else {
             showAlert(title: "خطأ", message: "تأكد من البيانات المدخلة")
             return }
-        let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"
+        let url = "http://homebride-sa.com/api/qualifications/\(id)"
         let pars = [
             "name": name,
             "price": price

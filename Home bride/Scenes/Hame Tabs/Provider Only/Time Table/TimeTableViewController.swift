@@ -117,7 +117,7 @@ class TimeTableViewController: BaseUIViewController<TimeTableView>, UITableViewD
                 internalSchedule.day = "\(ind)"
             }
         }
-        let url = "http://m4a8el.panorama-q.com/api/schedules"
+        let url = "http://homebride-sa.com/api/schedules"
         let pars: [String : Any] = [
             "from": internalSchedule.from,
             "to"  : internalSchedule.to,
@@ -135,7 +135,7 @@ class TimeTableViewController: BaseUIViewController<TimeTableView>, UITableViewD
     var lastPage = 2
     var isLoading = true
     private func getData() {
-        let url = "http://m4a8el.panorama-q.com/api/schedules"
+        let url = "http://homebride-sa.com/api/schedules"
         callApi(AllSchedules.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.allSchedules = data
@@ -152,7 +152,7 @@ class TimeTableViewController: BaseUIViewController<TimeTableView>, UITableViewD
         guard lastPage > currentPage else { return }
         isLoading = true
 
-        let url = "http://m4a8el.panorama-q.com/api/schedules?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/schedules?page=\(currentPage + 1)"
         callApi(AllSchedules.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.allSchedules?.data?.schedules.append(contentsOf: data.data?.schedules ?? [])

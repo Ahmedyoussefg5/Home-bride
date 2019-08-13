@@ -115,6 +115,8 @@ extension UIViewController {
         navigationController?.navigationBar.tintColor = .clear
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+        navigationController?.navigationBar.tintColor = .white
     }
     
     func setupSideMenu() {

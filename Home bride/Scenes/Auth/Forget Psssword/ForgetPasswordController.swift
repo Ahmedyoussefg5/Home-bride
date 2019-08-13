@@ -29,7 +29,7 @@ class ForgetPasswordController: BaseUIViewController<ForgetPasswordView> {
         let pars = [
             "phone": num
         ]
-        callApi(ForgetData.self, url: "http://m4a8el.panorama-q.com/api/auth/forget", parameters: pars) {[weak self] (data) in
+        callApi(ForgetData.self, url: "http://homebride-sa.com/api/auth/forget", parameters: pars) {[weak self] (data) in
             if data != nil {
                 self?.navigationController?.pushViewController(VerifyViewController(phone: num), animated: true)
             }

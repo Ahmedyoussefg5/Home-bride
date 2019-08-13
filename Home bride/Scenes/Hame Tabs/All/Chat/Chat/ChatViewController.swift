@@ -46,7 +46,7 @@ class ChatViewController: UIViewController {
     
     @objc func getMess() {
         
-        callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in
+        callApi(AllMessData.self, url: "http://homebride-sa.com/api/chat/\(orderId)", method: .get, parameters: nil) {[weak self] (data) in
 //            if self?.messages == nil {
                 if let data = data, self?.messages?.count ?? 0 != data.data?.messages.messages.count ?? 0 {
                     self?.lastPage = data.data?.messages.paginate?.totalPages ?? 1
@@ -86,7 +86,7 @@ class ChatViewController: UIViewController {
             "message": message
             ] as [String : Any]
         
-        callApi(AllMessData.self, url: "http://m4a8el.panorama-q.com/api/chat", parameters: pars) {[weak self] (data) in
+        callApi(AllMessData.self, url: "http://homebride-sa.com/api/chat", parameters: pars) {[weak self] (data) in
             if let data = data {
                 self?.messages = data.data?.messages.messages.reversed()
             }
@@ -103,7 +103,7 @@ class ChatViewController: UIViewController {
         guard lastPage > currentPage else { return }
         isLoading = true
         
-        let url = "http://m4a8el.panorama-q.com/api/chat/\(orderId)?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/chat/\(orderId)?page=\(currentPage + 1)"
         
         callApi(AllMessData.self, url: url, method: .get, parameters: nil) {[weak self] (data) in
             guard let self = self else { return }

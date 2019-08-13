@@ -65,7 +65,7 @@ class ContactViewController: UIViewController {
             return
         }
         
-        callApi(SendMess.self, url: "http://m4a8el.panorama-q.com/api/contact", parameters: ["message": messageTextView.text]) {[weak self] (data) in
+        callApi(SendMess.self, url: "http://homebride-sa.com/api/contact", parameters: ["message": messageTextView.text]) {[weak self] (data) in
             self?.showAlert(title: "", message: data?.data)
         }
     }

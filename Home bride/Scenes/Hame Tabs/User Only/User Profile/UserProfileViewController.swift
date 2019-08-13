@@ -169,7 +169,7 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
     }
     
     private func saveDate() {
-        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+        let url = "http://homebride-sa.com/api/user/update/profile"
         var pars = [String:Any]()
         pars["first_name"] = mainView.firstNameText.text
         pars["last_name"] = mainView.familyNameText.text
@@ -191,7 +191,7 @@ class UserProfileViewController: BaseUIViewController<UserProfileView> {
     
     private func addimage() {
         guard let img = pickerUserImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
-        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+        let url = "http://homebride-sa.com/api/user/update/profile"
 
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         

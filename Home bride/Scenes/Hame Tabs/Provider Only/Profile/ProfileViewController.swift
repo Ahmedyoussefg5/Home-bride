@@ -492,7 +492,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func getAllArea() {
-        let url = "http://m4a8el.panorama-q.com/api/locations/areas"
+        let url = "http://homebride-sa.com/api/locations/areas"
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.allArea = data.data
@@ -501,7 +501,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func getCity(id: Int) {
-        let url = "http://m4a8el.panorama-q.com/api/locations/cities/\(id)"
+        let url = "http://homebride-sa.com/api/locations/cities/\(id)"
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.allCity = data.data
@@ -510,7 +510,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func getRigon(id: Int) {
-        let url = "http://m4a8el.panorama-q.com/api/locations/regions/\(id)"
+        let url = "http://homebride-sa.com/api/locations/regions/\(id)"
         callApi(AllArea.self, url: url, method: .get, parameters: nil, shouldShowAlert: ya, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.allRigon = data.data
@@ -523,7 +523,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     var isLoading = true
     
     func getServicesData() {
-        let url = "http://m4a8el.panorama-q.com/api/services"
+        let url = "http://homebride-sa.com/api/services"
         callApi(AllServiceData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 self.scheduleData = data.data?.services.schedules
@@ -536,14 +536,14 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     func delService(id: Int) {
-        let url = "http://m4a8el.panorama-q.com/api/services/\(id)"
+        let url = "http://homebride-sa.com/api/services/\(id)"
         callApi(BaseModel.self, url: url, method: .delete, parameters: nil) { (data) in
             self.getServicesData()
         }
     }
     
     func delQuaif(id: Int) {
-        let url = "http://m4a8el.panorama-q.com/api/qualifications/\(id)"
+        let url = "http://homebride-sa.com/api/qualifications/\(id)"
         callApi(BaseModel.self, url: url, method: .delete, parameters: nil) { (data) in
             self.getQualifData()
         }
@@ -556,7 +556,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     func getQualifData() {
-        let url = "http://m4a8el.panorama-q.com/api/qualifications"
+        let url = "http://homebride-sa.com/api/qualifications"
         callApi(AllQualifications.self, url: url, method: .get, parameters: nil, activityIndicator: nil) {[weak self] (data) in
             if let data = data {
                 self?.dataSource = data.data?.qualifications
@@ -572,7 +572,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         guard lastPage > currentPage else { return }
         isLoading = true
         
-        let url = "http://m4a8el.panorama-q.com/api/qualifications?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/qualifications?page=\(currentPage + 1)"
         callApi(AllQualifications.self, url: url, method: .get, parameters: nil) {[weak self] (data) in
             if let data = data {
                 let app = data.data?.qualifications ?? []
@@ -589,7 +589,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
         guard lastPage > currentPage else { return }
         isLoading = true
         
-        let url = "http://m4a8el.panorama-q.com/api/services?page=\(currentPage + 1)"
+        let url = "http://homebride-sa.com/api/services?page=\(currentPage + 1)"
         callApi(AllServiceData.self, url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 let app = data.data?.services.schedules ?? []
@@ -602,7 +602,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     }
     
     private func saveDate() {
-        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+        let url = "http://homebride-sa.com/api/user/update/profile"
         var pars = [String:Any]()
         pars["first_name"] = mainView.firstNameText.text
         pars["last_name"] = mainView.familyNameText.text
@@ -631,7 +631,7 @@ class ProfileViewController: BaseUIViewController<ProfileView>, UICollectionView
     
     private func addimageWithImage() {
         guard let img = pickerUserProfileImage, let imgData = img.jpegData(compressionQuality: 0.5) else { return }
-        let url = "http://m4a8el.panorama-q.com/api/user/update/profile"
+        let url = "http://homebride-sa.com/api/user/update/profile"
         
         let imageData = UploadData(data: imgData, fileName: "image.jpeg", mimeType: "image/jpeg", name: "image")
         

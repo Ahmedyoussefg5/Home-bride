@@ -55,7 +55,7 @@ class VerifyViewController: BaseUIViewController<VerifyView> {
             "password": pass,
             "password_confirmation": pass
         ]
-        callApi(UserReset.self, url: "http://m4a8el.panorama-q.com/api/auth/reset", parameters: pars) {[weak self] (data) in
+        callApi(UserReset.self, url: "http://homebride-sa.com/api/auth/reset", parameters: pars) {[weak self] (data) in
             if let data = data {
                 guard let us = data.data else { return }
                 AuthService.instance.authToken = us.token
@@ -78,7 +78,7 @@ class VerifyViewController: BaseUIViewController<VerifyView> {
             let pars = [
                 "phone": num
             ]
-            callApi(ForgetData.self, url: "http://m4a8el.panorama-q.com/api/auth/forget", parameters: pars) {[weak self] (data) in
+            callApi(ForgetData.self, url: "http://homebride-sa.com/api/auth/forget", parameters: pars) {[weak self] (data) in
                 if data != nil {
                     self?.showAlert(title: "", message: "تم الارسال")
                 }
